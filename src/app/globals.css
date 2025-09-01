@@ -24,6 +24,10 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, div {
     @apply font-m-poppins
 }
 
+* {
+  @apply scroll-smooth;
+}
+
 @theme inline {
     --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);

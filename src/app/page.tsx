@@ -4,6 +4,15 @@ import { TrustCTA } from "./components/main/TrustCTA";
 import { LocationsSection } from "./components/LocationsSection";
 import { PlansSection } from "./components/PlansSection";
 import { Testimonials } from "./components/Testimonials";
+import { BookingCTA } from "./components/BookingCTA";
+import { ServicesSection } from "./components/ServicesSection";
+import { ReserveDate } from "./components/ReserveDate";
+import { CarouselHomeCta } from "./components/CarouselHomeCta";
+
+
+
+
+
 
 export default function Home() {
   return (
@@ -16,10 +25,14 @@ export default function Home() {
         </aside>
         <section className="lg:col-span-8 2xl:col-span-9 py-8 md:p-8">
           {/* Main content */}
+          <CarouselHomeCta />
+          <ReserveDate />
           <TrustCTA />
+          <ServicesSection />
+          <PlansSection />
           <LocationsSection />
           <Testimonials />
-          <PlansSection />
+          <BookingCTA />
           <Footer />
         </section>
       </div>

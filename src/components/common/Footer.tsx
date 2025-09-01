@@ -19,9 +19,9 @@ export const Footer = () => {
         </div>
         <div className="text-xs space-y-3">
           <p className="font-bold">SEDES</p>
-          <div className="space-y-3 text-gray-400">
+          <div className="space-y-3 text-gray-400 w-3/4">
             <p>Av. Jose Galvez barrenechea 765</p>
-            <p>Av. Jose Galvez barrenechea 765</p>
+            <p>Av. Gonzáles Prada 558 A Dos Cuadras De La Municipalidad De Los Olivos</p>
           </div>
           <div className="space-y-1">
             <p className="text-gray-400">Lunes - Sábados</p>
@@ -31,9 +31,15 @@ export const Footer = () => {
         <div className="text-xs space-y-3">
           <p className="font-bold">INFORMACION</p>
           <div className="space-y-3 text-gray-400">
-            <p>Nosotros</p>
-            <p>Servicios</p>
-            <p>Planes</p>
+            <Link href="#nosotros" className="hover:underline block">
+              Nosotros
+            </Link>
+            <Link href="#servicios" className="hover:underline block">
+              Servicios
+            </Link>
+            <Link href="#planes" className="hover:underline block">
+              Planes
+            </Link>
           </div>
         </div>
         <div className="text-xs space-y-3">
@@ -54,15 +60,15 @@ export const Footer = () => {
             <p>@Lyvesteticaynutricion</p>
             <div>
               <div className="flex gap-2">
-                <Link href="#" className="text-m-green-light text-xs">
+                {/* <Link target="_blank" href="https://www.facebook.com/lyvesteticaynutricion" className="text-m-green-light text-xs">
                   <Image
                     src="/svg/icon/tiktok-green.svg"
                     alt="Icono tiktok"
                     width={20}
                     height={20}
                   />
-                </Link>
-                <Link href="#" className="text-m-green-light text-xs">
+                </Link> */}
+                <Link target="_blank" href="https://www.instagram.com/lyv_esteticaynutricion/" className="text-m-green-light text-xs">
                   <Image
                     src="/svg/icon/instagram-green.svg"
                     alt="Icono instagram"
@@ -70,7 +76,7 @@ export const Footer = () => {
                     height={20}
                   />
                 </Link>
-                <Link href="#" className="text-m-green-light text-xs">
+                <Link target="_blank" href="https://www.facebook.com/lyvesteticaynutricion" className="text-m-green-light text-xs">
                   <Image
                     src="/svg/icon/facebook-green.svg"
                     alt="Icono facebook"
@@ -78,14 +84,14 @@ export const Footer = () => {
                     height={20}
                   />
                 </Link>
-                <Link href="#" className="text-m-green-light text-xs">
+                {/* <Link href="#" className="text-m-green-light text-xs">
                   <Image
                     src="/svg/icon/youtube-green.svg"
                     alt="Icono youtube"
                     width={20}
                     height={20}
                   />
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

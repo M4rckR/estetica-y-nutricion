@@ -19,7 +19,7 @@ export const HeaderMain = () => {
           </div>
         </div>
         <div className="space-y-[36px] sm:w-2/3 lg:w-full mb-12 md:mb-16">
-          <h1 className="text-3xl lg:text-[36px] xl:text-[42px] text-white font-m-manrope lg:leading-[46px]">
+          <h1 className="text-3xl lg:text-4xl 3xl:text-5xl text-white font-m-manrope">
             “Nutrición, Salud y Estética para una{" "}
             <span className="text-m-green-light">mejor versión de ti” </span>
           </h1>

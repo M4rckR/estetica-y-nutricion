@@ -9,7 +9,7 @@ import {
 
 export const PlansSection = () => {
   return (
-    <section className="pt-12 md:pt-24 max-w-6xl mx-auto">
+    <section id="planes" className="pt-12 md:pt-24 max-w-6xl mx-auto px-4">
       <div className="text-center space-y-4 px-4">
         <h2 className="text-2xl md:text-4xl text-m-green-dark font-medium">
           Planes de <span className="text-m-green">nutrición y salud</span>{" "}

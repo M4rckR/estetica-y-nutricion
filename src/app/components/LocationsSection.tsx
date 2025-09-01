@@ -24,12 +24,15 @@ export const LocationsSection = () => {
     ? sedesAccordion.find((sede) => sede.id.toString() === selectedSede)
     : undefined;
 
-  const getWhatsAppLink = (sedeName: string) => {
-    const message = encodeURIComponent(
-      `¡Hola! vi su pagina web y me gustaría agendar una cita en la sede ${sedeName}. ¿Podrían brindarme más información?`
-    );
-    return `https://wa.me/5199999999?text=${message}`;
-  };
+  const phone = "51931531046";
+  const msgTop = selectedSedeInfo
+    ? `Hola, vi su página web y quiero reservar una cita en la sede ${selectedSedeInfo.name}.`
+    : "Hola, vi su página web y quiero reservar una cita.";
+  const whatsappUrlTop = `https://wa.me/${phone}?text=${encodeURIComponent(
+    msgTop
+  )}`;
+
+
 
   return (
     <section className="pt-12 md:pt-24 max-w-7xl mx-auto px-4">
@@ -41,8 +44,8 @@ export const LocationsSection = () => {
           Contamos con equipos modernos y atención especializada en cada sede.
         </p>
       </div>
-      <section className="grid grid-cols-1 items-center md:grid-cols-12 gap-16">
-        <div className="col-span-1 md:col-span-4">
+      <section className="grid grid-cols-1 items-center xl:grid-cols-12 gap-16">
+        <div className="col-span-1 md:col-span-8 xl:col-span-4">
           <Accordion
             type="single"
             collapsible
@@ -60,7 +63,7 @@ export const LocationsSection = () => {
                 <AccordionContent className="text-m-gray-base space-y-4 -mt-1">
                   <p>{sede.description}</p>
                   <Link
-                    href={getWhatsAppLink(sede.name)}
+                    href={whatsappUrlTop}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-m-green inline-flex items-center transition-colors duration-300"

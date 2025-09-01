@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const TrustCTA = () => {
   return (
-    <section className="grid grid-cols-1 gap-4 xl:grid-cols-2 items-center pt-6 md:pt-12 xl:px-8 px-4">
+    <section id="confianza" className="pt-12 md:pt-24 grid grid-cols-1 gap-4 xl:grid-cols-2 items-center xl:px-8 px-4">
       <div className="space-y-6">
         <div className="space-y-6 text-center xl:text-left">
             <h2 className="text-2xl text-m-green-dark md:text-3xl font-medium">

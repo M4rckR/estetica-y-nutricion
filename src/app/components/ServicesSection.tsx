@@ -48,8 +48,8 @@ export const ServicesSection = () => {
           </Link>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-8">
-        <article className="bg-m-green-light rounded-2xl py-8 px-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4 xl:gap-8">
+        <article className="bg-m-green-light rounded-2xl flex flex-col justify-center py-8 px-6">
           <h3 className="text-m-green-dark font-medium text-lg">
             Consultoría y evaluación nutricional
           </h3>
@@ -82,7 +82,14 @@ export const ServicesSection = () => {
                 Tratamientos faciales
               </AccordionTrigger>
               <AccordionContent className="text-m-green-dark">
-                Yes. It adheres to the WAI-ARIA design pattern.
+                <ul className="list-disc list-inside space-y-1">
+                  <li>Limpieza facial profunda</li>
+                  <li>limpieza facial express</li>
+                  <li>Limpieza facial + dermapen</li>
+                  <li>Limpieza facial + PRP</li>
+                  <li>PRP</li>
+                  <li>Coctel antiaging, ETC</li>
+                </ul>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
@@ -93,7 +100,22 @@ export const ServicesSection = () => {
                 Tratamientos corporales
               </AccordionTrigger>
               <AccordionContent className="text-m-green-dark">
-                Yes. It adheres to the WAI-ARIA design pattern.
+                <div className="flex gap-8 md:gap-1 2xl:gap-6 flex-col 2xl:flex-row md:space-y-0 space-y-4">
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Hidrolipoclasia</li>
+                    <li>Hidrolipoescultura</li>
+                    <li>Anticelulitis</li>
+                    <li>Carboxiterapia</li>
+                    <li>Maderoterapia</li>
+                  </ul>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>Ultracavitacion</li>
+                    <li>Pack Levantamiento de gluteos</li>
+                    <li>Pack reductor</li>
+                    <li>Coctel de vida</li>
+                    <li>Lipopapada, etc</li>
+                  </ul>
+                </div>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
@@ -104,7 +126,25 @@ export const ServicesSection = () => {
                 Venta de suplementos y productos nutricionales
               </AccordionTrigger>
               <AccordionContent className="text-m-green-dark">
-                Yes. It adheres to the WAI-ARIA design pattern.
+                <div className="flex gap-8 md:gap-1 2xl:gap-6 flex-col 2xl:flex-row md:space-y-0 space-y-4">
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>St. John wort.</li>
+                    <li>Whey protein</li>
+                    <li>omega 3</li>
+                    <li>picolinato de cromo </li>
+                    <li>curcumix</li>
+                    <li>berberina</li>
+                    <li>zinc</li>
+                  </ul>
+                  <ul className="list-disc list-inside space-y-1">
+                    <li>xtropin</li>
+                    <li>prokids</li>
+                    <li>melatonina</li>
+                    <li>glicinato de magnesio</li>
+                    <li>citrato de magnesio</li>
+                    <li>balanza gramera</li>
+                  </ul>
+                </div>
               </AccordionContent>
             </AccordionItem>
           </Accordion>

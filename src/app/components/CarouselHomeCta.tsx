@@ -1,9 +1,16 @@
+'use client';
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Image from "next/image";
+import { useEffect } from "react";
+import AOS from "aos";
 
 export const CarouselHomeCta = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
-    <section className="px-4">
+    <section data-aos="fade-up" className="px-4">
       <Carousel>
         <CarouselContent>
           <CarouselItem>

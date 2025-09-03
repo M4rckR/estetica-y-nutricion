@@ -1,3 +1,4 @@
+'use client';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { plansOnline, plansPresencial } from "@/data/plans.data";
 import { PlanCard } from "./PlanCard";
@@ -6,10 +7,17 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import { useEffect } from "react";
+import AOS from "aos";
 
 export const PlansSection = () => {
-  return (
-    <section id="planes" className="pt-12 md:pt-24 max-w-6xl mx-auto px-4">
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
+  
+    return (
+      <section data-aos="fade-up" id="planes" className="pt-12 md:pt-24 max-w-6xl mx-auto px-4">
       <div className="text-center space-y-4 px-4">
         <h2 className="text-2xl md:text-4xl text-m-green-dark font-medium">
           Planes de <span className="text-m-green">nutrición y salud</span>{" "}

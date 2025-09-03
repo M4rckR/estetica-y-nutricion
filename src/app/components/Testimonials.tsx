@@ -5,11 +5,15 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { MediaPlayer, MediaProvider } from '@vidstack/react';
-import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/layouts/default';
+import { MediaPlayer, MediaProvider } from "@vidstack/react";
+import {
+  defaultLayoutIcons,
+  DefaultVideoLayout,
+} from "@vidstack/react/player/layouts/default";
 import { testimonials } from "@/data/testimonials.data";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
+import AOS from "aos";
 
 export const Testimonials = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -17,6 +21,10 @@ export const Testimonials = () => {
   const [count, setCount] = useState(0);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const mediaPlayersRef = useRef<any[]>([]);
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   useEffect(() => {
     if (!api) return;
@@ -28,20 +36,20 @@ export const Testimonials = () => {
     // Escuchar evento de seleccion
     api.on("select", () => {
       const newCurrent = api.selectedScrollSnap() + 1;
-      
+
       // Pausar todos los videos antes de cambiar
       mediaPlayersRef.current.forEach((player) => {
         if (player && player.paused === false) {
           player.pause();
         }
       });
-      
+
       setCurrent(newCurrent);
     });
   }, [api]);
 
   return (
-    <section className="container mx-auto max-w-7xl px-4 pt-16 md:pt-24">
+    <section data-aos="fade-up" className="container mx-auto max-w-7xl px-4 pt-16 md:pt-24">
       <div className="bg-m-green-blank rounded-2xl p-6 py-8 md:px-12 grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-4 items-center">
         <div className="space-y-2">
           <h2 className="text-2xl md:text-3xl leading-8  font-medium text-m-green-dark text-center xl:text-left pb-2">
@@ -58,9 +66,11 @@ export const Testimonials = () => {
         </div>
         <div>
           <div className="overflow-hidden">
-            <Carousel className="relative" setApi={setApi}
-                opts={{
-                watchDrag: false
+            <Carousel
+              className="relative"
+              setApi={setApi}
+              opts={{
+                watchDrag: false,
               }}
             >
               <CarouselContent className="font-in-poppins -ml-4">
@@ -71,21 +81,21 @@ export const Testimonials = () => {
                   >
                     <div className="rounded-2xl h-full">
                       <div className="flex flex-col justify-between h-full">
-                          <MediaPlayer
-                            ref={(el) => {
-                              if (el) {
-                                mediaPlayersRef.current[index] = el;
-                              }
-                            }}
-                            title="Sprite Fight"
-                            src={testimonial.videoSrc}
-                          >
-                            <MediaProvider />
-                            <DefaultVideoLayout
-                              thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
-                              icons={defaultLayoutIcons}
-                            />
-                          </MediaPlayer>
+                        <MediaPlayer
+                          ref={(el) => {
+                            if (el) {
+                              mediaPlayersRef.current[index] = el;
+                            }
+                          }}
+                          title="Sprite Fight"
+                          src={testimonial.videoSrc}
+                        >
+                          <MediaProvider />
+                          <DefaultVideoLayout
+                            thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+                            icons={defaultLayoutIcons}
+                          />
+                        </MediaPlayer>
                       </div>
                     </div>
                   </CarouselItem>

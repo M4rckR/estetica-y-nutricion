@@ -1,3 +1,4 @@
+'use client'
 import {
   Accordion,
   AccordionContent,
@@ -6,8 +7,14 @@ import {
 } from "@/components/ui/accordion";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
+import AOS from "aos";
 
 export const ServicesSection = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   const phoneNumber = "51931531046";
   const message = "Hola, vi su página web y estoy interesado en sus servicios.";
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
@@ -16,6 +23,7 @@ export const ServicesSection = () => {
 
   return (
     <section
+    data-aos="fade-up"
       id="servicios"
       className="pt-12 md:pt-24 max-w-7xl mx-auto px-4 space-y-12"
     >
@@ -100,7 +108,7 @@ export const ServicesSection = () => {
                 Tratamientos corporales
               </AccordionTrigger>
               <AccordionContent className="text-m-green-dark">
-                <div className="flex gap-8 md:gap-1 2xl:gap-6 flex-col 2xl:flex-row md:space-y-0 space-y-4">
+                <div className="flex gap-1 xl:gap-1 md:gap-1 2xl:gap-10 flex-col 2xl:flex-row md:space-y-0 xl:space-y-0">
                   <ul className="list-disc list-inside space-y-1">
                     <li>Hidrolipoclasia</li>
                     <li>Hidrolipoescultura</li>
@@ -126,7 +134,7 @@ export const ServicesSection = () => {
                 Venta de suplementos y productos nutricionales
               </AccordionTrigger>
               <AccordionContent className="text-m-green-dark">
-                <div className="flex gap-8 md:gap-1 2xl:gap-6 flex-col 2xl:flex-row md:space-y-0 space-y-4">
+                <div className="flex gap-1 xl:gap-1 md:gap-1 2xl:gap-10 flex-col 2xl:flex-row md:space-y-0 xl:space-y-0">
                   <ul className="list-disc list-inside space-y-1">
                     <li>St. John wort.</li>
                     <li>Whey protein</li>

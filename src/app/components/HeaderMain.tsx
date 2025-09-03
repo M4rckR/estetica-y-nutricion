@@ -1,9 +1,18 @@
+'use client';
 import { CarouselHeader } from "@/app/components/header/CarouselHeader";
 import Image from "next/image";
+import { useEffect } from "react";
+import AOS from "aos";
 
 export const HeaderMain = () => {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+    });
+  }, []);
+
   return (
-      <header className="relative">
+      <header data-aos="fade-right" className="relative">
         <div className="mb-12 md:mb-16">
           <div className="flex gap-2 items-center">
             <Image

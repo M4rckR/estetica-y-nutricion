@@ -2,24 +2,37 @@
 
 import Image from "next/image";
 
-
 import { Button } from "@/components/ui/button";
 import { sedesAccordion } from "@/data/sedesAccordion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CalendarDays, CalendarIcon, ChevronDownIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { FormPreReservationType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { consultasMedicas } from "@/data/consultasMedicas";
 import { formPreReservationSchema } from "@/schema";
+import AOS from "aos";
 
 export const ReserveDate = () => {
   const [openCallendar, setOpenCallendar] = useState(false);
 
+  useEffect(() => {
+    AOS.init();
+  }, []);
 
   const form = useForm<FormPreReservationType>({
     resolver: zodResolver(formPreReservationSchema),
@@ -31,11 +44,27 @@ export const ReserveDate = () => {
   });
 
   const handleReservar = (data: FormPreReservationType) => {
-    console.log(data);
+    const fecha = new Date(data.date).toLocaleDateString("es-PE", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+
+    const message =
+      `Hola, vi su página web y estoy interesado en atenderme en *${data.consultaMedica}*.\n` +
+      `Sede: *${data.sede}*\n` +
+      `Día: *${fecha}*`;
+
+    const phoneNumber = "51931531046"; // sin '+' ni espacios
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+      message
+    )}`;
+
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
   return (
-    <div className="px-4 pt-24 z-10 relative space-y-8">
+    <div data-aos="fade-up" className="px-4 pt-24 z-10 relative space-y-8">
       <section>
         <Form {...form}>
           <form
@@ -158,6 +187,7 @@ export const ReserveDate = () => {
                           selected={field.value}
                           onSelect={(date) => {
                             field.onChange(date);
+                            setOpenCallendar(false);
                           }}
                           captionLayout="dropdown"
                           disabled={(date) => {
@@ -182,7 +212,7 @@ export const ReserveDate = () => {
                 className="w-full bg-m-green h-full hover:bg-m-green-dark py-4 text-sm cursor-pointer rounded-full"
               >
                 <CalendarIcon className="w-6 h-4 mr-2" />
-                Reservar <span className="hidden 2xl:block">ahora</span> 
+                Reservar <span className="hidden 2xl:block">ahora</span>
               </Button>
             </div>
           </form>

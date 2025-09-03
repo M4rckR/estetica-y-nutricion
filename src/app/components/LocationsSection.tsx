@@ -9,11 +9,16 @@ import { sedesAccordion } from "@/data/sedesAccordion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import AOS from "aos";
 
 export const LocationsSection = () => {
   const [selectedSede, setSelectedSede] = useState<string | undefined>(
     undefined
   );
+
+  useEffect(() => {
+    AOS.init();
+  }, []);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -35,7 +40,7 @@ export const LocationsSection = () => {
 
 
   return (
-    <section className="pt-12 md:pt-24 max-w-7xl mx-auto px-4">
+    <section data-aos="fade-up" className="pt-12 md:pt-24 max-w-7xl mx-auto px-4">
       <div className="text-center text-m-green-dark space-y-4 mb-8">
         <h2 className="text-2xl md:text-4xl font-medium">
           Encuentra una sede cerca de ti.

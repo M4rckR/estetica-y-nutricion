@@ -1,9 +1,16 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
+import AOS from "aos";
 
 export const Footer = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
+
   return (
-    <footer className="px-4 pt-12 md:pt-24">
+    <footer data-aos="fade-up" className="px-4 pt-12 md:pt-24">
       <div className="w-full h-[1px] bg-m-gray-light"></div>
       <div className="grid gap-x-4 xl:gap-x-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-y-12 pt-8 pb-14 items-start">
         <div className="flex items-center gap-2">

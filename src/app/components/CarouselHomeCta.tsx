@@ -10,7 +10,7 @@ export const CarouselHomeCta = () => {
   }, []);
 
   return (
-    <section data-aos="fade-up" className="px-4">
+    <section data-aos="fade-in" data-aos-duration="1200" className="px-4 xl:p-8">
       <Carousel>
         <CarouselContent>
           <CarouselItem>
@@ -18,7 +18,7 @@ export const CarouselHomeCta = () => {
               src="/images/principal-item-carousel-1.png"
               alt="Description of image"
               width={1200}
-              height={300}
+              height={500}
                 className="w-full h-auto"
             />
           </CarouselItem>
@@ -27,7 +27,7 @@ export const CarouselHomeCta = () => {
               src="/images/principal-item-carousel-1.png"
               alt="Description of image"
               width={1200}
-              height={300}
+              height={500}
                 className="w-full h-auto"
             />
           </CarouselItem>

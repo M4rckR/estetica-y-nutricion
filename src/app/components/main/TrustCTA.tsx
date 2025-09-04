@@ -18,8 +18,9 @@ export const TrustCTA = () => {
   return (
     <section
       data-aos="fade-up"
+      data-aos-duration="1200"
       id="confianza"
-      className="pt-12 md:pt-24 grid grid-cols-1 gap-4 xl:grid-cols-2 items-center xl:px-8 px-4"
+      className="max-w-7xl mx-auto pt-12 md:pt-24 grid grid-cols-1 gap-4 xl:grid-cols-2 items-center"
     >
       <div className="space-y-6">
         <div className="space-y-6 text-center xl:text-left">

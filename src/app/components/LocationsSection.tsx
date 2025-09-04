@@ -40,7 +40,7 @@ export const LocationsSection = () => {
 
 
   return (
-    <section data-aos="fade-up" className="pt-12 md:pt-24 max-w-7xl mx-auto px-4">
+    <section data-aos="fade-up" data-aos-duration="1200" className="pt-12 md:pt-24 max-w-7xl mx-auto px-4">
       <div className="text-center text-m-green-dark space-y-4 mb-8">
         <h2 className="text-2xl md:text-4xl font-medium">
           Encuentra una sede cerca de ti.

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { plansOnline, plansPresencial } from "@/data/plans.data";
 import { PlanCard } from "./PlanCard";
@@ -15,17 +15,23 @@ export const PlansSection = () => {
     AOS.init();
   }, []);
 
-  
-    return (
-      <section data-aos="fade-up" id="planes" className="pt-12 md:pt-24 max-w-6xl mx-auto px-4">
-      <div className="text-center space-y-4 px-4">
-        <h2 className="text-2xl md:text-4xl text-m-green-dark font-medium">
-          Planes de <span className="text-m-green">nutrición y salud</span>{" "}
-        </h2>
-        <p className="text-sm text-m-green-dark">
-          Mejora tus hábitos, transforma tu alimentación y cuida tu salud con
-          acompañamiento profesional.
-        </p>
+  return (
+    <section
+      data-aos="fade-up"
+      data-aos-duration="1200"
+      id="planes"
+      className="pt-12 md:pt-24 max-w-6xl mx-auto"
+    >
+      <div className="text-center px-4">
+        <div className="space-y-4">
+          <h2 className="text-2xl md:text-4xl text-m-green-dark font-medium">
+            Planes de <span className="text-m-green">nutrición y salud</span>{" "}
+          </h2>
+          <p className="text-sm text-m-green-dark">
+            Mejora tus hábitos, transforma tu alimentación y cuida tu salud con
+            acompañamiento profesional.
+          </p>
+        </div>
       </div>
       <div>
         <Tabs defaultValue="presencial" className="mt-8 space-y-8">
@@ -44,7 +50,12 @@ export const PlansSection = () => {
             </TabsTrigger>
           </TabsList>
           <TabsContent value="presencial">
-            <Carousel>
+            <Carousel
+              opts={{
+                align: "center",
+                loop: false,
+              }}
+            >
               <CarouselContent>
                 {plansPresencial.map((plan) => (
                   <CarouselItem
@@ -60,13 +71,14 @@ export const PlansSection = () => {
           <TabsContent value="online">
             <Carousel>
               <CarouselContent>
-                  {plansOnline.map((plan) => (
-                    <CarouselItem
-                    className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3"
-                    key={plan.id}>
-                      <PlanCard plan={plan} />
-                    </CarouselItem>
-                  ))}
+                {plansOnline.map((plan) => (
+                  <CarouselItem
+                    className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3 first:pl-4 last:pr-4"
+                    key={plan.id}
+                  >
+                    <PlanCard plan={plan} />
+                  </CarouselItem>
+                ))}
               </CarouselContent>
             </Carousel>
           </TabsContent>

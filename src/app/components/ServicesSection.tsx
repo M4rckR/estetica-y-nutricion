@@ -24,6 +24,7 @@ export const ServicesSection = () => {
   return (
     <section
     data-aos="fade-up"
+    data-aos-duration="1200"
       id="servicios"
       className="pt-12 md:pt-24 max-w-7xl mx-auto px-4 space-y-12"
     >

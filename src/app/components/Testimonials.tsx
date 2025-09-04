@@ -49,7 +49,7 @@ export const Testimonials = () => {
   }, [api]);
 
   return (
-    <section data-aos="fade-up" className="container mx-auto max-w-7xl px-4 pt-16 md:pt-24">
+    <section data-aos="fade-up" data-aos-duration="1200" className="container mx-auto max-w-7xl px-4 pt-16 md:pt-24">
       <div className="bg-m-green-blank rounded-2xl p-6 py-8 md:px-12 grid grid-cols-1 xl:grid-cols-2 gap-6 md:gap-4 items-center">
         <div className="space-y-2">
           <h2 className="text-2xl md:text-3xl leading-8  font-medium text-m-green-dark text-center xl:text-left pb-2">

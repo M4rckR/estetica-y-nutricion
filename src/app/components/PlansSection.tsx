@@ -56,10 +56,12 @@ export const PlansSection = () => {
                 loop: false,
               }}
             >
-              <CarouselContent>
+              <CarouselContent className="-ml-2 md:-ml-4 lg:-ml-6">
                 {plansPresencial.map((plan) => (
                   <CarouselItem
-                    className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3"
+                    className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3 pl-4 md:pl-6 lg:pl-8
+            first:pl-6 md:first:pl-8 lg:first:pl-10
+            last:pr-4 md:last:pr-6 lg:last:pr-8"
                     key={plan.id}
                   >
                     <PlanCard plan={plan} />
@@ -70,10 +72,13 @@ export const PlansSection = () => {
           </TabsContent>
           <TabsContent value="online">
             <Carousel>
-              <CarouselContent>
+              <CarouselContent className="-ml-2 md:-ml-4 lg:-ml-6">
                 {plansOnline.map((plan) => (
                   <CarouselItem
-                    className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3 first:pl-4 last:pr-4"
+                    className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3
+            pl-4 md:pl-6 lg:pl-8
+            first:pl-6 md:first:pl-8 lg:first:pl-10
+            last:pr-4 md:last:pr-6 lg:last:pr-8"
                     key={plan.id}
                   >
                     <PlanCard plan={plan} />

@@ -23,7 +23,7 @@ export const PlanCard = ({ plan }: PlanCardProps) => {
   return (
     <article className={`${plan.highlight ? 'bg-m-green-light' : 'bg-m-gray-bg'} h-full flex flex-col rounded-4xl md:px-4 py-8 shadow-sm`}>
         <div className="space-y-4 pb-8">
-            <h3 className="text-center text-xl md:text-2xl text-m-green-dark font-medium line-clamp-2 min-h-[58px] md:min-h-[62px]">{plan.title}</h3>
+            <h3 className="text-center text-xl md:text-2xl text-m-green-dark font-medium line-clamp-2 min-h-[58px] md:min-h-[62px] px-4">{plan.title}</h3>
             <p className="text-sm md:text-base text-center text-m-green-dark px-6">{plan.subtitle}</p>
         </div>
         <div className="px-4 space-y-4">

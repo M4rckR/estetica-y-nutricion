@@ -23,7 +23,7 @@ export default function Home() {
                    lg:sticky lg:top-0 lg:h-screen">
           <HeaderMain />
         </aside>
-        <section className="lg:col-span-8 2xl:col-span-9 py-8">
+        <section className="lg:col-span-8 2xl:col-span-9 py-8 xl:px-8">
           {/* Main content */}
           <CarouselHomeCta />
           <ReserveDate />

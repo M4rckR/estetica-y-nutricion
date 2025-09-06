@@ -9,7 +9,7 @@ export const BookingCTA = () => {
   }, []);
 
   return (
-    <section data-aos="fade-up" data-aos-duration="1200" className="max-w-7xl mx-auto pt-12 md:pt-24">
+    <section data-aos="fade-up" data-aos-duration="1200" className="max-w-6xl mx-auto pt-12 md:pt-24">
       <div className="relative px-4">
         <Image
           src="/images/cta-booking.png"

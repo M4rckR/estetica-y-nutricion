@@ -1,9 +1,19 @@
-import { CarouselHeader } from "@/app/components/header/CarouselHeader";
+import { CarouselHeader } from "@/components/header/CarouselHeader";
+import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
 
-export const HeaderMain = () => {
+export const HeaderMain = async() => {
+
+  // Obtenemos al usuario autenticado
+  const supabase = await createClient();
+  const {data: { user } } = await supabase.auth.getUser();
+
+  const isLoggedIn = !!user;
+  const saludo = isLoggedIn ? `¡Bienvenido, ${user?.email}!` : "¡Bienvenido invitado!";
+  
   return (
       <header className="relative">
+        <p className="text-white py-2">{saludo}</p>
         <div className="mb-12 md:mb-16">
           <div className="flex gap-2 items-center">
             <Image

@@ -103,6 +103,7 @@ export const Testimonials = () => {
               </CarouselContent>
               <div className="flex items-center justify-center xl:justify-start gap-4 relative pt-4 ">
                 <button
+                  aria-label="Next"
                   className="bg-in-blue w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-in-blue/90 disabled:opacity-50 disabled:cursor-not-allowed"
                   onClick={() => api?.scrollPrev()}
                   disabled={current === 1}
@@ -119,6 +120,7 @@ export const Testimonials = () => {
                   {current} de {count}
                 </span>
                 <button
+                  aria-label="Previous"
                   className="bg-in-blue w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-in-blue/90 disabled:opacity-50 disabled:cursor-not-allowed"
                   onClick={() => api?.scrollNext()}
                   disabled={current === count}

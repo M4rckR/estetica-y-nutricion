@@ -1,4 +1,5 @@
 import z from "zod/v3";
+export * from "./register/register";
 
 
 // Esquema para el formulario de pre-reserva

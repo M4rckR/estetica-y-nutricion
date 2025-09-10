@@ -13,8 +13,8 @@ export const HeaderMain = async() => {
   
   return (
       <header className="relative">
-        <p className="text-white py-2">{saludo}</p>
-        <div className="mb-12 md:mb-16">
+        
+        <div className="mb-12 md:mb-16 flex justify-between">
           <div className="flex gap-2 items-center">
             <Image
               src="/svg/icon/marca.svg"
@@ -27,6 +27,7 @@ export const HeaderMain = async() => {
               Estética y <br /> nutrición integral
             </p>
           </div>
+          <p className="text-white py-2 text-xs">{saludo}</p>
         </div>
         <div className="space-y-[36px] sm:w-2/3 lg:w-full mb-12 md:mb-16">
           <h1 className="text-3xl lg:text-4xl 3xl:text-5xl text-white font-m-manrope">
@@ -42,52 +43,6 @@ export const HeaderMain = async() => {
           <p className="text-m-green-light text-xs">Nuestras ofertas</p>
           <CarouselHeader />
         </div>
-
-        {/* <div className="flex gap-4">
-          <Link href="#" className="text-m-green-light text-xs">
-            Contáctanos
-          </Link>
-          <Link href="#" className="text-m-green-light text-xs">
-            Encuentranos
-          </Link>
-          <Link href="#" className="text-m-green-light text-xs">
-            Social Media
-          </Link>
-          <div className="hidden md:flex gap-2">
-            <Link href="#" className="text-m-green-light text-xs">
-              <Image
-                src="/svg/icon/tiktok.svg"
-                alt="Icono tiktok"
-                width={20}
-                height={20}
-              />
-            </Link>
-            <Link href="#" className="text-m-green-light text-xs">
-              <Image
-                src="/svg/icon/instagram.svg"
-                alt="Icono instagram"
-                width={20}
-                height={20}
-              />
-            </Link>
-            <Link href="#" className="text-m-green-light text-xs">
-              <Image
-                src="/svg/icon/facebook.svg"
-                alt="Icono facebook"
-                width={20}
-                height={20}
-              />
-            </Link>
-            <Link href="#" className="text-m-green-light text-xs">
-              <Image
-                src="/svg/icon/youtube.svg"
-                alt="Icono youtube"
-                width={20}
-                height={20}
-              />
-            </Link>
-          </div>
-        </div> */}
       </header>
   );
 };

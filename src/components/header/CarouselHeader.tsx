@@ -53,8 +53,8 @@ export const CarouselHeader = () => {
             </article>
             </CarouselItem>
         </CarouselContent>
-        </Carousel>
         <div className="pointer-events-none absolute right-0 top-0 h-full w-10 bg-gradient-to-l from-m-green-dark to-transparent" />
+        </Carousel>
     </div>
   );
 };

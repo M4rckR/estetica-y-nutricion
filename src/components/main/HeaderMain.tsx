@@ -1,6 +1,7 @@
 import { CarouselHeader } from "@/components/header/CarouselHeader";
 import { createClient } from "@/utils/supabase/server";
 import Image from "next/image";
+import Link from "next/link";
 
 export const HeaderMain = async() => {
 
@@ -16,13 +17,15 @@ export const HeaderMain = async() => {
         
         <div className="mb-12 md:mb-16 flex justify-between">
           <div className="flex gap-2 items-center">
-            <Image
-              src="/svg/icon/marca.svg"
-              alt="Icono marca estetica y nutricion"
-              width={60}
-              height={30}
-              className="w-12 h-auto md:w-16"
-            />
+            <Link href="/">
+              <Image
+                src="/svg/icon/marca.svg"
+                alt="Icono marca estetica y nutricion"
+                width={60}
+                height={30}
+                className="w-12 h-auto md:w-16"
+              />
+            </Link>
             <p className="text-sm leading-3.5 font-light text-white">
               Estética y <br /> nutrición integral
             </p>

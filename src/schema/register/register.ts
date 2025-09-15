@@ -71,7 +71,7 @@ export const nutritionSchema = z.object({
   dailyLiquids: z
     .string()
     .min(1, { message: "Indique la cantidad de líquidos que consume al día" }),
-  supplements: z.string().optional(),
+  supplements: z.string()
 });
 
 // Esquema completo para el registro
@@ -104,7 +104,9 @@ export const completeRegistrationSchema = z.object({
   hiperDiaAntecedents: z.string().min(1, { message: "Seleccione una opción" }),
 
   // Surgeries and allergies
-  operated: z.boolean(),
+  operated: z.boolean({
+    required_error: "Seleccione una opción",
+  }),
   operatedDescription: z.string().optional(),
   allergies: z.string().optional(),
   alimentsHate: z.string().optional(),
@@ -122,7 +124,7 @@ export const completeRegistrationSchema = z.object({
   dailyLiquids: z
     .string()
     .min(1, { message: "Indique la cantidad de líquidos que consume al día" }),
-  supplements: z.string().optional(),
+  supplements: z.string()
 }).refine(
   (data) => {
     if (

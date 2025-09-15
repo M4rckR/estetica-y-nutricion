@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { Button } from "../ui/button"
+import Link from "next/link"
 
 export const HeaderAuth = () => {
   return (
@@ -12,7 +13,9 @@ export const HeaderAuth = () => {
             height={50}
         />
         <p className="text-lg">Accede fácilmente a tus resultados</p>
-        <Button variant="secondary" className="hover:bg-m-green-dark text-xs bg-m-green text-white cursor-pointer rounded-2xl px-10 py-3">Registrarme</Button>
+        <Link href="/auth/register">
+          <Button variant="secondary" className="hover:bg-m-green-dark text-xs bg-m-green text-white cursor-pointer rounded-2xl px-10 py-3">Registrarme</Button>
+        </Link>
       </div>
     </header>
   )

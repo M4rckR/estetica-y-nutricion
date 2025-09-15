@@ -20,10 +20,16 @@ interface NutritionFormProps {
   isLastStep: boolean;
 }
 
-export const NutritionForm = ({ form, onNext, onPrev, isLastStep }: NutritionFormProps) => {
+export const NutritionForm = ({ form, onPrev }: NutritionFormProps) => {
+
+  const onSubmit = (data: CompleteRegistrationFormType) => {
+    console.log(data)
+  }
+
+
   return (
     <Form {...form}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 px-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="grid grid-cols-1 sm:grid-cols-2 gap-4 px-4">
         <FormField
           control={form.control}
           name="mealsPreparedBy"
@@ -151,7 +157,7 @@ export const NutritionForm = ({ form, onNext, onPrev, isLastStep }: NutritionFor
             Completar registro
           </Button>
         </div>
-      </div>
+      </form>
     </Form>
   )
 }

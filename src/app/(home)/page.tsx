@@ -1,4 +1,5 @@
 import { BookingCTA } from "@/components/main/BookingCTA";
+import { ButtonsLog } from "@/components/main/ButtonsLog";
 import { CarouselHomeCta } from "@/components/main/CarouselHomeCta";
 import { HeaderMain } from "@/components/main/HeaderMain";
 import { LocationsSection } from "@/components/main/LocationsSection";
@@ -7,12 +8,11 @@ import { ReserveDate } from "@/components/main/ReserveDate";
 import { ServicesSection } from "@/components/main/ServicesSection";
 import { Testimonials } from "@/components/main/Testimonials";
 import { TrustCTA } from "@/components/main/TrustCTA";
-import { createClient } from "@/utils/supabase/server";
 import { Footer } from "react-day-picker";
 
 export default async function Home() {
-  const supabase = await createClient();
-  const {data:{ session }} = await supabase.auth.getSession();
+
+  
 
   return (
     <>
@@ -24,6 +24,7 @@ export default async function Home() {
         </aside>
         <section className="lg:col-span-8 2xl:col-span-9 py-8 xl:px-8">
           {/* Main content */}
+          <ButtonsLog />
           <CarouselHomeCta />
           <ReserveDate />
           <TrustCTA />

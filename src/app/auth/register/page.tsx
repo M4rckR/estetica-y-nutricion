@@ -1,6 +1,5 @@
 import { RegisterSection } from "@/components/auth/register/RegisterSection";
 import { HeaderMain } from "@/components/main/HeaderMain";
-import { Progress } from "@/components/ui/progressGreen";
 
 export default function RegisterPage() {
   return (

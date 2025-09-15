@@ -8,7 +8,7 @@ export const formPreReservationSchema = z.object({
   sede: z.string().min(1, { message: "La sede es requerida" }),
   date: z.date({
     message: "La fecha es requerida",
-  }),
+  }).optional(),
 });
 
 

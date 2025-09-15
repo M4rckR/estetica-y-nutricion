@@ -1,7 +1,6 @@
 "use client";
 
 import { loginFormSchema } from "@/schema";
-import { AuthLogin } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form";
@@ -11,7 +10,10 @@ import { login } from "@/app/auth/actions/actions";
 
 export const Login = () => {
 
-    const form = useForm<AuthLogin>({
+    const form = useForm<{
+      email: string;
+      password: string;
+    }>({
       resolver: zodResolver(loginFormSchema),
       defaultValues: {
         email: "",
@@ -20,7 +22,7 @@ export const Login = () => {
     });
 
 
-    const handleSubmit = async(values: AuthLogin) => {
+    const handleSubmit = async(values: { email: string; password: string }) => {
        try {
         await login(values)
        }catch (error) {

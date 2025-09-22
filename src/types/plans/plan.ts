@@ -1,6 +1,9 @@
 export type Plan = {
+  id: string;
+  modality: string;
   title: string;
   subtitle: string;
   features: string[];
-  highlight: boolean;
+  ctaLabel: string;
+  highlight?: boolean;
 }

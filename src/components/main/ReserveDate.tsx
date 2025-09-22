@@ -44,6 +44,10 @@ export const ReserveDate = () => {
   });
 
   const handleReservar = (data: FormPreReservationType) => {
+    if (!data.date) {
+      alert("Por favor selecciona una fecha");
+      return;
+    }
     const fecha = new Date(data.date).toLocaleDateString("es-PE", {
       day: "2-digit",
       month: "long",

@@ -1,4 +1,4 @@
-import { Plan } from "@/types";
+import { Plan } from "@/types/plans";
 import Image from "next/image";
 import Link from "next/link";
 

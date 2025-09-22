@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select"
 import { UseFormReturn } from "react-hook-form"
 import { CompleteRegistrationFormType } from "@/types/auth/register"
+import { register } from "@/app/auth/actions/actions"
 
 interface NutritionFormProps {
   form: UseFormReturn<CompleteRegistrationFormType>;
@@ -23,6 +24,7 @@ interface NutritionFormProps {
 export const NutritionForm = ({ form, onPrev }: NutritionFormProps) => {
 
   const onSubmit = (data: CompleteRegistrationFormType) => {
+    register(data)
     console.log(data)
   }
 

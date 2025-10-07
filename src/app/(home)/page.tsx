@@ -24,7 +24,7 @@ export default async function Home() {
         </aside>
         <section className="lg:col-span-8 2xl:col-span-9 py-8 xl:px-8">
           {/* Main content */}
-          <ButtonsLog />
+          {/* <ButtonsLog /> */}
           <CarouselHomeCta />
           <ReserveDate />
           <TrustCTA />

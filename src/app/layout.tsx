@@ -16,7 +16,7 @@ const poppins = Poppins({
 const siteName = "LYV | Estética y Nutrición Integral";
 const siteUrl  = "https://esteticaynutricion.com"; // dominio final
 const ogImage  = `${siteUrl}/og/og-home.jpg`; // TODO: imagen 1200x630
-const logo     = `${siteUrl}/logo.svg`;       // TODO: ruta real
+// const logo     = `${siteUrl}/logo.svg`;       // TODO: ruta real
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

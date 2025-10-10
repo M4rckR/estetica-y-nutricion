@@ -143,3 +143,19 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, div {
     @apply bg-background text-foreground;
     }
 }
+
+
+@keyframes pulseSoft {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.9;
+  }
+}
+
+.animate-pulseSoft {
+  animation: pulseSoft 3s ease-in-out infinite;
+}

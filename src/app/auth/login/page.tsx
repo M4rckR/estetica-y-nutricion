@@ -21,9 +21,9 @@ export default async function LoginPage() {
       </div>
       {/* Formulario de login */}
       <Login />
-      <Link href="/auth/register" className="text-xs text-m-green hover:underline text-center block">
+      {/* <Link href="/auth/register" className="text-xs text-m-green hover:underline text-center block">
         Olvide mi contraseña
-      </Link>
+      </Link> */}
     </section>
   );
 }

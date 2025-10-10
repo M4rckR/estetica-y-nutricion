@@ -1,5 +1,6 @@
-import { BookingCTA } from "@/components/main/BookingCTA";
-import { ButtonsLog } from "@/components/main/ButtonsLog";
+import { Footer } from "@/components/common/Footer";
+import { WhatsAppSection } from "@/components/common/WhatsAppSection";
+// import { BookingCTA } from "@/components/main/BookingCTA";
 import { CarouselHomeCta } from "@/components/main/CarouselHomeCta";
 import { HeaderMain } from "@/components/main/HeaderMain";
 import { LocationsSection } from "@/components/main/LocationsSection";
@@ -8,7 +9,6 @@ import { ReserveDate } from "@/components/main/ReserveDate";
 import { ServicesSection } from "@/components/main/ServicesSection";
 import { Testimonials } from "@/components/main/Testimonials";
 import { TrustCTA } from "@/components/main/TrustCTA";
-import { Footer } from "react-day-picker";
 
 export default async function Home() {
 
@@ -32,7 +32,8 @@ export default async function Home() {
           <PlansSection />
           <LocationsSection />
           <Testimonials />
-          <BookingCTA />
+          {/* <BookingCTA /> */}
+          <WhatsAppSection title="Reserva tu consulta nutricional personalizada" subtext="Más de 5,000 pacientes satisfechos" />
           <Footer />
         </section>
       </div>

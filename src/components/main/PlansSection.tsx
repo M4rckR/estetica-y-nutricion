@@ -51,6 +51,7 @@ export const PlansSection = () => {
           </TabsList>
           <TabsContent value="presencial">
             <Carousel
+              className="relative before:content-[''] before:absolute before:left-0 before:top-0 before:w-8 before:h-full before:bg-gradient-to-r before:from-white before:to-transparent before:pointer-events-none before:z-10 after:content-[''] after:absolute after:right-0 after:top-0 after:w-16 after:h-full after:bg-gradient-to-l after:from-white after:to-transparent after:pointer-events-none after:z-10"
               opts={{
                 align: "center",
                 loop: false,
@@ -60,8 +61,8 @@ export const PlansSection = () => {
                 {plansPresencial.map((plan) => (
                   <CarouselItem
                     className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3 pl-4 md:pl-6 lg:pl-8
-            first:pl-6 md:first:pl-8 lg:first:pl-10
-            last:pr-4 md:last:pr-6 lg:last:pr-8"
+           first:pl-6 md:first:pl-8 lg:first:pl-10
+           last:pr-4 md:last:pr-6 lg:last:pr-8"
                     key={plan.id}
                   >
                     <PlanCard plan={plan} />
@@ -71,21 +72,29 @@ export const PlansSection = () => {
             </Carousel>
           </TabsContent>
           <TabsContent value="online">
-            <Carousel>
-              <CarouselContent className="-ml-2 md:-ml-4 lg:-ml-6">
-                {plansOnline.map((plan) => (
-                  <CarouselItem
-                    className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3
-            pl-4 md:pl-6 lg:pl-8
-            first:pl-6 md:first:pl-8 lg:first:pl-10
-            last:pr-4 md:last:pr-6 lg:last:pr-8"
-                    key={plan.id}
-                  >
-                    <PlanCard plan={plan} />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-            </Carousel>
+            <div className="lg:-mr-8 xl:-mr-8 2xl:-mr-8">
+              <Carousel
+                className="relative before:content-[''] before:absolute before:left-0 before:top-0 before:w-8 before:h-full before:bg-gradient-to-r before:from-white before:to-transparent before:pointer-events-none before:z-10 after:content-[''] after:absolute after:right-0 after:top-0 after:w-16 after:h-full after:bg-gradient-to-l after:from-white after:to-transparent after:pointer-events-none after:z-10"
+                opts={{
+                  align: "center",
+                  loop: false,
+                }}
+              >
+                <CarouselContent className="-ml-2 md:-ml-4 lg:-ml-6">
+                  {plansOnline.map((plan) => (
+                    <CarouselItem
+                      className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3
+           pl-4 md:pl-6 lg:pl-8
+           first:pl-6 md:first:pl-8 lg:first:pl-10
+           last:pr-4 md:last:pr-6 lg:last:pr-8"
+                      key={plan.id}
+                    >
+                      <PlanCard plan={plan} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </div>
           </TabsContent>
         </Tabs>
       </div>

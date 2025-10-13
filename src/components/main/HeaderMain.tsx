@@ -1,10 +1,24 @@
 import { CarouselHeader } from "@/components/header/CarouselHeader";
 import Image from "next/image";
 import Link from "next/link";
+import { createClient } from "@/utils/supabase/server";
 
-export const HeaderMain = () => {
+export const HeaderMain = async() => {
+  const supabase = await createClient();
 
+  const {data: { user }} = await supabase.auth.getUser();
 
+  let userProfile = null;
+
+  if(user) {
+    const {data} = await supabase
+      .from('users')
+      .select('*')
+      .eq('user_id', user.id)
+      .single();
+    userProfile = data;
+  }
+  
   return (
     <header className="relative">
       <div className="mb-12 md:mb-16 flex justify-between">
@@ -22,9 +36,17 @@ export const HeaderMain = () => {
             Estética y <br /> nutrición integral
           </p>
         </div>
-        <Link href="/auth/login" className="text-sm bg-m-green text-white px-4 py-2 rounded-full transition">
-          Iniciar sesión
-        </Link>
+        
+        {userProfile ? (
+          <Link href="/auth/signout" className="text-sm bg-m-green text-white px-4 py-2 rounded-full transition">
+            Cerrar sesión
+          </Link>
+        ) : (
+          <Link href="/auth/login" className="text-sm bg-m-green text-white px-4 py-2 rounded-full transition">
+            Iniciar sesión
+          </Link>
+        )}
+      
       </div>
       <div className="space-y-[36px] sm:w-2/3 lg:w-full mb-12 md:mb-16">
         <h1 className="text-3xl lg:text-4xl 3xl:text-5xl text-white font-m-manrope">

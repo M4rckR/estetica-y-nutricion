@@ -57,7 +57,7 @@ export const PlansSection = () => {
                 loop: false,
               }}
             >
-              <CarouselContent className="-ml-2 md:-ml-4 lg:-ml-6">
+              <CarouselContent className="-ml-2 md:-ml-4 lg:-ml-6 select-none ">
                 {plansPresencial.map((plan) => (
                   <CarouselItem
                     className="basis-[80%] sm:basis-[60%] lg:basis-[55%] 2xl:basis-1/3 pl-4 md:pl-6 lg:pl-8

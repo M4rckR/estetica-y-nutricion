@@ -23,7 +23,7 @@ const CarouselDots = () => {
   return (
     <div className="flex flex-col justify-center gap-8">
       <p className="text-3xl hidden xl:block font-m-poppins text-center text-white font-medium">Nuestro equipo está listo para atenderte y guiarte hacia <span className="text-m-green">resultados rápidos y reales</span>. </p>
-      <a href="#" className="text-m-green bg-m-green-light text-sm font-medium px-6 py-2 rounded-full mx-auto text-center inline-block">Hablemos por Whatsapp</a>
+      <a href="#" className="text-m-green hidden bg-m-green-light text-sm font-medium px-6 py-2 rounded-full mx-auto text-center xl:inline-block">Hablemos por Whatsapp</a>
       <div className="flex justify-center space-x-3">
         {scrollSnaps.map((_, index) => (
           <button

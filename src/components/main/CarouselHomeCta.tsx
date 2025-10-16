@@ -1,5 +1,6 @@
 'use client';
 import { Carousel, CarouselContent, CarouselItem, useCarousel } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import AOS from "aos";
@@ -47,7 +48,19 @@ export const CarouselHomeCta = () => {
 
   return (
     <section data-aos="fade-in" data-aos-duration="1200" className="px-4 xl:p-8">
-      <Carousel className="relative">
+      <Carousel
+        className="relative"
+        plugins={[
+          Autoplay({
+            delay: 3000,
+            stopOnInteraction: false,
+            stopOnMouseEnter: true,
+          }),
+        ]}
+        opts={{
+          loop: true,
+        }}
+      >
         <CarouselContent>
           <CarouselItem className="relative">
             <Image
@@ -55,7 +68,7 @@ export const CarouselHomeCta = () => {
               alt="Description of image"
               width={1200}
               height={500}
-                className="w-full h-auto rounded-2xl"
+                className="w-full h-72 md:h-auto rounded-2xl object-cover"
             />
           </CarouselItem>
           <CarouselItem>
@@ -64,7 +77,7 @@ export const CarouselHomeCta = () => {
               alt="Description of image"
               width={1200}
               height={500}
-                className="w-full h-auto"
+                className="w-full h-72 md:h-auto rounded-2xl object-cover"
             />
           </CarouselItem>
           {/* <CarouselItem>

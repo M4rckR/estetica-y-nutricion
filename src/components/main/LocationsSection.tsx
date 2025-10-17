@@ -49,8 +49,8 @@ export const LocationsSection = () => {
           Contamos con equipos modernos y atención especializada en cada sede.
         </p>
       </div>
-      <section className="grid grid-cols-1 items-center xl:grid-cols-12 gap-16">
-        <div className="col-span-1 md:col-span-8 xl:col-span-4">
+      <section className="grid grid-cols-1 lg:grid-cols-2 items-center 2xl:grid-cols-12 gap-16">
+        <div className="col-span-1 md:col-span-3 xl:col-span-3">
           <Accordion
             type="single"
             collapsible
@@ -80,8 +80,8 @@ export const LocationsSection = () => {
             ))}
           </Accordion>
         </div>
-        <div className="hidden md:block col-span-12 md:col-span-8">
-          <div className="relative w-full h-[500px] bg-gray-100 rounded-lg overflow-hidden">
+        <div className="hidden md:block lg:col-span-3  2xl:col-span-9">
+          <div className="relative w-full max-h-[400px] rounded-lg overflow-hidden">
             {!isClient ? (
               <div className="absolute inset-0 bg-gray-200 animate-pulse" />
             ) : (
@@ -91,8 +91,8 @@ export const LocationsSection = () => {
                     src="/images/hero-image-1.png"
                     alt={`Sede ${selectedSedeInfo.name} de InSalud`}
                     width={500}
-                    height={500}
-                    className="w-full h-full object-cover"
+                    height={400}
+                    className="w-full max-h-[400px] object-cover rounded-lg"
                     loading="lazy"
                     quality={85}
                     sizes="(max-width: 768px) 0px, 66vw"
@@ -103,7 +103,7 @@ export const LocationsSection = () => {
                     alt="Sede General de InSalud"
                     width={500}
                     height={500}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full max-h-[400px] object-cover rounded-lg"
                     loading="lazy"
                     quality={85}
                     sizes="(max-width: 768px) 0px, 66vw"

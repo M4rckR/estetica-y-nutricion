@@ -2,6 +2,13 @@ import { CarouselHeader } from "@/components/header/CarouselHeader";
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/utils/supabase/server";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { User } from "lucide-react";
 
 export const HeaderMain = async() => {
   const supabase = await createClient();
@@ -38,9 +45,22 @@ export const HeaderMain = async() => {
         </div>
         
         {userProfile ? (
-          <Link href="/auth/signout" className="text-sm bg-m-green text-white px-4 py-2 rounded-full transition">
-            Cerrar sesión
-          </Link>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="text-sm bg-m-green text-white px-4 py-2 rounded-full transition flex items-center gap-2">
+                <User className="w-4 h-4" />
+                {userProfile.first_name.charAt(0).toUpperCase() + userProfile.first_name.slice(1)}
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-48">
+              <DropdownMenuItem asChild>
+                <Link href="/perfil/consultas">Ver mi perfil</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/auth/signout">Cerrar sesión</Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         ) : (
           <Link href="/auth/login" className="text-sm bg-m-green text-white px-4 py-2 rounded-full transition">
             Iniciar sesión

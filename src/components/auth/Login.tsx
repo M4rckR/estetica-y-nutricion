@@ -7,8 +7,10 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from "../ui/form"
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { login } from "@/app/auth/actions/actions";
+import { useState } from "react";
 
 export const Login = () => {
+    const [authError, setAuthError] = useState<string | null>(null);
 
     const form = useForm<{
       email: string;
@@ -23,10 +25,13 @@ export const Login = () => {
 
 
     const handleSubmit = async(values: { email: string; password: string }) => {
-       try {
-        await login(values)
-       }catch (error) {
-        console.log(error, "Datos incorrectos")
+        setAuthError(null);
+
+        const response = await login(values);
+
+        if (response?.error) {
+         // Si hay un error, lo ponemos en el estado para mostrarlo en la UI
+         setAuthError(response.error);
        }
 
     };
@@ -60,6 +65,9 @@ export const Login = () => {
             />
             <Button type="submit" className="w-full py-6 mt-2 rounded-full bg-m-green hover:bg-m-green-dark cursor-pointer">Ingresar</Button>
         </form>
+        {authError && (
+          <p className="text-xs text-red-500 mt-2">{authError}</p>
+        )}
     </Form>
   )
 }

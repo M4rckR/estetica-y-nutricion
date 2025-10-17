@@ -6,7 +6,7 @@ export const Footer = () => {
 
   return (
     <footer className="px-4 pt-12 md:pt-24 max-w-6xl mx-auto">
-      <div className="w-full h-[1px] bg-m-gray-light"></div>
+      {/* <div className="w-full h-[1px] bg-m-gray-light"></div> */}
       <div className="grid gap-x-4 xl:gap-x-2 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-y-12 pt-8 pb-14 items-start">
         <div className="flex items-center gap-2">
           <Image

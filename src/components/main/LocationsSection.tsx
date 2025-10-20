@@ -49,8 +49,8 @@ export const LocationsSection = () => {
           Contamos con equipos modernos y atención especializada en cada sede.
         </p>
       </div>
-      <section className="grid grid-cols-1 lg:grid-cols-2 items-center 2xl:grid-cols-12 gap-16">
-        <div className="col-span-1 md:col-span-3 xl:col-span-3">
+      <section className="grid grid-cols-1 md:grid-cols-12 items-center gap-16">
+        <div className="col-span-1 md:col-span-4 lg:col-span-5 xl:col-span-4">
           <Accordion
             type="single"
             collapsible
@@ -80,7 +80,7 @@ export const LocationsSection = () => {
             ))}
           </Accordion>
         </div>
-        <div className="hidden md:block lg:col-span-3  2xl:col-span-9">
+        <div className="hidden md:block md:col-span-8 lg:col-span-7  xl:col-span-8">
           <div className="relative w-full max-h-[400px] rounded-lg overflow-hidden">
             {!isClient ? (
               <div className="absolute inset-0 bg-gray-200 animate-pulse" />

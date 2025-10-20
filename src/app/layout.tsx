@@ -4,6 +4,7 @@ import "./globals.css";
 import '@vidstack/react/player/styles/default/theme.css';
 import '@vidstack/react/player/styles/default/layouts/video.css';
 import "aos/dist/aos.css";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   variable: "--font-m-poppins",
@@ -73,6 +74,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         {children}
+        <Toaster />
       </body>
     </html>
   );

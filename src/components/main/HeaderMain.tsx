@@ -9,6 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { User } from "lucide-react";
+import { getUserRole } from "@/utils/auth";
 
 export const HeaderMain = async() => {
   const supabase = await createClient();
@@ -25,6 +26,8 @@ export const HeaderMain = async() => {
       .single();
     userProfile = data;
   }
+
+  const userRole = getUserRole(user);
   
   return (
     <header className="relative">
@@ -56,6 +59,11 @@ export const HeaderMain = async() => {
               <DropdownMenuItem asChild>
                 <Link href="/perfil/consultas">Ver mi perfil</Link>
               </DropdownMenuItem>
+              {userRole === 'doctor' && (
+                <DropdownMenuItem asChild>
+                  <Link href="/admin/pacientes">Subir consulta</Link>
+                </DropdownMenuItem>
+              )}
               <DropdownMenuItem asChild>
                 <Link href="/auth/signout">Cerrar sesión</Link>
               </DropdownMenuItem>

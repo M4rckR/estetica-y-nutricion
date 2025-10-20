@@ -16,7 +16,7 @@ export const WhatsAppSection = ({title, subtext}: WhatsAppSectionProps) => {
 
 
   return (
-    <section className="max-w-5xl mx-auto px-4 pt-24 md:pt-32 font-m-poppins ">
+    <section className="max-w-5xl mx-auto px-4 pt-12 lg:pt-24 font-m-poppins ">
         <div className="w-full bg-[#D2FD9C] rounded-3xl py-8 md:py-14 space-y-6 px-6 shadow-xl relative">
             <div className="text-center space-y-4">
                 <h2 className="font-m-poppins text-2xl md:text-3xl font-semibold text-m-green-dark">{title}</h2>

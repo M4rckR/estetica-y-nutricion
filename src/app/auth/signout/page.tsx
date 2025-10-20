@@ -1,11 +1,11 @@
 'use client'
-import { createBrowserSupabase } from "@/utils/supabase/client";
+import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";
 
 export default function SignOutPage() {
     const router = useRouter();
-  const supabase = useMemo(() => createBrowserSupabase(), []);
+  const supabase = useMemo(() => createClient(), []);
 
   useEffect(() => {
     const handleLogOut = async () => {

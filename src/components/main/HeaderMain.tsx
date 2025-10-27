@@ -56,9 +56,13 @@ export const HeaderMain = async() => {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
+
+            {userRole !== 'doctor' && (
               <DropdownMenuItem asChild>
                 <Link href="/perfil/consultas">Ver mi perfil</Link>
               </DropdownMenuItem>
+            )}
+
               {userRole === 'doctor' && (
                 <DropdownMenuItem asChild>
                   <Link href="/admin/pacientes">Subir consulta</Link>

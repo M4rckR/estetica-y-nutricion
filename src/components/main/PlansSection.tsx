@@ -7,6 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import WheelGesturesPlugin from "embla-carousel-wheel-gestures";
 import { useEffect } from "react";
 import AOS from "aos";
 
@@ -56,7 +57,7 @@ export const PlansSection = () => {
                 align: "center",
                 loop: false,
               }}
-            >
+              plugins={[WheelGesturesPlugin()]}>
               <CarouselContent className="-ml-2 md:-ml-4 lg:-ml-6 select-none ">
                 {plansPresencial.map((plan) => (
                   <CarouselItem
@@ -79,6 +80,7 @@ export const PlansSection = () => {
                   align: "center",
                   loop: false,
                 }}
+                plugins={[WheelGesturesPlugin()]}
               >
                 <CarouselContent className="-ml-2 md:-ml-4 lg:-ml-6">
                   {plansOnline.map((plan) => (

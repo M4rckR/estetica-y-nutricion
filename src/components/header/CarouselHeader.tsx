@@ -1,8 +1,10 @@
+"use client"
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+import WheelGesturesPlugin from "embla-carousel-wheel-gestures";
 import Image from "next/image";
 
 export const CarouselHeader = () => {
@@ -13,6 +15,7 @@ export const CarouselHeader = () => {
             align: "start",
             loop: true,
         }}
+        plugins={[WheelGesturesPlugin()]}
         className="w-full text-center"
         >
         <CarouselContent className="pr-6 text-m-green-light">
@@ -23,7 +26,7 @@ export const CarouselHeader = () => {
                 alt="Icono oferta 1"
                 width={28}
                 height={28}
-                className="mx-auto select-none"
+                className="mx-auto"
                 />
                 <p className="select-none">Hasta 15% dscto en tratamientos estéticos</p>
             </article>
@@ -35,7 +38,7 @@ export const CarouselHeader = () => {
                 alt="Icono oferta 1"
                 width={28}
                 height={28}
-                className="mx-auto select-none"
+                className="mx-auto"
                 />
                 <p className="select-none">Suplementos con envío gratis por compras mayores a 300 soles</p>
             </article>
@@ -47,7 +50,7 @@ export const CarouselHeader = () => {
                 alt="Icono oferta 1"
                 width={28}
                 height={28}
-                className="mx-auto select-none"
+                className="mx-auto"
                 />
                 <p className="select-none">Hasta 10% dscto en planes nutricionales</p>
             </article>

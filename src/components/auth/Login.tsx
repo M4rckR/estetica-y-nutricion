@@ -45,7 +45,7 @@ export const Login = () => {
                 render={({ field }) => (
                     <FormItem>
                         <FormControl>
-                            <Input className="rounded-3xl py-6 pl-4" placeholder="Tu correo" {...field} />
+                            <Input className="rounded-3xl py-5 md:py-6 pl-4 text-sm md:text-base" placeholder="Tu correo" {...field} />
                         </FormControl>
                         <FormMessage className="text-xs"/>
                     </FormItem>
@@ -57,7 +57,7 @@ export const Login = () => {
                 render={({ field }) => (
                     <FormItem>
                         <FormControl>
-                            <Input type="password" className="rounded-3xl py-6 pl-4" placeholder="Tu contraseña" {...field} />
+                            <Input type="password" className="rounded-3xl py-5 md:py-6 pl-4 text-sm md:text-base" placeholder="Tu contraseña" {...field} />
                         </FormControl>
                         <FormMessage className="text-xs" />
                     </FormItem>

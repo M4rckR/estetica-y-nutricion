@@ -15,8 +15,8 @@ export default async function LoginPage() {
   return (
     <section className="space-y-6">
       <div className="space-y-2">
-        <p className="text-3xl font-semibold">Hola, de nuevo</p>
-        <h1 className="text-lg">Bienvenido al cuidado de tu salud</h1>
+        <p className="text-xl lg:text-3xl font-semibold">Hola, de nuevo</p>
+        <h1 className="text-base lg:text-2xl">Bienvenido al cuidado de tu salud</h1>
       </div>
       {/* Formulario de login */}
       <Login />

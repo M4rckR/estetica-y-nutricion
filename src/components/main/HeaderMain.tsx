@@ -32,8 +32,7 @@ export const HeaderMain = async() => {
   return (
     <header className="relative">
       <div className="mb-12 md:mb-16 flex justify-between">
-        <div className="flex gap-2 items-center">
-          <Link href="/">
+          <Link className="flex gap-2 items-center" href="/">
             <Image
               src="/svg/icon/marca.svg"
               alt="Icono marca estetica y nutricion"
@@ -45,7 +44,6 @@ export const HeaderMain = async() => {
               Estética y <br /> nutrición integral
             </p>
           </Link>
-        </div>
         
         {userProfile ? (
           <DropdownMenu>

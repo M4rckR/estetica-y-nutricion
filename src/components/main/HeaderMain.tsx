@@ -41,10 +41,10 @@ export const HeaderMain = async() => {
               height={30}
               className="w-12 h-auto md:w-16"
             />
+            <p className="text-sm leading-3.5 font-light text-white">
+              Estética y <br /> nutrición integral
+            </p>
           </Link>
-          <p className="text-sm leading-3.5 font-light text-white">
-            Estética y <br /> nutrición integral
-          </p>
         </div>
         
         {userProfile ? (

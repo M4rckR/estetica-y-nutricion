@@ -68,7 +68,7 @@ export const ReserveDate = () => {
   };
 
   return (
-    <div data-aos="fade-up" data-aos-duration="1200" className="px-4 pt-24 z-10 relative space-y-8">
+    <div data-aos="fade-up" data-aos-duration="1200" className="px-4 pt-6 z-10 relative space-y-8">
       <section>
         <Form {...form}>
           <form

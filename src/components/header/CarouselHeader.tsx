@@ -23,9 +23,9 @@ export const CarouselHeader = () => {
                 alt="Icono oferta 1"
                 width={28}
                 height={28}
-                className="mx-auto"
+                className="mx-auto select-none"
                 />
-                <p>Hasta 15% dscto en tratamientos estéticos</p>
+                <p className="select-none">Hasta 15% dscto en tratamientos estéticos</p>
             </article>
             </CarouselItem>
             <CarouselItem className="basis-[60%] sm:basis-1/3 lg:basis-[50%] xl:basis-[40%] 2xl:basis-[50%]">
@@ -35,9 +35,9 @@ export const CarouselHeader = () => {
                 alt="Icono oferta 1"
                 width={28}
                 height={28}
-                className="mx-auto"
+                className="mx-auto select-none"
                 />
-                <p>Suplementos con envío gratis por compras mayores a 300 soles</p>
+                <p className="select-none">Suplementos con envío gratis por compras mayores a 300 soles</p>
             </article>
             </CarouselItem>
             <CarouselItem className="basis-[60%] sm:basis-1/3 lg:basis-[50%] xl:basis-[40%] 2xl:basis-[50%]">
@@ -47,9 +47,9 @@ export const CarouselHeader = () => {
                 alt="Icono oferta 1"
                 width={28}
                 height={28}
-                className="mx-auto"
+                className="mx-auto select-none"
                 />
-                <p>Hasta 10% dscto en planes nutricionales</p>
+                <p className="select-none">Hasta 10% dscto en planes nutricionales</p>
             </article>
             </CarouselItem>
         </CarouselContent>

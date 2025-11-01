@@ -90,8 +90,8 @@ export async function PatientList({
       {/* Barra de búsqueda y filtro */}
 
       <div className="mt-16 space-y-8 max-w-4xl mx-auto">
-        <div className=" flex justify-between space-x-4">
-          <form method="GET" className="flex items-center space-x-2">
+        <div className=" flex flex-col gap-2 lg:flex-row justify-between space-x-4">
+          <form method="GET" className="flex order-2 items-center space-x-2 w-full">
             <input type="hidden" name="search" value={search} />
             <Select name="sort" defaultValue={sort}>
               <SelectTrigger className="w-40">
@@ -106,7 +106,7 @@ export async function PatientList({
               Aplicar
             </Button>
           </form>
-          <form method="GET" className="flex space-x-2 max-w-md">
+          <form method="GET" className="flex order-1 items-center space-x-2 max-w-md">
             <Input
               type="text"
               name="search"

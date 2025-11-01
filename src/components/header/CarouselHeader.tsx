@@ -9,7 +9,7 @@ import Image from "next/image";
 
 export const CarouselHeader = () => {
   return (
-    <div>
+    <div className="hidden lg:block">
         <Carousel
         opts={{
             align: "start",

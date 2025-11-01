@@ -21,7 +21,7 @@ export default async function page({ searchParams }: { searchParams: { sort?: st
   }
 
   // 4. Obtén el perfil del usuario (su nombre) desde la tabla users
-  const { data: profile } = await supabase
+  await supabase
     .from("users")
     .select("first_name")
     .eq("id", user.id) // Asumiendo que 'id' en 'users' es el FK
@@ -38,7 +38,7 @@ export default async function page({ searchParams }: { searchParams: { sort?: st
       </aside>
       <main className="lg:col-span-8 2xl:col-span-9 py-16 xl:px-8">
         {/* 5. Pasa las props a los componentes hijos */}
-        <InfoUserCard userName={profile?.first_name} />
+        <InfoUserCard />
         <UserConsultaView userId={user.id} sortOrder={searchParams.sort === "asc" ? "asc" : "desc"} />
       </main>
     </div>

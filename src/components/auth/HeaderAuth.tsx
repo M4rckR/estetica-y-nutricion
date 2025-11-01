@@ -17,7 +17,7 @@ export const HeaderAuth = () => {
         </Link>
         <p className="text-sm lg:text-lg m-0">Accede fácilmente a tus resultados</p>
         <Link href="/auth/register">
-          <Button variant="secondary" className="hover:bg-m-green-dark text-xs bg-m-green text-white cursor-pointer rounded-2xl px-10 py-3">Registrarme</Button>
+          <Button variant="secondary" className="hover:bg-m-green text-xs bg-m-green text-white cursor-pointer rounded-2xl px-10 py-3">Registrarme</Button>
         </Link>
       </div>
     </header>

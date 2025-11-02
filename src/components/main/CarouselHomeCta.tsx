@@ -72,8 +72,8 @@ export const CarouselHomeCta = () => {
       >
         <CarouselContent>
           <CarouselItem className="relative">
-            <div className="flex flex-col gap-4 absolute bottom-24 left-1/2 transform -translate-x-1/2">
-              <p className="text-2xl 2xl:text-3xl hidden md:block select-none xl:block font-m-poppins text-center text-white font-medium">
+            <div className="flex flex-col gap-4 absolute bottom-32 left-0 right-0 mx-auto pl-4">
+              <p className="text-xl w-full 2xl:text-3xl hidden md:block select-none xl:block font-m-poppins text-center md:px-28 lg:px-16 xl:px-32 text-white font-medium">
                 Nuestro equipo está listo para atenderte y guiarte hacia{" "}
                 <span className="text-m-green">
                   resultados rápidos y reales

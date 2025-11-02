@@ -73,7 +73,7 @@ export const ReserveDate = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleReservar)}
-            className="grid max-w-5xl container mx-auto shadow-xl grid-cols-1 gap-y-8 xl:gap-y-0 xl:grid-cols-12 items-start gap-x-8 rounded-4xl py-6 px-[18px] xl:py-6 md:px-8 bg-white -mt-[134px] xl:mt-0"
+            className="grid max-w-5xl container mx-auto shadow-xl grid-cols-1 gap-y-8 xl:gap-y-0 xl:grid-cols-12 items-start gap-x-8 rounded-4xl py-6 px-[18px] xl:py-6 md:px-8 bg-white -mt-[96px] xl:mt-0"
           >
             <div className="grid min-w-0 gap-y-4 grid-cols-1 col-span-1 xl:gap-y-0 xl:grid-cols-3 xl:col-span-9 gap-x-2">
               <FormField

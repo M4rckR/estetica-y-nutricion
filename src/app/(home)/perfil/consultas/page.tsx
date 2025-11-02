@@ -1,6 +1,7 @@
 import { HeaderMain } from "@/components/main/HeaderMain";
 import { InfoUserCard } from "@/components/perfil/consultas/InfoUserCard";
 import { UserConsultaView } from "@/components/perfil/consultas/UserConsultaView";
+import { HeaderIntern } from "@/components/main/HeaderIntern";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 // No necesitamos 'type User' aquí si no lo pasamos a una función
@@ -31,12 +32,12 @@ export default async function page({ searchParams }: { searchParams: { sort?: st
     <div className="grid grid-cols-1 lg:grid-cols-12">
       <aside
         className="lg:col-span-4 2xl:col-span-3
-                         bg-m-green-dark px-4 py-8 md:p-8
+                         bg-white lg:bg-m-green-dark px-4 py-8 md:p-8
                          lg:sticky lg:top-0 lg:h-screen"
       >
-        <HeaderMain />
+        <HeaderIntern />
       </aside>
-      <main className="lg:col-span-8 2xl:col-span-9 py-16 xl:px-8">
+      <main className="lg:col-span-8 2xl:col-span-9 py-0 lg:py-16 xl:px-8">
         {/* 5. Pasa las props a los componentes hijos */}
         <InfoUserCard />
         <UserConsultaView userId={user.id} sortOrder={searchParams.sort === "asc" ? "asc" : "desc"} />

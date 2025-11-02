@@ -31,7 +31,7 @@ export const HeaderIntern = async() => {
   
   return (
     <header className="relative">
-      <div className="mb-12 md:mb-16 flex justify-between">
+      <div className="mb-0 lg:mb-16 flex justify-between">
           <Link className="flex gap-2 items-center" href="/">
             <Image
               src="/svg/icon/marca.svg"

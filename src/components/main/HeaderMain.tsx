@@ -31,7 +31,7 @@ export const HeaderMain = async() => {
   
   return (
     <header className="relative">
-      <div className="mb-12 md:mb-16 flex justify-between">
+      <div className="mb-0 lg:mb-16 flex justify-between">
           <Link className="flex gap-2 items-center" href="/">
             <Image
               src="/svg/icon/marca.svg"
@@ -48,7 +48,7 @@ export const HeaderMain = async() => {
         {userProfile ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="text-sm bg-m-green text-white px-4 py-2 rounded-full transition flex items-center gap-2">
+              <button className="text-sm bg-m-green text-white cursor-pointer px-4 py-2 rounded-full transition flex items-center gap-2">
                 <User className="w-4 h-4" />
                 {userProfile.first_name.charAt(0).toUpperCase() + userProfile.first_name.slice(1)}
               </button>
@@ -78,7 +78,7 @@ export const HeaderMain = async() => {
         )}
       
       </div>
-      <div className="space-y-[36px] sm:w-2/3 lg:w-full mb-12 md:mb-16">
+      <div className="space-y-[36px] sm:w-2/3 lg:w-full my-12 my:my-16">
         <h1 className="text-3xl lg:text-4xl 3xl:text-5xl text-white font-m-manrope">
           “Nutrición, Salud y Estética para una{" "}
           <span className="text-m-green-light">mejor versión de ti” </span>
@@ -88,7 +88,7 @@ export const HeaderMain = async() => {
         </p>
       </div>
 
-      <div className="space-y-4 mb-8">
+      <div className="space-y-4 mb-8 hidden lg:block">
         <p className="text-m-green-light text-xs">Nuestras ofertas</p>
         <CarouselHeader />
       </div>

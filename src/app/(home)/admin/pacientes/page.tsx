@@ -1,5 +1,7 @@
 import { PatientList } from "@/components/admin/PatientList";
 import { HeaderIntern } from "@/components/main/HeaderIntern";
+
+
 export default async function AdminPacientes() {
     
     return (
@@ -10,7 +12,7 @@ export default async function AdminPacientes() {
                    lg:sticky lg:top-0 lg:h-screen">
                     <HeaderIntern />
                    </aside>
-                   <section className="lg:col-span-8 2xl:col-span-9 py-16 xl:px-8"> 
+                   <section className="lg:col-span-8 2xl:col-span-9 py-0 lg:py-16 xl:px-8"> 
                         <PatientList />
                    </section>
             </div>

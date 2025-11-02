@@ -20,7 +20,7 @@ export async function InfoUserCard() {
 
 
   return (
-    <section className="mb-12 md:mb-16 lg:mb-24 px-4">
+    <section className="mb-12 md:mb-16 lg:mb-24 px-4 pt-8">
         <div className="text-m-green-dark space-y-6">
             <p className="text-center text-2xl md:text-4xl ">Hola, {" "}
                 <span className="text-m-green">{

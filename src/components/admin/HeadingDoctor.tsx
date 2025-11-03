@@ -4,7 +4,7 @@
 export const HeadingDoctor = () => {
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 py-8 lg:py-0">
       <h1 className="text-center text-4xl text-m-green-dark">
         Bienvenido
       </h1>

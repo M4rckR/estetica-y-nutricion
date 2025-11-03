@@ -47,7 +47,7 @@ export const Login = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input className="rounded-3xl py-4 md:py-5 pl-4 text-sm md:text-base placeholder:text-sm" placeholder="Tu correo" {...field} />
+                  <Input className="rounded-3xl py-4 md:py-5 pl-4 text-base placeholder:text-base" placeholder="Tu correo" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>
@@ -59,7 +59,7 @@ export const Login = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="password" className="rounded-3xl py-4 md:py-5 pl-4 text-sm md:text-base placeholder:text-sm" placeholder="Tu contraseña" {...field} />
+                  <Input type="password" className="rounded-3xl py-4 md:py-5 pl-4 text-base placeholder:text-base" placeholder="Tu contraseña" {...field} />
                 </FormControl>
                 <FormMessage className="text-xs" />
               </FormItem>

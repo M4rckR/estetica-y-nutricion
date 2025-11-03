@@ -89,12 +89,12 @@ export async function PatientList({
       <HeadingDoctor />
       {/* Barra de búsqueda y filtro */}
 
-      <div className="mt-16 space-y-8 max-w-4xl mx-auto">
-        <div className=" flex flex-col gap-2 lg:flex-row justify-between space-x-4">
-          <form method="GET" className="flex order-2 items-center space-x-2 w-full">
+      <div className="space-y-8 max-w-4xl mx-auto py-4 md:py-8 lg:py-10">
+        <div className="flex flex-col gap-4 md:flex-row justify-between md:items-center">
+          <form method="GET" className="flex order-2 md:order-1 items-center gap-2 w-full md:w-auto">
             <input type="hidden" name="search" value={search} />
             <Select name="sort" defaultValue={sort}>
-              <SelectTrigger className="w-40">
+              <SelectTrigger className="w-full md:w-48 h-10">
                 <SelectValue placeholder="Ordenar por" />
               </SelectTrigger>
               <SelectContent>
@@ -102,21 +102,21 @@ export async function PatientList({
                 <SelectItem value="oldest">Más antiguo</SelectItem>
               </SelectContent>
             </Select>
-            <Button type="submit" variant="outline">
+            <Button type="submit" variant="outline" className="h-10 px-6 whitespace-nowrap">
               Aplicar
             </Button>
           </form>
-          <form method="GET" className="flex order-1 items-center space-x-2 max-w-md">
+          <form method="GET" className="flex order-1 md:order-2 items-center gap-2 w-full md:flex-1 md:max-w-2xl">
             <Input
               type="text"
               name="search"
               placeholder="Buscar por nombre o email..."
               defaultValue={search}
-              className="flex-1"
+              className="h-10 text-sm"
             />
             <Button
               type="submit"
-              className="bg-m-green text-white hover:bg-m-green-dark"
+              className="bg-m-green text-white hover:bg-m-green-dark h-10 px-6 whitespace-nowrap"
             >
               Buscar
             </Button>

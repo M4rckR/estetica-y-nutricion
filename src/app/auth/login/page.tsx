@@ -13,7 +13,7 @@ export default async function LoginPage() {
   }
 
   return (
-    <section className="space-y-4 bg-white py-6 px-6 rounded-3xl max-w-[480px] mx-auto lg:flex lg:flex-col lg:justify-center h-full lg:px-8">
+    <section className="space-y-4 bg-white py-6 px-6 rounded-3xl w-full max-w-[480px] mx-auto lg:px-8">
       <div className="space-y-2 text-center lg:text-left">
         <p className="text-xl md:text-2xl lg:text-3xl font-semibold">Hola, de nuevo</p>
         <h1 className="text-xs md:text-sm lg:text-base">Bienvenido al cuidado de tu salud</h1>

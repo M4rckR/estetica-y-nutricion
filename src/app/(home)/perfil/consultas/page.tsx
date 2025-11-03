@@ -37,7 +37,7 @@ export default async function page({ searchParams }: { searchParams: { sort?: st
       >
         <HeaderIntern />
       </aside>
-      <main className="lg:col-span-8 2xl:col-span-9 py-0 lg:py-16 xl:px-8">
+      <main className="lg:col-span-8 2xl:col-span-9 lg:py-16 xl:px-8">
         {/* 5. Pasa las props a los componentes hijos */}
         <InfoUserCard />
         <UserConsultaView userId={user.id} sortOrder={searchParams.sort === "asc" ? "asc" : "desc"} />

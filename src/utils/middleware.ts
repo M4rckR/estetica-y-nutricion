@@ -1,6 +1,5 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
-import { getUserRole } from "./auth";
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -36,7 +35,7 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // Verificación de roles para rutas protegidas
-  const role = getUserRole(user);
+  const role = user?.role;
 
   if (request.nextUrl.pathname.startsWith("/admin") && role !== "doctor") {
     // Redirige a página de error si no es doctor

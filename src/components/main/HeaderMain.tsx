@@ -9,25 +9,32 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { User } from "lucide-react";
-import { getUserRole } from "@/utils/auth";
+import { UsersType } from "@/types/users";
 
 export const HeaderMain = async() => {
   const supabase = await createClient();
 
   const {data: { user }} = await supabase.auth.getUser();
 
-  let userProfile = null;
+
+  let userProfile: UsersType | null = null;
 
   if(user) {
-    const {data} = await supabase
+    const {data, error} = await supabase
       .from('users')
       .select('*')
       .eq('user_id', user.id)
       .single();
+    
+
+    if(error){
+      console.error("Error al obtener el perfil:", error);
+    }
+
     userProfile = data;
   }
-
-  const userRole = getUserRole(user);
+  
+  console.log("userProfile", userProfile);
   
   return (
     <header className="relative">
@@ -42,6 +49,7 @@ export const HeaderMain = async() => {
             />
             <p className="text-sm leading-3.5 font-light text-white">
               Estética y <br /> nutrición integral
+
             </p>
           </Link>
         
@@ -50,18 +58,18 @@ export const HeaderMain = async() => {
             <DropdownMenuTrigger asChild>
               <button className="text-sm bg-m-green text-white cursor-pointer px-4 py-2 rounded-full transition flex items-center gap-2">
                 <User className="w-4 h-4" />
-                {userRole === 'doctor' ? 'Admin' : userProfile.first_name.charAt(0).toUpperCase() + userProfile.first_name.slice(1)}
+                {userProfile.rol === 'doctor' ? 'Admin' : userProfile.nombres.charAt(0).toUpperCase() + userProfile.nombres.slice(1)}
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
 
-            {userRole !== 'doctor' && (
+            {userProfile.rol !== 'doctor' && (
               <DropdownMenuItem asChild>
                 <Link href="/perfil/consultas">Ver mi perfil</Link>
               </DropdownMenuItem>
             )}
 
-              {userRole === 'doctor' && (
+              {userProfile.rol === 'doctor' && (
                 <DropdownMenuItem asChild>
                   <Link href="/admin/pacientes">Subir consulta</Link>
                 </DropdownMenuItem>
@@ -72,13 +80,12 @@ export const HeaderMain = async() => {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <Link href="/auth/login" className="text-sm bg-m-green text-white px-4 py-2 rounded-full transition">
-            Iniciar sesión
-          </Link>
+            <Link href="/auth/login" className="text-sm bg-m-green text-white px-4 py-2 rounded-full transition">
+              Iniciar sesión
+            </Link>
         )}
-      
       </div>
-      <div className="space-y-[36px] sm:w-2/3 lg:w-full my-12 my:my-16">
+      <div className="space-y-[36px] sm:w-2/3 lg:w-full mb-12 md:mb-16 hidden lg:block">
         <h1 className="text-3xl lg:text-4xl 3xl:text-5xl text-white font-m-manrope">
           “Nutrición, Salud y Estética para una{" "}
           <span className="text-m-green-light">mejor versión de ti” </span>

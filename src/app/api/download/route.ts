@@ -19,11 +19,10 @@ export async function GET(request: NextRequest) {
     }
 
     // Check if user is doctor or the file belongs to them
-    const userRole = user.app_metadata?.role;
     const patientId = path.split("/")[0]; // First part of path is patientId
 
-    if (userRole !== 'doctor' && user.id !== patientId) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    if (user.role !== 'doctor' && user.id !== patientId) {
+      return NextResponse.json({ error: "Acceso denegado" }, { status: 403 });
     }
 
     // Get the file from Supabase storage

@@ -1,5 +1,4 @@
-import { completeRegistrationSchema } from "@/schema/register/register";
+import { registerSchema } from "@/schema/register/register";
 import z from "zod/v3";
 
-// Solo el tipo que realmente se está usando
-export type CompleteRegistrationFormType = z.infer<typeof completeRegistrationSchema>;
+export type RegisterType = z.infer<typeof registerSchema>;

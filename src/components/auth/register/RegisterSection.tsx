@@ -1,149 +1,161 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useEffect } from 'react'
-import { Progress } from '@/components/ui/progressGreen'
-import { PersonalDataForm } from './steps/PersonalDataForm'
-import { ClinicalHistoryForm } from './steps/ClinicalHistoryForm'
-import { SurgeriesAllergiesForm } from './steps/SurgeriesAllergiesForm'
-import { NutritionForm } from './steps/NutritionForm'
-import { useRegisterStore } from '@/lib/store'
-import { completeRegistrationSchema, personalDataSchema, clinicalHistorySchema, surgeriesAllergiesSchema, nutritionSchema } from '@/schema/register/register'
-import { CompleteRegistrationFormType } from '@/types/auth/register'
-
-// Define step schemas and their field names
-const stepSchemas = [
-  { schema: personalDataSchema, fields: ['firstName', 'lastName', 'sex', 'age', 'firstDate', 'email', 'telephone', 'password'] },
-  { schema: clinicalHistorySchema, fields: ['practicesSports', 'patAntecedents', 'consume', 'lastMenstruation', 'useAnticonceptive', 'actualMedication', 'hiperDiaAntecedents'] },
-  { schema: surgeriesAllergiesSchema, fields: ['operated', 'operatedDescription', 'allergies', 'alimentsHate'] },
-  { schema: nutritionSchema, fields: ['mealsPreparedBy', 'eatOutFrequency', 'favoriteFoods', 'dailyLiquids', 'supplements'] },
-]
-
-const steps = [
-  { component: PersonalDataForm, title: 'Datos Personales' },
-  { component: ClinicalHistoryForm, title: 'Historia Clínica' },
-  { component: SurgeriesAllergiesForm, title: 'Cirugías y Alergias' },
-  { component: NutritionForm, title: 'Alimentación' },
-]
-
+import { registerSchema } from "@/schema"
+import { RegisterType } from "@/types/auth/register"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { register } from "@/app/auth/actions/actions"
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "@/components/ui/select"
+import { useState } from "react"
 export const RegisterSection = () => {
-  const { currentStep, totalSteps, nextStep, prevStep, updateFormData } = useRegisterStore()
 
-  const form = useForm<CompleteRegistrationFormType>({
-    mode: 'onChange',
-    resolver: zodResolver(completeRegistrationSchema),
+  const [isLoading, setIsLoading] = useState(false) // 👈 Estado de carga
+  const [errorMessage, setErrorMessage] = useState<string | null>(null) // 👈 Estado de error
+
+  const form = useForm<RegisterType>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      sex: '',
-      age: undefined,
-      firstDate: undefined,
-      email: '',
-      telephone: '',
-      password: '',
-      practicesSports: '',
-      patAntecedents: '',
-      consume: '',
-      lastMenstruation: undefined,
-      useAnticonceptive: '',
-      actualMedication: '',
-      hiperDiaAntecedents: '',
-      operated: false,
-      operatedDescription: '',
-      allergies: '',
-      alimentsHate: '',
-      mealsPreparedBy: '',
-      eatOutFrequency: '',
-      favoriteFoods: '',
-      dailyLiquids: '',
-      supplements: '',
-    } as Partial<CompleteRegistrationFormType>,
+      nombres: '',
+      dni: '',
+      correo: '',
+      distrito: '',
+      contraseña: '',
+      followPreview: '',
+    }
   })
 
-  const handleNext = async () => {
-    if (currentStep === totalSteps - 1) {
-      // Final step - validate all fields and submit
-      const isValid = await form.trigger() // Trigger validation for all fields
-      if (isValid) {
-        const allData = form.getValues()
-        console.log('Form submitted:', allData)
-        // Here you would typically send the data to your backend
-        alert('Registro completado exitosamente!')
+  const onSubmit = async (data: RegisterType) => {
+    try {
+      setIsLoading(true)
+      setErrorMessage(null) // Limpiar error anterior
+      
+      const result = await register(data)
+      
+      // 👇 Si hay error, mostrarlo
+      if (result?.error) {
+        setErrorMessage(result.error)
+        console.error('Error de registro:', result) // Ver detalles en consola del navegador
       }
-    } else {
-      // Not final step - validate only current step fields
-      const currentStepConfig = stepSchemas[currentStep]
-
-      // Clear any existing errors for this step first
-      currentStepConfig.fields.forEach(field => {
-        form.clearErrors(field as keyof CompleteRegistrationFormType)
-      })
-
-      // Trigger validation for current step fields only
-      const fieldsToValidate = currentStepConfig.fields as (keyof CompleteRegistrationFormType)[]
-      const isStepValid = await form.trigger(fieldsToValidate)
-
-      if (isStepValid) {
-        updateFormData(form.getValues())
-        nextStep()
-      }
-      // Errors will be shown automatically by react-hook-form
+      // Si no hay error, el redirect se hará automáticamente
+    } catch (error) {
+      console.error('Error inesperado:', error)
+      setErrorMessage('Ocurrió un error inesperado. Por favor, intenta nuevamente.')
+    } finally {
+      setIsLoading(false)
     }
   }
 
 
-  const handlePrev = () => {
-    updateFormData(form.getValues())
-    prevStep()
-  }
-
-  // Limpiar errores automáticamente cuando cambian los valores
-  useEffect(() => {
-    const currentStepConfig = stepSchemas[currentStep]
-    const subscription = form.watch((value, { name }) => {
-      if (name && currentStepConfig.fields.includes(name)) {
-        // Si el campo cambió y pertenece al paso actual, limpiar su error
-        const fieldValue = value[name as keyof typeof value]
-        if (fieldValue && fieldValue !== '') {
-          form.clearErrors(name as keyof CompleteRegistrationFormType)
-        }
-      }
-    })
-    return () => subscription.unsubscribe()
-  }, [currentStep, form])
-
-  const progressValue = ((currentStep + 1) / totalSteps) * 100
-  const CurrentStepComponent = steps[currentStep].component
-
   return (
     <section className='max-w-5xl mx-auto container px-4 sm:px-6 lg:px-8'>
-      <div className="mb-8 sm:mb-12">
-        {/* Header responsive */}
-        <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6'>
-          <h2 className="text-xl sm:text-2xl font-bold text-m-green-dark">
-            {steps[currentStep].title}
-          </h2>
-          <p className="text-sm text-gray-600 order-first sm:order-last">
-            Paso {currentStep + 1} de {totalSteps}
-          </p>
-        </div>
-
-        {/* Progress bar */}
-        <div className="w-full">
-          <Progress className="w-full h-3 sm:h-4" value={progressValue} />
-        </div>
+      <div className="mb-8 sm:mb-12 space-y-4">
+        <h1 className="text-center text-2xl md:text-4xl font-medium text-m-green-dark">
+          Empecemos un camino de <br /> 
+          <span className="text-m-green">
+            nutricion saludable</span>
+        </h1>
+        <p className="text-center">¡Súmate a los más de 300 pacientes que ya vivieron su transformación!</p>
       </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4 mb-4">
+            <FormField
+              control={form.control}
+              name="nombres"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input className="input-register" placeholder="Nombre y Apellido" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-      {/* Form component */}
-      <div className="w-full">
-        <CurrentStepComponent
-          form={form}
-          onNext={handleNext}
-          onPrev={handlePrev}
-          isLastStep={currentStep === totalSteps - 1}
-        />
-      </div>
+            <FormField
+              control={form.control}
+              name="dni"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input className="input-register" maxLength={8} placeholder="DNI" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="correo"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input className="input-register" placeholder="Correo" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="distrito"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input className="input-register" placeholder="Distrito" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="contraseña"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input type="password" className="input-register" placeholder="Contraseña" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="followPreview"
+              render={({ field }) => (
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger className="input-register w-full">
+                        <SelectValue placeholder="¿Cómo llegaste hasta aquí?" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="instagram">Instagram</SelectItem>
+                      <SelectItem value="facebook">Facebook</SelectItem>
+                      <SelectItem value="whatsapp">WhatsApp</SelectItem>
+                      <SelectItem value="recomendacion">Recomendación de un amigo</SelectItem>
+                      <SelectItem value="busqueda">Busqueda Online</SelectItem>
+                    </SelectContent>
+                  </Select>
+              )}
+            />
+          </section>
+
+
+          <Button type="submit" 
+                  className="w-full py-5 mt-2 rounded-full bg-m-green-light text-m-green-dark hover:text-white hover:bg-m-green cursor-pointer"
+                  >Registrarme
+          </Button>
+        </form>
+      </Form>
     </section>
   )
 }

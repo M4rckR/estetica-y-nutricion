@@ -4,7 +4,7 @@ import { AuthLogin } from "@/types"
 import { createClient } from "@/utils/supabase/server"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
-import { CompleteRegistrationFormType } from "@/types/auth/register"
+import { RegisterType } from "@/types/auth/register"
 import { createClient as createAdminClient } from '@supabase/supabase-js'
 
 export async function login(formData: AuthLogin) {
@@ -32,51 +32,37 @@ export async function signOut() {
 }
     
 
-export async function register(formData: CompleteRegistrationFormType) {
+export async function register(formData: RegisterType) {
     const supabase = await createClient()
     
 
     const data = {
-        email: formData.email,
-        password: formData.password,
+        email: formData.correo,
+        password: formData.contraseña,
     }
 
     const { data:authResult, error:authError } = await supabase.auth.signUp(data)
 
     if (authError) {
-        redirect('/error')
+
+        return { 
+            error: authError.message || 'Error al crear la cuenta de autenticación',
+            type: 'auth'
+        }
     }
 
     const userId = authResult.user?.id
 
     const profileData = {
         user_id: userId,
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        sex: formData.sex,
-        age: formData.age,
-        first_date: formData.firstDate,
-        telephone: formData.telephone,
-        practices_sports: formData.practicesSports,
-        pat_antecedents: formData.patAntecedents,
-        consume: formData.consume,
-        last_menstruation: formData.lastMenstruation,
-        use_anticonceptive: formData.useAnticonceptive,
-        actual_medication: formData.actualMedication,
-        hiper_dia_antecedents: formData.hiperDiaAntecedents,
-        operated: formData.operated,
-        operated_description: formData.operatedDescription,
-        allergies: formData.allergies,
-        aliments_hate: formData.alimentsHate,
-        meals_prepared_by: formData.mealsPreparedBy,
-        eat_out_frequency: formData.eatOutFrequency,
-        favorite_foods: formData.favoriteFoods,
-        daily_liquids: formData.dailyLiquids,
-        supplements: formData.supplements,
-        updated_at: new Date(),
+        nombres: formData.nombres,
+        dni: formData.dni,
+        correo: formData.correo,
+        distrito: formData.distrito,
+        rol: 'paciente',
+        follow_preview: formData.followPreview,
+        created_at: new Date().toISOString(),
     }
-
-    // const {error:profileError} = await supabase.from('users').insert(profileData)
 
     const supabaseAdmin = createAdminClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!, 
@@ -86,10 +72,15 @@ export async function register(formData: CompleteRegistrationFormType) {
     const {error:profileError} = await supabaseAdmin.from('users').insert(profileData)
 
     if (profileError) {
-        console.log(profileError)
-        redirect('/error')
+        console.error('Error al insertar perfil:', profileError)
+        return { 
+            error: profileError.message || 'Error al crear el perfil de usuario',
+            type: 'database',
+            details: profileError // Para debugging en consola
+        }
     }
 
+    await supabase.auth.signOut()
     revalidatePath('/', 'layout')
     redirect('/')
 }

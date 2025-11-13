@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { Spinner } from "@/components/ui/spinner";
 
 export const FormUpPdf = ({ patientId }: { patientId: string }) => {
 
@@ -171,13 +172,16 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
   return (
     <div className="max-w-2xl mx-auto">
       {status && (
-        <div className={`mb-4 p-3 rounded-lg text-sm ${
+        <div className={`mb-4 p-3 rounded-lg text-sm flex items-center gap-2 ${
           status.includes('Error') || status.includes('denegado')
             ? 'bg-red-50 text-red-700 border border-red-200'
             : status.includes('éxito')
             ? 'bg-green-50 text-green-700 border border-green-200'
             : 'bg-blue-50 text-blue-700 border border-blue-200'
         }`}>
+          {loading && !status.includes('Error') && !status.includes('éxito') && (
+            <Spinner size="sm" className="border-blue-700 border-t-transparent" />
+          )}
           {status}
         </div>
       )}
@@ -241,10 +245,11 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
           />
           <div className="flex justify-center mt-12">
             <Button
-              className="bg-m-green px-12 text-white hover:bg-m-green-dark cursor-pointer rounded-full"
+              className="bg-m-green px-12 text-white hover:bg-m-green-dark cursor-pointer rounded-full flex items-center gap-2 disabled:opacity-50"
               type="submit"
               disabled={loading}
             >
+              {loading && <Spinner size="sm" className="border-white border-t-transparent" />}
               {loading ? 'Subiendo...' : 'Subir Consulta'}
             </Button>
           </div>

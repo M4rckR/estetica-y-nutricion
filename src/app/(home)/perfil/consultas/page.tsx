@@ -7,7 +7,10 @@ import { redirect } from "next/navigation";
 // No necesitamos 'type User' aquí si no lo pasamos a una función
 // import { type User } from "@supabase/supabase-js"; 
 
-export default async function page({ searchParams }: { searchParams: { sort?: string } }) {
+export default async function page({ searchParams }: { searchParams: Promise<{ sort?: string }> }) {
+  // Await searchParams (Next.js 15 requirement)
+  const params = await searchParams;
+  
   // 1. El cliente de Supabase (con 'await', ya que es una promesa)
   const supabase = await createClient();
 
@@ -40,7 +43,7 @@ export default async function page({ searchParams }: { searchParams: { sort?: st
       <main className="lg:col-span-8 2xl:col-span-9 lg:py-16 xl:px-8">
         {/* 5. Pasa las props a los componentes hijos */}
         <InfoUserCard />
-        <UserConsultaView userId={user.id} sortOrder={searchParams.sort === "asc" ? "asc" : "desc"} />
+        <UserConsultaView userId={user.id} sortOrder={params.sort === "asc" ? "asc" : "desc"} />
       </main>
     </div>
   );

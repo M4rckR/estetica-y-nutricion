@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from "@/components/ui/select"
 import { useState } from "react"
+import { Spinner } from "@/components/ui/spinner"
 export const RegisterSection = () => {
 
   const [isLoading, setIsLoading] = useState(false) // 👈 Estado de carga
@@ -59,6 +60,13 @@ export const RegisterSection = () => {
         </h1>
         <p className="text-center">¡Súmate a los más de 300 pacientes que ya vivieron su transformación!</p>
       </div>
+
+      {errorMessage && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+          <p className="text-red-600 text-sm text-center">{errorMessage}</p>
+        </div>
+      )}
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4 mb-4">
@@ -150,9 +158,13 @@ export const RegisterSection = () => {
           </section>
 
 
-          <Button type="submit" 
-                  className="w-full py-5 mt-2 rounded-full bg-m-green-light text-m-green-dark hover:text-white hover:bg-m-green cursor-pointer"
-                  >Registrarme
+          <Button 
+            type="submit" 
+            disabled={isLoading}
+            className="w-full py-5 mt-2 rounded-full bg-m-green-light text-m-green-dark hover:text-white hover:bg-m-green cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+          >
+            {isLoading && <Spinner size="sm" className="border-m-green-dark border-t-transparent" />}
+            {isLoading ? 'Registrando...' : 'Registrarme'}
           </Button>
         </form>
       </Form>

@@ -17,6 +17,7 @@ import {
 import Link from "next/link";
 import { HeadingDoctor } from "./HeadingDoctor";
 import { UsersType } from "@/types/users";
+import { formatFullName } from "@/utils/format";
 
 export async function PatientList({
   searchParams,
@@ -115,11 +116,7 @@ export async function PatientList({
             {pacientesConDatos.map((paciente: UsersType) => (
               <TableRow key={paciente.user_id}>
                 <TableCell>
-                  {paciente.nombres
-                    ? paciente.nombres.split(' ').map(word => 
-                        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-                      ).join(' ')
-                    : "Sin nombre"}
+                  {paciente.nombres ? formatFullName(paciente.nombres) : "Sin nombre"}
                 </TableCell>
                 <TableCell className="text-end">
                   <Link

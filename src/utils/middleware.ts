@@ -34,12 +34,25 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  // Verificación de roles para rutas protegidas
-  const role = user?.role;
+  // Obtener el rol de la tabla users
+  let userRole = null;
+  
+  if (user) {
+    const { data: userData } = await supabase
+      .from('users')
+      .select('rol')
+      .eq('user_id', user.id)
+      .single();
+    
+    userRole = userData?.rol;
+  }
 
-  if (request.nextUrl.pathname.startsWith("/admin") && role !== "doctor") {
+  // Verificación de roles para rutas protegidas
+  if (request.nextUrl.pathname.startsWith("/admin") && userRole !== "doctor") {
     // Redirige a página de error si no es doctor
+    console.log("userRole", userRole);
     return NextResponse.redirect(new URL("/unauthorized", request.url));
   }
+
   return supabaseResponse;
 }

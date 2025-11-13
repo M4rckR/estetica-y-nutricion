@@ -51,37 +51,36 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
       return;
     }
 
-    // Verificar rol de doctor
-    const userRole = user.app_metadata?.role;
-    console.log('Metadata del usuario:', {
-      app_metadata: user.app_metadata,
-      role: userRole,
-      user_id: user.id
-    });
+    // Obtener rol del usuario desde la tabla users
+    const { data: userData, error: userError } = await supabase
+      .from('users')
+      .select('rol')
+      .eq('user_id', user.id)
+      .single();
 
-    if (userRole !== 'doctor') {
-      setStatus('Error: Solo los doctores pueden subir archivos');
-      toast.error('Acceso denegado', {
-        description: 'Solo los doctores pueden subir archivos.',
+    if (userError || !userData) {
+      setStatus('Error: No se pudo obtener información del usuario');
+      toast.error('Error al verificar permisos', {
+        description: 'No se pudo verificar tu rol de usuario.',
       });
       setLoading(false);
       return;
     }
 
-    // Mostrar información completa del usuario
-    console.log('Información completa del usuario:', {
-      id: user.id,
+    const userRole = userData.rol;
+    console.log('Información del usuario:', {
+      user_id: user.id,
       email: user.email,
-      role: user.app_metadata?.role,
-      metadata: user.app_metadata,
-      raw_user_meta_data: user.user_metadata,
-      raw_app_meta_data: user.app_metadata
+      rol: userRole
     });
 
     // Verificar si el usuario tiene el rol de doctor
-    if (!user.app_metadata?.role || user.app_metadata.role !== 'doctor') {
-      console.error('Usuario no tiene rol de doctor:', user.app_metadata);
-      setStatus('Error: Usuario no tiene permisos de doctor');
+    if (userRole !== 'doctor') {
+      console.error('Usuario no tiene rol de doctor:', userRole);
+      setStatus('Error: Solo los doctores pueden subir archivos');
+      toast.error('Acceso denegado', {
+        description: 'Solo los doctores pueden subir archivos.',
+      });
       setLoading(false);
       return;
     }

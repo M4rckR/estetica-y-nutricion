@@ -34,7 +34,6 @@ export const HeaderMain = async() => {
     userProfile = data;
   }
   
-  console.log("userProfile", userProfile);
   
   return (
     <header className="relative">
@@ -56,25 +55,25 @@ export const HeaderMain = async() => {
         {userProfile ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="text-sm bg-m-green text-white cursor-pointer px-4 py-2 rounded-full transition flex items-center gap-2">
+              <button className="text-sm cursor-pointer bg-m-green text-white px-4 py-2 rounded-full transition flex items-center gap-2">
                 <User className="w-4 h-4" />
-                {userProfile.rol === 'doctor' ? 'Admin' : userProfile.nombres.charAt(0).toUpperCase() + userProfile.nombres.slice(1)}
+                {userProfile.rol === 'doctor' ? 'Admin' : userProfile.nombres.split(' ')[0].charAt(0).toUpperCase() + userProfile.nombres.split(' ')[0].slice(1).toLowerCase()}
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">
 
             {userProfile.rol !== 'doctor' && (
-              <DropdownMenuItem asChild>
+              <DropdownMenuItem className="cursor-pointer" asChild>
                 <Link href="/perfil/consultas">Ver mi perfil</Link>
               </DropdownMenuItem>
             )}
 
               {userProfile.rol === 'doctor' && (
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem className="cursor-pointer" asChild>
                   <Link href="/admin/pacientes">Subir consulta</Link>
                 </DropdownMenuItem>
               )}
-              <DropdownMenuItem asChild>
+              <DropdownMenuItem className="cursor-pointer" asChild>
                 <Link href="/auth/signout">Cerrar sesión</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>

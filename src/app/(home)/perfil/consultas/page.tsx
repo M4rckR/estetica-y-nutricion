@@ -1,11 +1,8 @@
-import { HeaderMain } from "@/components/main/HeaderMain";
 import { InfoUserCard } from "@/components/perfil/consultas/InfoUserCard";
 import { UserConsultaView } from "@/components/perfil/consultas/UserConsultaView";
 import { HeaderIntern } from "@/components/main/HeaderIntern";
 import { createClient } from "@/utils/supabase/server";
-import { redirect } from "next/navigation";
-// No necesitamos 'type User' aquí si no lo pasamos a una función
-// import { type User } from "@supabase/supabase-js"; 
+import { redirect } from "next/navigation"; 
 
 export default async function page({ searchParams }: { searchParams: Promise<{ sort?: string }> }) {
   // Await searchParams (Next.js 15 requirement)

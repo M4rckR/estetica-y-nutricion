@@ -88,10 +88,10 @@ export const LocationsSection = () => {
               <>
                 {selectedSedeInfo ? (
                   <Image
-                    src="/images/hero-image-1.png"
-                    alt={`Sede ${selectedSedeInfo.name} de InSalud`}
+                    src={`/images/hero-image-${selectedSedeInfo.id}.png`}
+                    alt={`Sede ${selectedSedeInfo.name} de Estetica y Nutricion ${selectedSedeInfo.id}`}
                     width={500}
-                    height={400}
+                    height={400}  
                     className="w-full max-h-[400px] object-cover rounded-lg"
                     loading="lazy"
                     quality={85}
@@ -99,8 +99,8 @@ export const LocationsSection = () => {
                   />
                 ) : (
                   <Image
-                    src="/images/hero-image-1.png"
-                    alt="Sede General de InSalud"
+                    src="/images/hero-image-default.png"
+                    alt="Sede General de Estetica y Nutricion"
                     width={500}
                     height={500}
                     className="w-full h-full max-h-[400px] object-cover rounded-lg"

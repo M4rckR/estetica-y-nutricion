@@ -118,7 +118,17 @@ export async function PatientList({
                 <TableCell>
                   {paciente.nombres ? formatFullName(paciente.nombres) : "Sin nombre"}
                 </TableCell>
-                <TableCell className="text-end">
+                <TableCell className="text-end space-x-2">
+                  <Link
+                    href={`/admin/pacientes/${paciente.user_id}/historia-clinica`}
+                  >
+                    <Button 
+                      variant="outline" 
+                      className="border-m-green text-m-green hover:bg-m-green-light cursor-pointer"
+                    >
+                      Historia clínica
+                    </Button>
+                  </Link>
                   <Link
                     href={`/admin/pacientes/${paciente.user_id}/subir-documento`}
                   >

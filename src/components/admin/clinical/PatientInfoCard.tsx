@@ -24,7 +24,7 @@ export function PatientInfoCard({
         Información del <span className="text-m-green">paciente</span>
       </h2>
 
-      <div className="grid grid-cols-2 gap-3 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
         {/* Nombre */}
         <div className="bg-m-green-light/30 px-4 py-3 rounded-full">
           <p className="text-sm text-m-green-dark">

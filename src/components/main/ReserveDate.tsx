@@ -43,6 +43,23 @@ export const ReserveDate = () => {
     },
   });
 
+  // Observar la consulta médica seleccionada
+  const consultaSeleccionada = form.watch("consultaMedica");
+
+  // Filtrar sedes disponibles según la consulta médica
+  const sedesDisponibles = consultaSeleccionada === "estetica" 
+    ? sedesAccordion.filter(sede => sede.name === "San Borja")
+    : consultaSeleccionada === "nutricion"
+    ? sedesAccordion
+    : [];
+
+  // Resetear sede cuando cambie la consulta médica
+  useEffect(() => {
+    if (consultaSeleccionada) {
+      form.setValue("sede", "");
+    }
+  }, [consultaSeleccionada, form]);
+
   const handleReservar = (data: FormPreReservationType) => {
     if (!data.date) {
       alert("Por favor selecciona una fecha");
@@ -122,9 +139,13 @@ export const ReserveDate = () => {
                       onValueChange={(v) => {
                         field.onChange(v);
                       }}
-                      defaultValue={field.value}
+                      value={field.value}
+                      disabled={!consultaSeleccionada}
                     >
-                      <SelectTrigger className="overflow-hidden min-w-0 w-full relative py-6 pl-12 text-sm">
+                      <SelectTrigger 
+                        className="overflow-hidden min-w-0 w-full relative py-6 pl-12 text-sm"
+                        disabled={!consultaSeleccionada}
+                      >
                         <div>
                           <Image
                             src={"/svg/icon/icono-sede.svg"}
@@ -141,7 +162,7 @@ export const ReserveDate = () => {
                       </SelectTrigger>
 
                       <SelectContent>
-                        {sedesAccordion.map((sede) => (
+                        {sedesDisponibles.map((sede) => (
                           <SelectItem key={sede.id} value={sede.name}>
                             {sede.name}
                           </SelectItem>

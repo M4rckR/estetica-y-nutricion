@@ -10,7 +10,8 @@ export type Consulta = {
   created_at: string; // La fecha de creación
   titulo: string; // El título de la consulta
   recomendacion: string; // El texto de recomendación
-  pdf_path: string | null; // La ruta al archivo PDF
+  pdf_path: string | null; // La ruta al primer archivo PDF
+  pdf_path_2?: string | null; // La ruta al segundo archivo PDF (opcional)
   paciente_id: string; // El UUID del paciente
 };
 

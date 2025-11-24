@@ -33,7 +33,8 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
     defaultValues: {
       titulo: "",
       recomendacion: "",
-      pdf: undefined,
+      pdf1: undefined,
+      pdf2: undefined,
     },
   });
 
@@ -80,38 +81,72 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
       return;
     }
 
-    setStatus('1/2: Subiendo el archivo PDF...');
+    // Variables para guardar las rutas de los PDFs
+    let pdf1Path: string | null = null;
+    let pdf2Path: string | null = null;
 
-    const file = data.pdf
-    // Crear ruta del archivo usando el ID del paciente directamente
-    const filePath = `${patientId}/${Date.now()}-${file.name}`;
+    // Subir PDF 1 si existe
+    if (data.pdf1) {
+      setStatus('Subiendo el primer archivo PDF...');
+      const file1 = data.pdf1;
+      const filePath1 = `${patientId}/${Date.now()}-pdf1-${file1.name}`;
 
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from('archivos_pacientes')
-      .upload(filePath, file, {
-        upsert: true,
-        contentType: file.type,
-        cacheControl: '3600'
-      });
+      const { data: uploadData1, error: uploadError1 } = await supabase.storage
+        .from('archivos_pacientes')
+        .upload(filePath1, file1, {
+          upsert: true,
+          contentType: file1.type,
+          cacheControl: '3600'
+        });
 
-    if (uploadError) {
-      setStatus(`Error al subir el archivo: ${uploadError.message}`);
-      toast.error('Error al subir archivo', {
-        description: uploadError.message,
-      });
-      setLoading(false);
-      return;
+      if (uploadError1) {
+        setStatus(`Error al subir el primer archivo: ${uploadError1.message}`);
+        toast.error('Error al subir primer archivo', {
+          description: uploadError1.message,
+        });
+        setLoading(false);
+        return;
+      }
+
+      pdf1Path = uploadData1.path;
     }
 
-    setStatus('2/2: Guardando los detalles de la consulta...');
+    // Subir PDF 2 si existe
+    if (data.pdf2) {
+      setStatus('Subiendo el segundo archivo PDF...');
+      const file2 = data.pdf2;
+      const filePath2 = `${patientId}/${Date.now()}-pdf2-${file2.name}`;
+
+      const { data: uploadData2, error: uploadError2 } = await supabase.storage
+        .from('archivos_pacientes')
+        .upload(filePath2, file2, {
+          upsert: true,
+          contentType: file2.type,
+          cacheControl: '3600'
+        });
+
+      if (uploadError2) {
+        setStatus(`Error al subir el segundo archivo: ${uploadError2.message}`);
+        toast.error('Error al subir segundo archivo', {
+          description: uploadError2.message,
+        });
+        setLoading(false);
+        return;
+      }
+
+      pdf2Path = uploadData2.path;
+    }
+
+    setStatus('Guardando los detalles de la consulta...');
 
     const { error: insertError } = await supabase
-      .from('consultas') // Tu tabla de consultas
+      .from('consultas')
       .insert({
-        paciente_id: patientId,            // El ID del paciente que recibimos
-        titulo: data.titulo,               // El título del formulario
-        recomendacion: data.recomendacion, // La recomendación del formulario
-        pdf_path: uploadData.path,         // La ruta del PDF que acabamos de subir
+        paciente_id: patientId,
+        titulo: data.titulo,
+        recomendacion: data.recomendacion,
+        pdf_path: pdf1Path,      // Primer PDF (puede ser null)
+        pdf_path_2: pdf2Path,    // Segundo PDF (puede ser null)
     });
 
     if (insertError) {
@@ -127,7 +162,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
     setLoading(false);
 
     // Mostrar toast de éxito
-    toast.success('Archivo subido exitosamente', {
+    toast.success('Archivo(s) subido(s) exitosamente', {
       description: 'La consulta se ha guardado correctamente.',
       duration: 3000,
     });
@@ -185,13 +220,13 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
           />
           <FormField
             control={form.control}
-            name="pdf"
+            name="pdf1"
             render={() => (
               <FormItem>
-                <FormLabel className="text-m-green-dark">PDF</FormLabel>
+                <FormLabel className="text-m-green-dark">Plan nutricional</FormLabel>
                 <FormControl>
                   <Controller
-                    name="pdf"
+                    name="pdf1"
                     control={form.control}
                     render={({ field }) => (
                       <Input
@@ -206,7 +241,36 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
                   />
                 </FormControl>
                 <FormDescription>
-                  Selecciona un archivo PDF (máx. 5MB).
+                  Selecciona el primer archivo PDF (máx. 5MB) - Opcional.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="pdf2"
+            render={() => (
+              <FormItem>
+                <FormLabel className="text-m-green-dark">Informe antropométrico</FormLabel>
+                <FormControl>
+                  <Controller
+                    name="pdf2"
+                    control={form.control}
+                    render={({ field }) => (
+                      <Input
+                        type="file"
+                        accept=".pdf"
+                        onChange={(e) => field.onChange(e.target.files?.[0] || undefined)}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    )}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Selecciona el segundo archivo PDF (máx. 5MB) - Opcional.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

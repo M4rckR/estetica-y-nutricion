@@ -43,7 +43,7 @@ export function UserConsultaView({ userId, sortOrder = "desc" }: { userId: strin
       const supabase = await createClient();
       const { data: consultasData, error: fetchError } = await supabase
         .from("consultas")
-        .select("id, created_at, titulo, recomendacion, pdf_path, paciente_id")
+        .select("id, created_at, titulo, recomendacion, pdf_path, pdf_path_2, paciente_id")
         .eq("paciente_id", userId)
         .order("created_at", { ascending: sort === "asc" });
       setConsultas(consultasData || []);
@@ -109,13 +109,22 @@ export function UserConsultaView({ userId, sortOrder = "desc" }: { userId: strin
                   <AccordionContent className="pb-4">
                     <h4 className="font-semibold mb-2 text-m-green-dark text-sm sm:text-base">Recomendación del Doctor:</h4>
                     <p className="mb-4 text-m-gray-base text-sm sm:text-base">{consulta.recomendacion}</p>
-                    {consulta.pdf_path && (
-                      <Button asChild variant="outline" className=" py-5 px-6 rounded-full bg-m-green-light hover:bg-m-green-light text-xs sm:text-sm border-none">
-                        <a href={`/api/download?path=${consulta.pdf_path}`} target="_blank" download>
-                          Descargar mi consulta
-                        </a>
-                      </Button>
-                    )}
+                    <div className="flex flex-col sm:flex-row gap-3">
+                      {consulta.pdf_path && (
+                        <Button asChild variant="outline" className="py-5 px-6 rounded-full bg-m-green-light hover:bg-m-green-light text-xs sm:text-sm border-none">
+                          <a href={`/api/download?path=${consulta.pdf_path}`} target="_blank" download>
+                            📄 Plan nutricional
+                          </a>
+                        </Button>
+                      )}
+                      {consulta.pdf_path_2 && (
+                        <Button asChild variant="outline" className="py-5 px-6 rounded-full bg-m-green-light hover:bg-m-green-light text-xs sm:text-sm border-none">
+                          <a href={`/api/download?path=${consulta.pdf_path_2}`} target="_blank" download>
+                            📊 Informe antropométrico
+                          </a>
+                        </Button>
+                      )}
+                    </div>
                   </AccordionContent>
                 </AccordionItem>
               );

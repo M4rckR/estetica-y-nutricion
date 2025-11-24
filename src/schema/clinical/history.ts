@@ -12,7 +12,7 @@ export const clinicalHistorySchema = z.object({
 
   // Paso 1: Historia Clínica
   consult_reason: z.string().nullable().optional(),
-  recent_exams: z.boolean().nullable().optional(),
+  recent_exams: z.enum(['si', 'no']).nullable().optional(),
   recent_exams_details: z.string().nullable().optional(),
   practices_sports: z.enum(['si', 'no', 'ocasionalmente']).nullable().optional(),
   pathological_antecedents: z.string().nullable().optional(),
@@ -29,7 +29,6 @@ export const clinicalHistorySchema = z.object({
   has_been_operated: z.enum(['si', 'no']).nullable().optional(),
   surgery_details: z.string().nullable().optional(),
   allergies: z.string().nullable().optional(),
-  disliked_foods: z.string().nullable().optional(),
 
   // Paso 3: Alimentación
   who_prepares_meals: z.enum(['yo', 'familiar', 'empleada', 'otro']).nullable().optional(),

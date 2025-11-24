@@ -90,26 +90,6 @@ export function Step2CirugiasAlergias({ form }: Step2Props) {
             </FormItem>
           )}
         />
-
-        {/* Alimentos que no te gustan (opcional) */}
-        <FormField
-          control={form.control}
-          name="disliked_foods"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-m-green">Alimentos que no te gustan (opcional)</FormLabel>
-              <FormControl>
-                <Textarea
-                  {...field}
-                  value={field.value || ""}
-                  placeholder="Lista los alimentos que no te gustan..."
-                  className="bg-m-green-light/20 rounded-3xl min-h-[100px] resize-none"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
       </div>
     </div>
   );

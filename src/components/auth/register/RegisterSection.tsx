@@ -38,11 +38,9 @@ export const RegisterSection = () => {
       // 👇 Si hay error, mostrarlo
       if (result?.error) {
         setErrorMessage(result.error)
-        console.error('Error de registro:', result) // Ver detalles en consola del navegador
       }
       // Si no hay error, el redirect se hará automáticamente
     } catch (error) {
-      console.error('Error inesperado:', error)
       setErrorMessage('Ocurrió un error inesperado. Por favor, intenta nuevamente.')
     } finally {
       setIsLoading(false)

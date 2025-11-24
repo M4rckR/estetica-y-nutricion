@@ -48,7 +48,6 @@ export function ClinicalHistoryForm({
       has_been_operated: undefined,
       surgery_details: undefined,
       allergies: undefined,
-      disliked_foods: undefined,
       who_prepares_meals: undefined,
       eating_out_frequency: undefined,
       favorite_foods: undefined,
@@ -75,7 +74,6 @@ export function ClinicalHistoryForm({
   };
 
   const onSubmit = async (data: ClinicalHistoryFormType) => {
-    console.log("🚀 Iniciando submit con datos:", data);
     setIsSubmitting(true);
 
     try {
@@ -85,10 +83,7 @@ export function ClinicalHistoryForm({
         completed: true,
       });
 
-      console.log("📥 Resultado del action:", result);
-
       if (result.error) {
-        console.error("❌ Error del servidor:", result.error);
         toast.error("Error al guardar", {
           description: result.error,
         });
@@ -99,7 +94,6 @@ export function ClinicalHistoryForm({
         router.push(`/admin/pacientes/${patientId}/historia-clinica`);
       }
     } catch (error) {
-      console.error("💥 Error inesperado:", error);
       toast.error("Error inesperado", {
         description: "Ocurrió un error al guardar los datos.",
       });
@@ -108,13 +102,7 @@ export function ClinicalHistoryForm({
     }
   };
 
-  // Log de errores de validación
   const onError = (errors: FieldErrors<ClinicalHistoryFormType>) => {
-    console.error("❌ Errores de validación completos:", JSON.stringify(errors, null, 2));
-    console.error("❌ Campos con error:", Object.keys(errors));
-    (Object.keys(errors) as Array<keyof ClinicalHistoryFormType>).forEach(key => {
-      console.error(`  - ${key}:`, errors[key]);
-    });
     toast.error("Error de validación", {
       description: "Por favor revisa los campos marcados en rojo.",
     });

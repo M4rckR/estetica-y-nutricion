@@ -34,7 +34,6 @@
 | `has_been_operated` | VARCHAR(5) | ¿Ha sido operado/a? |
 | `surgery_details` | TEXT | Detalles de cirugías |
 | `allergies` | TEXT | Alergias |
-| `disliked_foods` | TEXT | Alimentos que no le gustan |
 | **Alimentación** | | |
 | `who_prepares_meals` | VARCHAR(20) | ¿Quién prepara las comidas? |
 | `eating_out_frequency` | VARCHAR(20) | Frecuencia de comer fuera |

@@ -30,42 +30,42 @@ function DataRow({ label, value }: DataRowProps) {
 
 const translateValue = (value: string | null | undefined): string => {
   if (!value) return "No especificado";
-  
+
   const translations: Record<string, string> = {
     // Sports
     'si': 'Sí',
     'no': 'No',
     'ocasionalmente': 'Ocasionalmente',
-    
+
     // Alcohol/Tabaco
     'alcohol': 'Alcohol',
     'tabaco': 'Tabaco',
     'ambos': 'Ambos',
-    
+
     // Hypertension/Diabetes
     'ninguno': 'Ninguno',
     'hipertension': 'Hipertensión',
     'diabetes': 'Diabetes',
-    
+
     // Who prepares meals
     'yo': 'Yo',
     'familiar': 'Familiar',
     'empleada': 'Empleada',
     'otro': 'Otro',
-    
+
     // Eating frequency
     'nunca': 'Nunca',
     'ocasional': 'Ocasionalmente',
     'semanal': 'Semanalmente',
     'diario': 'Diariamente',
-    
+
     // Liquid intake
     'menos_1L': 'Menos de 1 litro',
     '1-2L': '1 - 2 litros',
     '2-3L': '2 - 3 litros',
     'mas_3L': 'Más de 3 litros',
   };
-  
+
   return translations[value] || value;
 };
 
@@ -94,13 +94,28 @@ export function ClinicalHistoryView({
           <DataRow label="DNI" value={patientData.dni} />
           <DataRow label="Correo" value={patientData.correo} />
           <DataRow label="Distrito" value={patientData.distrito} />
-          <DataRow 
-            label="Teléfono" 
-            value={clinicalHistory.phone} 
+          <DataRow
+            label="Teléfono"
+            value={clinicalHistory.phone}
           />
-          <DataRow 
-            label="Edad" 
-            value={clinicalHistory.age?.toString()} 
+          <DataRow
+            label="Edad"
+            value={clinicalHistory.age?.toString()}
+          />
+          <DataRow
+            label="Sexo"
+            value={clinicalHistory.sex}
+          />
+          <DataRow
+            label="Ocupación"
+            value={clinicalHistory.ocupation}
+          />
+          <DataRow
+            label="Fecha de primera cita"
+            value={clinicalHistory.first_appointment_date
+              ? format(new Date(clinicalHistory.first_appointment_date), "PPP", { locale: es })
+              : undefined
+            }
           />
         </div>
       </div>
@@ -109,36 +124,56 @@ export function ClinicalHistoryView({
       <div className="bg-white rounded-3xl p-6 mb-6 shadow-sm border border-gray-100">
         <h2 className="text-xl font-medium mb-4 text-m-green">Historia Clínica</h2>
         <div className="space-y-2">
-          <DataRow 
-            label="¿Practica deportes?" 
-            value={translateValue(clinicalHistory.practices_sports)} 
+          <DataRow
+            label="Motivo de consulta"
+            value={clinicalHistory.consult_reason}
           />
-          <DataRow 
-            label="Antecedentes patológicos" 
-            value={clinicalHistory.pathological_antecedents} 
+          <DataRow
+            label="¿Tiene exámenes recientes?"
+            value={translateValue(clinicalHistory.recent_exams)}
           />
-          <DataRow 
-            label="¿Consume alcohol o tabaco?" 
-            value={translateValue(clinicalHistory.consumes_alcohol_tobacco)} 
+          <DataRow
+            label="Detalles de los exámenes"
+            value={clinicalHistory.recent_exams_details}
           />
-          <DataRow 
-            label="Última menstruación" 
-            value={clinicalHistory.last_menstruation 
+          <DataRow
+            label="¿Practica deportes?"
+            value={translateValue(clinicalHistory.practices_sports)}
+          />
+          <DataRow
+            label="Antecedentes patológicos"
+            value={clinicalHistory.pathological_antecedents}
+          />
+          <DataRow
+            label="¿Consume alcohol o tabaco?"
+            value={translateValue(clinicalHistory.consumes_alcohol_tobacco)}
+          />
+          <DataRow
+            label="Última menstruación"
+            value={clinicalHistory.last_menstruation
               ? format(new Date(clinicalHistory.last_menstruation), "PPP", { locale: es })
               : undefined
-            } 
+            }
           />
-          <DataRow 
-            label="¿Usa anticonceptivos?" 
-            value={translateValue(clinicalHistory.uses_contraceptives)} 
+          <DataRow
+            label="¿Usa anticonceptivos?"
+            value={translateValue(clinicalHistory.uses_contraceptives)}
           />
-          <DataRow 
-            label="Medicación actual" 
-            value={clinicalHistory.current_medication} 
+          <DataRow
+            label="Medicación actual"
+            value={clinicalHistory.current_medication}
           />
-          <DataRow 
-            label="Antecedentes de hipertensión o diabetes" 
-            value={translateValue(clinicalHistory.hypertension_diabetes_antecedents)} 
+          <DataRow
+            label="Antecedentes de hipertensión o diabetes"
+            value={translateValue(clinicalHistory.hypertension_diabetes_antecedents)}
+          />
+          <DataRow
+            label="Síntomas digestivos"
+            value={clinicalHistory.abdominal_pain}
+          />
+          <DataRow
+            label="Calidad de sueño"
+            value={clinicalHistory.sleep_quality}
           />
         </div>
       </div>
@@ -147,21 +182,17 @@ export function ClinicalHistoryView({
       <div className="bg-white rounded-3xl p-6 mb-6 shadow-sm border border-gray-100">
         <h2 className="text-xl font-medium mb-4 text-m-green">Cirugías y Alergias</h2>
         <div className="space-y-2">
-          <DataRow 
-            label="¿Ha sido operado/a?" 
-            value={translateValue(clinicalHistory.has_been_operated)} 
+          <DataRow
+            label="¿Ha sido operado/a?"
+            value={translateValue(clinicalHistory.has_been_operated)}
           />
-          <DataRow 
-            label="Detalles de cirugías" 
-            value={clinicalHistory.surgery_details} 
+          <DataRow
+            label="Detalles de cirugías"
+            value={clinicalHistory.surgery_details}
           />
-          <DataRow 
-            label="Alergias" 
-            value={clinicalHistory.allergies} 
-          />
-          <DataRow 
-            label="Alimentos que no le gustan" 
-            value={clinicalHistory.disliked_foods} 
+          <DataRow
+            label="Alergias"
+            value={clinicalHistory.allergies}
           />
         </div>
       </div>
@@ -170,25 +201,33 @@ export function ClinicalHistoryView({
       <div className="bg-white rounded-3xl p-6 mb-6 shadow-sm border border-gray-100">
         <h2 className="text-xl font-medium mb-4 text-m-green">Alimentación</h2>
         <div className="space-y-2">
-          <DataRow 
-            label="¿Quién prepara las comidas?" 
-            value={translateValue(clinicalHistory.who_prepares_meals)} 
+          <DataRow
+            label="¿Quién prepara las comidas?"
+            value={translateValue(clinicalHistory.who_prepares_meals)}
           />
-          <DataRow 
-            label="Frecuencia de comer fuera de casa" 
-            value={translateValue(clinicalHistory.eating_out_frequency)} 
+          <DataRow
+            label="Frecuencia de comer fuera de casa"
+            value={translateValue(clinicalHistory.eating_out_frequency)}
           />
-          <DataRow 
-            label="Alimentos o platos favoritos" 
-            value={clinicalHistory.favorite_foods} 
+          <DataRow
+            label="Alimentos o platos favoritos"
+            value={clinicalHistory.favorite_foods}
           />
-          <DataRow 
-            label="Consumo diario de líquidos" 
-            value={translateValue(clinicalHistory.daily_liquid_intake)} 
+          <DataRow
+            label="Alimentos que no consume o no le agradan"
+            value={clinicalHistory.aliments_hate}
           />
-          <DataRow 
-            label="Suplementos" 
-            value={clinicalHistory.supplements} 
+          <DataRow
+            label="Consumo diario de líquidos"
+            value={translateValue(clinicalHistory.daily_liquid_intake)}
+          />
+          <DataRow
+            label="Suplementos"
+            value={clinicalHistory.supplements}
+          />
+          <DataRow
+            label="Registro alimentario 24 horas"
+            value={clinicalHistory.registro_24h_completo}
           />
         </div>
       </div>

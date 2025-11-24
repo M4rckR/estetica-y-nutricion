@@ -69,15 +69,9 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
     }
 
     const userRole = userData.rol;
-    console.log('Información del usuario:', {
-      user_id: user.id,
-      email: user.email,
-      rol: userRole
-    });
 
     // Verificar si el usuario tiene el rol de doctor
     if (userRole !== 'doctor') {
-      console.error('Usuario no tiene rol de doctor:', userRole);
       setStatus('Error: Solo los doctores pueden subir archivos');
       toast.error('Acceso denegado', {
         description: 'Solo los doctores pueden subir archivos.',
@@ -92,27 +86,6 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
     // Crear ruta del archivo usando el ID del paciente directamente
     const filePath = `${patientId}/${Date.now()}-${file.name}`;
 
-    console.log('Usuario autenticado:', user.id);
-    console.log('Archivo a subir:', file);
-    console.log('Ruta del archivo:', filePath);
-    console.log('Tamaño del archivo:', file.size);
-    console.log('Tipo del archivo:', file.type);
-
-    console.log('Intentando subir archivo con configuración:', {
-      bucket: 'archivos_pacientes',
-      path: filePath,
-      fileType: file.type,
-      fileSize: file.size
-    });
-
-    // Intentar subir el archivo
-    console.log('Intentando subir archivo con configuración:', {
-      bucket: 'archivos_pacientes',
-      path: filePath,
-      fileType: file.type,
-      fileSize: file.size
-    });
-
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from('archivos_pacientes')
       .upload(filePath, file, {
@@ -122,10 +95,6 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
       });
 
     if (uploadError) {
-      console.error('Error completo de subida:', {
-        message: uploadError.message,
-        name: uploadError.name
-      });
       setStatus(`Error al subir el archivo: ${uploadError.message}`);
       toast.error('Error al subir archivo', {
         description: uploadError.message,

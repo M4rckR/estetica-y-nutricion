@@ -72,11 +72,10 @@ export async function register(formData: RegisterType) {
     const {error:profileError} = await supabaseAdmin.from('users').insert(profileData)
 
     if (profileError) {
-        console.error('Error al insertar perfil:', profileError)
         return { 
             error: profileError.message || 'Error al crear el perfil de usuario',
             type: 'database',
-            details: profileError // Para debugging en consola
+            details: profileError
         }
     }
 

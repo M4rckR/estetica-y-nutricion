@@ -315,7 +315,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-m-green">¿Tiene examenes recientes?</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={undefined}>
+              <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
                 <FormControl>
                   <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
                     <SelectValue placeholder="Selecciona una opción" />

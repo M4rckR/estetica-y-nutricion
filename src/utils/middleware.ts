@@ -50,7 +50,6 @@ export async function updateSession(request: NextRequest) {
   // Verificación de roles para rutas protegidas
   if (request.nextUrl.pathname.startsWith("/admin") && userRole !== "doctor") {
     // Redirige a página de error si no es doctor
-    console.log("userRole", userRole);
     return NextResponse.redirect(new URL("/unauthorized", request.url));
   }
 

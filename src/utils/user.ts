@@ -19,7 +19,6 @@ export async function getUserProfile(): Promise<UsersType | null> {
     .single();
 
   if (error) {
-    console.error("Error al obtener el perfil:", error);
     return null;
   }
 

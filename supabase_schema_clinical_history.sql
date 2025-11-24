@@ -25,7 +25,6 @@ CREATE TABLE IF NOT EXISTS clinical_history (
   has_been_operated VARCHAR(5) CHECK (has_been_operated IN ('si', 'no')),
   surgery_details TEXT,
   allergies TEXT,
-  disliked_foods TEXT,
   
   -- Alimentación
   who_prepares_meals VARCHAR(20) CHECK (who_prepares_meals IN ('yo', 'familiar', 'empleada', 'otro')),

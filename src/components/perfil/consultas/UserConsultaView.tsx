@@ -53,7 +53,6 @@ export function UserConsultaView({ userId, sortOrder = "desc" }: { userId: strin
   }, [userId, sort]);
 
   if (error) {
-    console.error("Error fetching consultas:", error);
     return (
       <section className="max-w-5xl mx-auto px-4 py-8 bg-m-green-blank rounded-lg shadow-md">
         <p className="text-center text-m-gray-base">Error al cargar las consultas.</p>

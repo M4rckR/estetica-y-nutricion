@@ -31,7 +31,6 @@ export async function GET(request: NextRequest) {
       .download(path);
 
     if (error) {
-      console.error("Error downloading file:", error);
       return NextResponse.json({ error: "File not found" }, { status: 404 });
     }
 
@@ -48,7 +47,6 @@ export async function GET(request: NextRequest) {
       headers,
     });
   } catch (error) {
-    console.error("Error in download API:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

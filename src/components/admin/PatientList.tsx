@@ -41,7 +41,6 @@ export async function PatientList({
     .order("created_at", { ascending: sort === "oldest" });
 
   if (error) {
-    console.error("Error obteniendo pacientes:", error);
     return <div>Error cargando pacientes.</div>;
   }
 

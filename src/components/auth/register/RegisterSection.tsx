@@ -32,9 +32,9 @@ export const RegisterSection = () => {
     try {
       setIsLoading(true)
       setErrorMessage(null) // Limpiar error anterior
-      
+
       const result = await register(data)
-      
+
       // 👇 Si hay error, mostrarlo
       if (result?.error) {
         setErrorMessage(result.error)
@@ -54,7 +54,7 @@ export const RegisterSection = () => {
     <section className='max-w-5xl mx-auto container px-4 sm:px-6 lg:px-8'>
       <div className="mb-8 sm:mb-12 space-y-4">
         <h1 className="text-center text-2xl md:text-4xl font-medium text-m-green-dark">
-          Empecemos un camino de <br /> 
+          Empecemos un camino de <br />
           <span className="text-m-green">
             nutricion saludable</span>
         </h1>
@@ -139,27 +139,28 @@ export const RegisterSection = () => {
               control={form.control}
               name="followPreview"
               render={({ field }) => (
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger className="input-register w-full">
-                        <SelectValue placeholder="¿Cómo llegaste hasta aquí?" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="instagram">Instagram</SelectItem>
-                      <SelectItem value="facebook">Facebook</SelectItem>
-                      <SelectItem value="whatsapp">WhatsApp</SelectItem>
-                      <SelectItem value="recomendacion">Recomendación de un amigo</SelectItem>
-                      <SelectItem value="busqueda">Busqueda Online</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="input-register w-full">
+                      <SelectValue placeholder="¿Cómo llegaste hasta aquí?" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="instagram">Instagram</SelectItem>
+                    <SelectItem value="facebook">Facebook</SelectItem>
+                    <SelectItem value="whatsapp">WhatsApp</SelectItem>
+                    <SelectItem value="recomendacion">Recomendación de un amigo</SelectItem>
+                    <SelectItem value="busqueda">Busqueda Online</SelectItem>
+                    <SelectItem value="tiktok">Tiktok</SelectItem>
+                  </SelectContent>
+                </Select>
               )}
             />
           </section>
 
 
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={isLoading}
             className="w-full py-5 mt-2 rounded-full bg-m-green-light text-m-green-dark hover:text-white hover:bg-m-green cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >

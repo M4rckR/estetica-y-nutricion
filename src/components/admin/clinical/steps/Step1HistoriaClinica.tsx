@@ -4,6 +4,7 @@ import { UseFormReturn } from "react-hook-form";
 import { ClinicalHistoryFormType } from "@/types/clinical/history";
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,6 +24,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Step1Props {
   form: UseFormReturn<ClinicalHistoryFormType>;
@@ -83,7 +85,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
           control={form.control}
           name="first_appointment_date"
           render={({ field }) => (
-            <FormItem className="md:col-span-2">
+            <FormItem>
               <FormLabel className="text-m-green">Fecha de primera cita</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
@@ -121,7 +123,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
               <FormLabel className="text-m-green">¿Practica deportes?</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
                 <FormControl>
-                  <SelectTrigger className="bg-m-green-light/20 rounded-full">
+                  <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
                     <SelectValue placeholder="Selecciona una opción" />
                   </SelectTrigger>
                 </FormControl>
@@ -148,7 +150,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
                   {...field}
                   value={field.value || ""}
                   placeholder="Describe..."
-                  className="bg-m-green-light/20 rounded-full"
+                  className="bg-m-green-light/20 rounded-full w-full"
                 />
               </FormControl>
               <FormMessage />
@@ -165,7 +167,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
               <FormLabel className="text-m-green">¿Consume alcohol o tabaco?</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
                 <FormControl>
-                  <SelectTrigger className="bg-m-green-light/20 rounded-full">
+                  <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
                     <SelectValue placeholder="Selecciona una opción" />
                   </SelectTrigger>
                 </FormControl>
@@ -224,7 +226,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
               <FormLabel className="text-m-green">¿Usa anticonceptivos?</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
                 <FormControl>
-                  <SelectTrigger className="bg-m-green-light/20 rounded-full">
+                  <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
                     <SelectValue placeholder="Selecciona una opción" />
                   </SelectTrigger>
                 </FormControl>
@@ -250,7 +252,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
                   {...field}
                   value={field.value || ""}
                   placeholder="Describe..."
-                  className="bg-m-green-light/20 rounded-full"
+                  className="bg-m-green-light/20 rounded-full w-full"
                 />
               </FormControl>
               <FormMessage />
@@ -263,11 +265,11 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
           control={form.control}
           name="hypertension_diabetes_antecedents"
           render={({ field }) => (
-            <FormItem className="md:col-span-2">
+            <FormItem className="">
               <FormLabel className="text-m-green">Antecedentes de hipertensión o diabetes</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
                 <FormControl>
-                  <SelectTrigger className="bg-m-green-light/20 rounded-full">
+                  <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
                     <SelectValue placeholder="Selecciona una opción" />
                   </SelectTrigger>
                 </FormControl>
@@ -278,6 +280,192 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
                   <SelectItem value="ambos">Ambos</SelectItem>
                 </SelectContent>
               </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Sex */}
+        <FormField
+          control={form.control}
+          name="sex"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-m-green">Sexo</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
+                <FormControl>
+                  <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
+                    <SelectValue placeholder="Selecciona una opción" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="masculino">Masculino</SelectItem>
+                  <SelectItem value="femenino">Femenino</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
+        <FormField
+          control={form.control}
+          name="recent_exams"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-m-green">¿Tiene examenes recientes?</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={undefined}>
+                <FormControl>
+                  <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
+                    <SelectValue placeholder="Selecciona una opción" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="si">Sí</SelectItem>
+                  <SelectItem value="no">No</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="recent_exams_details"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-m-green">Detalles de los examenes recientes</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  value={field.value || ""}
+                  placeholder="Describe..."
+                  className="bg-m-green-light/20 rounded-full"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Ocupacion */}
+        <FormField
+          control={form.control}
+          name="ocupation"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-m-green">Ocupación</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  value={field.value || ""}
+                  placeholder="Ingeniero, jardinero, etc..."
+                  className="bg-m-green-light/20 rounded-full"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Motivo de consulta select  */}
+        <FormField
+          control={form.control}
+          name="consult_reason"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-m-green">Motivo de consulta</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={undefined}>
+                <FormControl>
+                  <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
+                    <SelectValue placeholder="Selecciona una opción" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="control_peso">Control de peso</SelectItem>
+                  <SelectItem value="mejora_estetica">Mejora estética corporal</SelectItem>
+                  <SelectItem value="rendimiento_deportivo">Rendimiento deportivo</SelectItem>
+                  <SelectItem value="salud">Salud / tratamiento médico</SelectItem>
+                  <SelectItem value="otro">Otro</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Sintomas digestivos select Nunca Ocasional Frecuente */}
+        <FormField
+          control={form.control}
+          name="abdominal_pain"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className="text-m-green">Sintomas digestivos</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={undefined}>
+                <FormControl>
+                  <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
+                    <SelectValue placeholder="Selecciona una opción" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="nunca">Nunca</SelectItem>
+                  <SelectItem value="ocasional">Ocasional</SelectItem>
+                  <SelectItem value="frecuente">Frecuente</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
+        {/* Calidad de suenó text area que detalla Horas promedio de sueño
+Calidad del sueño (1–5)
+Nivel de estrés (1–5)
+Factores que alteran el descanso en el form description */}
+        <FormField
+          control={form.control}
+          name="sleep_quality"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">Calidad de suenó</FormLabel>
+              <FormDescription>
+                Detalle las horas promedio de sueño, la calidad del sueño (1–5) y el nivel de estrés (1–5) y factores que alteran el descanso.
+              </FormDescription>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value || ""}
+                  placeholder="Ej. 7 horas promedio de sueño, calidad del sueño, nivel de estrés y factores que alteran el descanso."
+                  className="bg-m-green-light/20  rounded-2xl"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+
+        {/* Registro 24h completo text area  */}
+        <FormField
+          control={form.control}
+          name="registro_24h_completo"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">Recordatorio de 24 horas detallado</FormLabel>
+              <FormDescription>
+                Detalle del consumo y actividad del día anterior. Incluya horarios precisos, alimentos, preparaciones, bebidas, porciones y cantidades. Especifique además la ingesta de agua, el consumo entre comidas y la actividad física realizada.
+              </FormDescription>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value || ""}
+                  placeholder="Incluye alimentos, bebidas, ejercicio, etc..."
+                  className="bg-m-green-light/20 resize-none rounded-2xl"
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

@@ -77,7 +77,7 @@ export function ClinicalHistoryForm({
   const onSubmit = async (data: ClinicalHistoryFormType) => {
     console.log("🚀 Iniciando submit con datos:", data);
     setIsSubmitting(true);
-    
+
     try {
       const result = await saveClinicalHistory({
         ...data,
@@ -145,8 +145,8 @@ export function ClinicalHistoryForm({
 
       {/* Formulario con pasos */}
       <Form {...form}>
-        <form 
-          onSubmit={form.handleSubmit(onSubmit, onError)} 
+        <form
+          onSubmit={form.handleSubmit(onSubmit, onError)}
           onKeyDown={(e) => {
             // Prevenir submit al presionar Enter, excepto en el último paso
             if (e.key === 'Enter' && currentStep < totalSteps) {
@@ -167,7 +167,7 @@ export function ClinicalHistoryForm({
                 variant="outline"
                 onClick={onPrev}
                 disabled={isSubmitting}
-                className="px-8 py-6 rounded-full"
+                className="px-8 py-6 rounded-full cursor-pointer"
               >
                 Anterior
               </Button>
@@ -177,7 +177,7 @@ export function ClinicalHistoryForm({
               <Button
                 type="button"
                 onClick={onNext}
-                className="ml-auto bg-m-green text-white px-8 py-6 rounded-full hover:bg-m-green-dark"
+                className="ml-auto bg-m-green text-white px-8 py-6 rounded-full hover:bg-m-green-dark cursor-pointer"
               >
                 Siguiente
               </Button>

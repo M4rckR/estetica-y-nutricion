@@ -120,8 +120,8 @@ export async function PatientList({
                     <Link
                       href={`/admin/pacientes/${paciente.user_id}/historia-clinica`}
                     >
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         className="border-m-green text-m-green hover:bg-m-green-light cursor-pointer whitespace-nowrap"
                       >
                         <BsFillInfoSquareFill className="w-4 h-4 sm:hidden" />
@@ -152,21 +152,19 @@ export async function PatientList({
       <div className="flex justify-center mt-8 space-x-4">
         {hasPrev && (
           <Link
-            href={`/admin/pacientes?page=${page - 1}${
-              search ? `&search=${encodeURIComponent(search)}` : ""
-            }${sort !== "recent" ? `&sort=${sort}` : ""}`}
+            href={`/admin/pacientes?page=${page - 1}${search ? `&search=${encodeURIComponent(search)}` : ""
+              }${sort !== "recent" ? `&sort=${sort}` : ""}`}
           >
-            <Button variant="outline">Anterior</Button>
+            <Button className="cursor-pointer" variant="outline">Anterior</Button>
           </Link>
         )}
         <span>Página {page}</span>
         {hasNext && (
           <Link
-            href={`/admin/pacientes?page=${page + 1}${
-              search ? `&search=${encodeURIComponent(search)}` : ""
-            }${sort !== "recent" ? `&sort=${sort}` : ""}`}
+            href={`/admin/pacientes?page=${page + 1}${search ? `&search=${encodeURIComponent(search)}` : ""
+              }${sort !== "recent" ? `&sort=${sort}` : ""}`}
           >
-            <Button variant="outline">Siguiente</Button>
+            <Button className="cursor-pointer" variant="outline">Siguiente</Button>
           </Link>
         )}
       </div>

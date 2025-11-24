@@ -123,13 +123,33 @@ export function Step3Alimentacion({ form }: Step3Props) {
           )}
         />
 
+        {/* Alimentos que evitas */}
+        <FormField
+          control={form.control}
+          name="aliments_hate"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">Alimentos que no consume o no le agradan</FormLabel>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value || ""}
+                  placeholder="Ej: brocoli, cebolla, leche..."
+                  className="bg-m-green-light/20 rounded-3xl min-h-[80px] resize-none"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         {/* Suplementos que consumes (opcional) */}
         <FormField
           control={form.control}
           name="supplements"
           render={({ field }) => (
             <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">Suplementos que consumes (opcional)</FormLabel>
+              <FormLabel className="text-m-green">Suplementos que consume (opcional)</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}

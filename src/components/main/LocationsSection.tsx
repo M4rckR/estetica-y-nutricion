@@ -99,7 +99,7 @@ export const LocationsSection = () => {
                   />
                 ) : (
                   <Image
-                    src="/images/hero-image-default.png"
+                    src="/images/hero-image-1.png"
                     alt="Sede General de Estetica y Nutricion"
                     width={500}
                     height={500}

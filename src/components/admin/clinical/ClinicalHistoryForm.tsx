@@ -11,6 +11,8 @@ import { Form } from "@/components/ui/form";
 import { Spinner } from "@/components/ui/spinner";
 import { toast } from "sonner";
 import { saveClinicalHistory } from "@/app/admin/actions/clinical";
+import { X } from "lucide-react";
+import Link from "next/link";
 
 // Importar los pasos del formulario
 import { Step1HistoriaClinica } from "./steps/Step1HistoriaClinica";
@@ -149,17 +151,30 @@ export function ClinicalHistoryForm({
 
           {/* Botones de navegación */}
           <div className="flex justify-between gap-4 pt-6">
-            {currentStep > 1 && (
-              <Button
-                type="button"
-                variant="outline"
-                onClick={onPrev}
-                disabled={isSubmitting}
-                className="px-8 py-6 rounded-full cursor-pointer"
-              >
-                Anterior
-              </Button>
-            )}
+            <div className="flex gap-4">
+              {/* Botón Cancelar - Siempre visible */}
+              <Link href={`/admin/pacientes/${patientId}/historia-clinica`}>
+                <Button
+                  type="button"
+                  className="bg-m-green hover:bg-m-green-dark text-white rounded-full w-12 h-12 p-0 flex items-center justify-center cursor-pointer"
+                  aria-label="Cancelar"
+                >
+                  <X className="w-5 h-5" />
+                </Button>
+              </Link>
+              {/* Botón Anterior - Solo visible desde el paso 2 */}
+              {currentStep > 1 && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={onPrev}
+                  disabled={isSubmitting}
+                  className="px-8 py-6 rounded-full cursor-pointer"
+                >
+                  Anterior
+                </Button>
+              )}
+            </div>
 
             {currentStep < totalSteps ? (
               <Button

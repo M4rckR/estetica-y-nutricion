@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { UsersType } from "@/types/users";
 import { ClinicalHistoryType } from "@/types/clinical/history";
 import { formatFullName } from "@/utils/format";
+import { ArrowLeft } from "lucide-react";
 
 interface PatientInfoCardProps {
   patientData: UsersType;
@@ -17,12 +18,20 @@ export function PatientInfoCard({
 }: PatientInfoCardProps) {
   return (
     <div className="max-w-2xl mx-auto px-4 mt-10 lg:mt-0">
-
-
-      {/* Información del paciente */}
-      <h2 className="text-2xl font-medium mb-6 text-center">
-        Información del <span className="text-m-green">paciente</span>
-      </h2>
+      {/* Información del paciente con flecha de retroceso */}
+      <div className="flex items-center gap-4 mb-6">
+        <Link href="/admin/pacientes">
+          <Button 
+            className="bg-m-green hover:bg-m-green-dark text-white rounded-full w-10 h-10 p-0 flex items-center justify-center cursor-pointer flex-shrink-0"
+            aria-label="Volver a lista de pacientes"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Button>
+        </Link>
+        <h2 className="text-2xl font-medium text-center flex-1">
+          Información del <span className="text-m-green">paciente</span>
+        </h2>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
         {/* Nombre */}

@@ -147,26 +147,28 @@ export async function PatientList({
         </Table>
       </div>
 
-      {/* Controles de paginación */}
-      <div className="flex justify-center mt-8 space-x-4">
-        {hasPrev && (
-          <Link
-            href={`/admin/pacientes?page=${page - 1}${search ? `&search=${encodeURIComponent(search)}` : ""
-              }${sort !== "recent" ? `&sort=${sort}` : ""}`}
-          >
-            <Button className="cursor-pointer" variant="outline">Anterior</Button>
-          </Link>
-        )}
-        <span>Página {page}</span>
-        {hasNext && (
-          <Link
-            href={`/admin/pacientes?page=${page + 1}${search ? `&search=${encodeURIComponent(search)}` : ""
-              }${sort !== "recent" ? `&sort=${sort}` : ""}`}
-          >
-            <Button className="cursor-pointer" variant="outline">Siguiente</Button>
-          </Link>
-        )}
-      </div>
+      {/* Controles de paginación - Solo mostrar si hay más de una página */}
+      {(hasPrev || hasNext) && (
+        <div className="flex justify-center mt-8 space-x-4">
+          {hasPrev && (
+            <Link
+              href={`/admin/pacientes?page=${page - 1}${search ? `&search=${encodeURIComponent(search)}` : ""
+                }${sort !== "recent" ? `&sort=${sort}` : ""}`}
+            >
+              <Button className="cursor-pointer" variant="outline">Anterior</Button>
+            </Link>
+          )}
+          <span>Página {page}</span>
+          {hasNext && (
+            <Link
+              href={`/admin/pacientes?page=${page + 1}${search ? `&search=${encodeURIComponent(search)}` : ""
+                }${sort !== "recent" ? `&sort=${sort}` : ""}`}
+            >
+              <Button className="cursor-pointer" variant="outline">Siguiente</Button>
+            </Link>
+          )}
+        </div>
+      )}
 
       {pacientesConDatos.length === 0 && (
         <p className="text-center text-gray-500 mt-4">

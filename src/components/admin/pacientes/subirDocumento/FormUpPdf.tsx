@@ -20,6 +20,8 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { X } from "lucide-react";
+import Link from "next/link";
 
 export const FormUpPdf = ({ patientId }: { patientId: string }) => {
 
@@ -276,7 +278,16 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
               </FormItem>
             )}
           />
-          <div className="flex justify-center mt-12">
+          <div className="flex justify-center items-center gap-4 mt-12">
+            <Link href="/admin/pacientes">
+              <Button
+                type="button"
+                className="bg-m-green hover:bg-m-green-dark text-white rounded-full w-12 h-12 p-0 flex items-center justify-center cursor-pointer"
+                aria-label="Cancelar"
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </Link>
             <Button
               className="bg-m-green px-12 text-white hover:bg-m-green-dark cursor-pointer rounded-full flex items-center gap-2 disabled:opacity-50"
               type="submit"

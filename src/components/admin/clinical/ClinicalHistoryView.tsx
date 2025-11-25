@@ -233,15 +233,18 @@ export function ClinicalHistoryView({
       </div>
 
       {/* Botones de acción */}
-      <div className="flex gap-4 justify-center mt-8">
+      <div className="flex gap-4 justify-center items-center mt-8">
+        <Link href={`/admin/pacientes/${patientId}/historia-clinica`}>
+          <Button 
+            variant="outline"
+            className="border-2 border-m-green text-m-green hover:bg-m-green hover:text-white px-8 py-6 rounded-full cursor-pointer transition-all"
+          >
+            Volver
+          </Button>
+        </Link>
         <Link href={`/admin/pacientes/${patientId}/historia-clinica/editar`}>
           <Button className="bg-m-green text-white px-8 py-6 rounded-full hover:bg-m-green-dark cursor-pointer transition-all">
             Editar historia clínica
-          </Button>
-        </Link>
-        <Link href={`/admin/pacientes/${patientId}/historia-clinica`}>
-          <Button variant="outline" className="border-2 border-gray-300 px-8 py-6 rounded-full cursor-pointer hover:bg-gray-50 transition-all">
-            Volver
           </Button>
         </Link>
       </div>

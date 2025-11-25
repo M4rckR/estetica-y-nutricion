@@ -113,7 +113,20 @@ export function ClinicalHistoryForm({
   return (
     <div className="max-w-4xl mx-auto px-4 mt-10 lg:mt-0">
       {/* Header con título y progreso */}
-      <div className="mb-8">
+      <div className="mb-8 relative">
+        {/* Botón X arriba a la derecha */}
+        <div className="absolute top-0 right-0">
+          <Link href={`/admin/pacientes/${patientId}/historia-clinica`}>
+            <Button
+              type="button"
+              className="bg-m-green hover:bg-m-green-dark text-white rounded-full w-10 h-10 p-0 flex items-center justify-center cursor-pointer"
+              aria-label="Cancelar"
+            >
+              <X className="w-5 h-5" />
+            </Button>
+          </Link>
+        </div>
+
         <h1 className="text-3xl font-medium mb-2">
           Historia <span className="text-m-green">Clínica</span>
         </h1>
@@ -151,30 +164,18 @@ export function ClinicalHistoryForm({
 
           {/* Botones de navegación */}
           <div className="flex justify-between gap-4 pt-6">
-            <div className="flex gap-4">
-              {/* Botón Cancelar - Siempre visible */}
-              <Link href={`/admin/pacientes/${patientId}/historia-clinica`}>
-                <Button
-                  type="button"
-                  className="bg-m-green hover:bg-m-green-dark text-white rounded-full w-12 h-12 p-0 flex items-center justify-center cursor-pointer"
-                  aria-label="Cancelar"
-                >
-                  <X className="w-5 h-5" />
-                </Button>
-              </Link>
-              {/* Botón Anterior - Solo visible desde el paso 2 */}
-              {currentStep > 1 && (
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={onPrev}
-                  disabled={isSubmitting}
-                  className="px-8 py-6 rounded-full cursor-pointer"
-                >
-                  Anterior
-                </Button>
-              )}
-            </div>
+            {/* Botón Anterior - Solo visible desde el paso 2 */}
+            {currentStep > 1 && (
+              <Button
+                type="button"
+                variant="outline"
+                onClick={onPrev}
+                disabled={isSubmitting}
+                className="px-8 py-6 rounded-full cursor-pointer"
+              >
+                Anterior
+              </Button>
+            )}
 
             {currentStep < totalSteps ? (
               <Button

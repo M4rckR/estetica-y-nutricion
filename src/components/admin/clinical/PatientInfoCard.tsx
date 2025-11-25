@@ -19,16 +19,16 @@ export function PatientInfoCard({
   return (
     <div className="max-w-2xl mx-auto px-4 mt-10 lg:mt-0">
       {/* Información del paciente con flecha de retroceso */}
-      <div className="flex items-center gap-4 mb-6">
-        <Link href="/admin/pacientes">
+      <div className="relative mb-6">
+        <Link href="/admin/pacientes" className="absolute left-0 top-1/2 -translate-y-1/2">
           <Button 
-            className="bg-m-green hover:bg-m-green-dark text-white rounded-full w-10 h-10 p-0 flex items-center justify-center cursor-pointer flex-shrink-0"
+            className="bg-m-green hover:bg-m-green-dark text-white rounded-full w-10 h-10 p-0 flex items-center justify-center cursor-pointer"
             aria-label="Volver a lista de pacientes"
           >
             <ArrowLeft className="w-5 h-5" />
           </Button>
         </Link>
-        <h2 className="text-2xl font-medium text-center flex-1">
+        <h2 className="text-2xl font-medium text-center">
           Información del <span className="text-m-green">paciente</span>
         </h2>
       </div>

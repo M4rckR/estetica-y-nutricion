@@ -56,7 +56,7 @@ export const RegisterSection = () => {
           <span className="text-m-green">
             nutricion saludable</span>
         </h1>
-        <p className="text-center">¡Súmate a los más de 300 pacientes que ya vivieron su transformación!</p>
+        <p className="text-center">¡Súmate a los más de 4000 pacientes que ya vivieron su transformación!</p>
       </div>
 
       {errorMessage && (

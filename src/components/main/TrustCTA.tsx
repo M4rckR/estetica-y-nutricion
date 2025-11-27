@@ -29,7 +29,7 @@ export const TrustCTA = () => {
             <span className="text-m-green">resultados rápidos y reales.</span>{" "}
           </h2>
           <p className="text-sm">
-            ¡Súmate a los más de 300 pacientes que ya vivieron su
+            ¡Súmate a los más de 4000 pacientes que ya vivieron su
             transformación!
           </p>
         </div>

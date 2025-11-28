@@ -5,6 +5,7 @@ import '@vidstack/react/player/styles/default/theme.css';
 import '@vidstack/react/player/styles/default/layouts/video.css';
 import "aos/dist/aos.css";
 import { Toaster } from "sonner";
+import { WhatsAppFloating } from "@/components/common/WhatsAppFloating";
 
 const poppins = Poppins({
   variable: "--font-m-poppins",
@@ -75,6 +76,7 @@ export default function RootLayout({
       >
         {children}
         <Toaster />
+        <WhatsAppFloating />
       </body>
     </html>
   );

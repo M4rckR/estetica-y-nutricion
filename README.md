@@ -301,4 +301,5 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ---
 
-*Desarrollado con ❤️ para promover la salud y el bienestar integral*
+*Desarrollado con ❤️ para promover la salud y el bienestar integral*#   a p p - c a l c u l a t o r - r e a c t - n a t i v e  
+ 

@@ -16,10 +16,12 @@ export const ServicesSection = () => {
   }, []);
 
   const phoneNumber = "51931531046";
-  const message = "Hola, vi su página web y estoy interesado en sus servicios.";
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    message
-  )}`;
+  
+  // URLs de WhatsApp por servicio
+  const getWhatsAppUrl = (servicio: string) => {
+    const message = `Hola, vi su página web y estoy interesado en ${servicio}.`;
+    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  };
 
   return (
     <section
@@ -41,7 +43,7 @@ export const ServicesSection = () => {
         <div className="lg:col-start-9 xl:col-start-10 col-span-4 ">
           <Link
             className="flex items-center justify-center bg-m-green-dark text-white px-4 py-3 rounded-full w-fit mx-auto"
-            href={whatsappUrl}
+            href={getWhatsAppUrl("reservar una cita")}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -70,8 +72,10 @@ export const ServicesSection = () => {
             className="w-full h-auto mt-8 rounded-lg"
           />
           <Link
-            href="#"
-            className="text-m-green-dark bg-white mt-6 block text-center py-2 rounded-full"
+            href={getWhatsAppUrl("Consultoría y evaluación nutricional")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-m-green-dark bg-white mt-6 block text-center py-2 rounded-full hover:bg-gray-50 transition-colors duration-200"
           >
             Me interesa
           </Link>
@@ -91,7 +95,7 @@ export const ServicesSection = () => {
                 Tratamientos faciales
               </AccordionTrigger>
               <AccordionContent className="text-m-green-dark">
-                <ul className="list-disc list-inside space-y-1">
+                <ul className="list-disc list-inside space-y-1 mb-0 !pb-0">
                   <li>Limpieza facial profunda</li>
                   <li>limpieza facial express</li>
                   <li>Limpieza facial + dermapen</li>
@@ -99,6 +103,14 @@ export const ServicesSection = () => {
                   <li>PRP</li>
                   <li>Coctel antiaging, ETC</li>
                 </ul>
+                <Link
+                  href={getWhatsAppUrl("Tratamientos faciales")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-m-green-dark bg-white mt-8 block text-center py-2 rounded-full hover:bg-gray-50 transition-colors duration-200"
+                >
+                  Me interesa
+                </Link>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
@@ -109,7 +121,7 @@ export const ServicesSection = () => {
                 Tratamientos corporales
               </AccordionTrigger>
               <AccordionContent className="text-m-green-dark">
-                <div className="flex gap-1 xl:gap-1 md:gap-1 2xl:gap-10 flex-col 2xl:flex-row md:space-y-0 xl:space-y-0">
+                <div className="flex gap-1 xl:gap-1 md:gap-1 2xl:gap-10 flex-col 2xl:flex-row md:space-y-0 xl:space-y-0 mb-0 !pb-0">
                   <ul className="list-disc list-inside space-y-1">
                     <li>Hidrolipoclasia</li>
                     <li>Hidrolipoescultura</li>
@@ -125,6 +137,14 @@ export const ServicesSection = () => {
                     <li>Lipopapada, etc</li>
                   </ul>
                 </div>
+                <Link
+                  href={getWhatsAppUrl("Tratamientos corporales")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-m-green-dark bg-white mt-8 block text-center py-2 rounded-full hover:bg-gray-50 transition-colors duration-200"
+                >
+                  Me interesa
+                </Link>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem
@@ -135,7 +155,7 @@ export const ServicesSection = () => {
                 Venta de suplementos y productos nutricionales
               </AccordionTrigger>
               <AccordionContent className="text-m-green-dark">
-                <div className="flex gap-1 xl:gap-1 md:gap-1 2xl:gap-10 flex-col 2xl:flex-row md:space-y-0 xl:space-y-0">
+                <div className="flex gap-1 xl:gap-1 md:gap-1 2xl:gap-10 flex-col 2xl:flex-row md:space-y-0 xl:space-y-0 mb-0 !pb-0">
                   <ul className="list-disc list-inside space-y-1">
                     <li>Xtropin</li>
                     <li>Curcupro</li>
@@ -151,6 +171,14 @@ export const ServicesSection = () => {
                     <li>Citrato de magnesio</li>
                   </ul>
                 </div>
+                <Link
+                  href={getWhatsAppUrl("suplementos y productos nutricionales")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-m-green-dark bg-white mt-8 block text-center py-2 rounded-full hover:bg-gray-50 transition-colors duration-200"
+                >
+                  Me interesa
+                </Link>
               </AccordionContent>
             </AccordionItem>
           </Accordion>

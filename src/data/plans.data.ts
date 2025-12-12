@@ -4,7 +4,7 @@ export const plansPresencial: Plan[] = [
   {
     id: "clini-care",
     modality: "presencial",
-    title: "Clini-Care Nutrition",
+    title: "Plan Clínico Nutricional",
     subtitle:
       "Plan Clínico & Dietoterapia (para pacientes con enfermedades o condiciones específicas)",
     features: [
@@ -19,7 +19,7 @@ export const plansPresencial: Plan[] = [
   {
     id: "body-shape-glow",
     modality: "presencial",
-    title: "Body Shape Glow",
+    title: "Plan Estético Corporal",
     subtitle:
       "Plan Estético & Recomp. Corporal (para mejorar figura, bajar grasa, tonificar)",
     features: [
@@ -35,7 +35,7 @@ export const plansPresencial: Plan[] = [
   {
     id: "nutripro-kids-teens",
     modality: "presencial",
-    title: "NutriPRO Athletic Kids & Teens",
+    title: "Plan Deportivo Infantil",
     subtitle:
       "Plan Deportivo / Pediátrico (para niños y jóvenes deportistas o en crecimiento)",
     features: [
@@ -54,7 +54,7 @@ export const plansOnline: Plan[] = [
   {
     id: "beautyfit-online",
     modality: "online",
-    title: "BeautyFit Online",
+    title: "Plan Estético Virtual",
     subtitle:
       "Plan Estético Virtual – Reducción de grasa & tonificación",
     features: [
@@ -70,7 +70,7 @@ export const plansOnline: Plan[] = [
   {
     id: "fitonline-performance",
     modality: "online",
-    title: "FitOnline Performance",
+    title: "Plan Deportivo Virtual",
     subtitle:
       "Plan Deportivo Virtual – Rendimiento & recomposición corporal",
     features: [
@@ -87,14 +87,14 @@ export const plansOnline: Plan[] = [
   {
     id: "healthbalance-online",
     modality: "online",
-    title: "HealthBalance Online",
+    title: "Plan Clínico Virtual",
     subtitle:
       "Plan Clínico – Dietoterapia virtual",
     features: [
       "Evaluación clínica online + ficha fotográfica y medidas",
       "Interpretación de análisis clínicos recientes",
       "Plan dietoterapéutico personalizado (en 7 días)",
-      "4 consultas online al mes + seguimiento “Online to Live”",
+      "4 consultas online al mes + seguimiento 'Online to Live'",
       "Suplementación orientada a mejorar condición clínica",
       "Recomendación de actividad física según diagnóstico",
     ],

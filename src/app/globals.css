@@ -165,3 +165,22 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, div {
   @apply bg-m-green-light/40 outline-none border text-m-green-dark 
    border-m-green-light placeholder:text-m-green-dark/50 rounded-full py-5 pl-4
 }
+
+/* Estilos personalizados para scrollbar del modal */
+.modal-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-scroll::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 4px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb {
+  background: #619111;
+  border-radius: 4px;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: #8CC63E;
+}

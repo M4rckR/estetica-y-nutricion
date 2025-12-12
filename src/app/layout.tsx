@@ -5,6 +5,7 @@ import '@vidstack/react/player/styles/default/theme.css';
 import '@vidstack/react/player/styles/default/layouts/video.css';
 import "aos/dist/aos.css";
 import { Toaster } from "sonner";
+import { WhatsAppFloating } from "@/components/common/WhatsAppFloating";
 
 const poppins = Poppins({
   variable: "--font-m-poppins",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     template: `%s | ${siteName}`,
   },
   description:
-    "Nutrición, salud y estética para una mejor versión de ti. Planes nutricionales, tratamientos faciales y corporales, y venta de suplementos. Atendemos en San Borja y Los Olivos. +300 pacientes confían en nosotros.",
+    "Nutrición, salud y estética para una mejor versión de ti. Planes nutricionales, tratamientos faciales y corporales, y venta de suplementos. Atendemos en San Borja y Los Olivos. +4000 pacientes confían en nosotros.",
   keywords: [
     "nutricionista", "planes nutricionales", "estética", "tratamientos faciales",
     "tratamientos corporales", "PRP", "maderoterapia", "carboxiterapia",
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteName,
     description:
-      "Nutrición, salud y estética para una mejor versión de ti. +300 pacientes confían en nosotros.",
+      "Nutrición, salud y estética para una mejor versión de ti. +4000 pacientes confían en nosotros.",
     images: [ogImage],
   },
   icons: { icon: "/favicon.ico", apple: "/apple-touch-icon.png" },
@@ -75,6 +76,7 @@ export default function RootLayout({
       >
         {children}
         <Toaster />
+        <WhatsAppFloating />
       </body>
     </html>
   );

@@ -73,17 +73,14 @@ export const CarouselHomeCta = () => {
         <CarouselContent>
           <CarouselItem className="relative">
             <div className="flex flex-col gap-4 absolute bottom-32 left-0 right-0 mx-auto pl-4">
-              <p className="text-xl w-full 2xl:text-3xl hidden md:block select-none xl:block font-m-poppins text-center md:px-28 lg:px-16 xl:px-32 text-white font-medium">
-                Nuestro equipo está listo para atenderte y guiarte hacia{" "}
-                <span className="text-m-green">
-                  resultados rápidos y reales
-                </span>
-                .{" "}
+              <h2 className="text-2xl w-full 2xl:text-3xl hidden md:block select-none xl:block font-m-poppins text-center md:px-28 lg:px-16 xl:px-32 text-white font-medium">Moldea donde lo necesitas</h2>
+              <p className="text-lg w-full 2xl:text-2xl hidden md:block select-none xl:block font-m-poppins text-center md:px-28 lg:px-16 xl:px-32 text-white">
+              Enzimas corporales con acción localizada y segura
               </p>
               <Link
                 href={whatsappUrl}
                 target="_blank"
-                className="text-m-green hidden bg-m-green-light text-sm font-medium px-6 py-2 rounded-full mx-auto text-center xl:inline-block"
+                className="text-m-green-dark hidden bg-m-green-light text-sm font-medium px-6 py-2 rounded-full mx-auto text-center xl:inline-block"
               >
                 Hablemos por Whatsapp
               </Link>
@@ -97,6 +94,19 @@ export const CarouselHomeCta = () => {
             />
           </CarouselItem>
           <CarouselItem className="relative">
+            <div className="flex flex-col gap-4 absolute bottom-32 left-0 right-0 mx-auto pl-4">
+              <h2 className="text-2xl w-full 2xl:text-3xl hidden md:block select-none xl:block font-m-poppins text-center md:px-28 lg:px-16 xl:px-32 text-white font-medium">Piel luminosa y firme</h2>
+              <p className="text-lg w-full 2xl:text-2xl hidden md:block select-none xl:block font-m-poppins text-center md:px-28 lg:px-16 xl:px-32 text-white">
+              Mesoterapia con vitaminas: hidratación profunda y mejor textura
+              </p>
+              <Link
+                href={whatsappUrl}
+                target="_blank"
+                className="text-m-green-dark hidden bg-m-green-light text-sm font-medium px-6 py-2 rounded-full mx-auto text-center xl:inline-block"
+              >
+                Hablemos por Whatsapp
+              </Link>
+            </div>
             <Image
               src="/images/principal-item-carousel-2.png"
               alt="Description of image"
@@ -105,15 +115,30 @@ export const CarouselHomeCta = () => {
               className="w-full h-72 md:h-auto rounded-2xl object-cover"
             />
           </CarouselItem>
-          {/* <CarouselItem>
+          <CarouselItem className="relative">
+            <div className="flex flex-col gap-4 absolute bottom-32 left-0 right-0 mx-auto pl-4">
+              <h2 className="text-2xl w-full 2xl:text-3xl hidden md:block select-none xl:block font-m-poppins text-center md:px-28 lg:px-16 xl:px-32 text-white font-medium">Firmeza que se nota</h2>
+              <p className="text-lg w-full 2xl:text-2xl hidden md:block select-none xl:block font-m-poppins text-center md:px-28 lg:px-16 xl:px-32 text-white">
+              Radiofrecuencia para estimular colágeno y suavizar la piel
+              </p>
+              <Link
+                href={whatsappUrl}
+                target="_blank"
+                className="text-m-green-dark hidden bg-m-green-light text-sm font-medium px-6 py-2 rounded-full mx-auto text-center xl:inline-block"
+              >
+                Hablemos por Whatsapp
+              </Link>
+            </div>
             <Image
-              src="/images/principal-item-carousel-1.png"
+              src="/images/principal-item-carousel-3.png"
               alt="Description of image"
               width={1200}
-              height={300}
-                className="w-full h-auto"
+              height={500}
+              className="w-full h-72 md:h-auto rounded-2xl object-cover"
             />
-          </CarouselItem> */}
+          </CarouselItem>
+
+
         </CarouselContent>
         <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
           <CarouselDots />

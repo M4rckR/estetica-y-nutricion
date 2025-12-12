@@ -137,21 +137,18 @@ export const ServicesSection = () => {
               <AccordionContent className="text-m-green-dark">
                 <div className="flex gap-1 xl:gap-1 md:gap-1 2xl:gap-10 flex-col 2xl:flex-row md:space-y-0 xl:space-y-0">
                   <ul className="list-disc list-inside space-y-1">
-                    <li>St. John wort.</li>
-                    <li>Whey protein</li>
-                    <li>omega 3</li>
-                    <li>picolinato de cromo </li>
-                    <li>curcumix</li>
-                    <li>berberina</li>
-                    <li>zinc</li>
+                    <li>Xtropin</li>
+                    <li>Curcupro</li>
+                    <li>St.jhon&apos;swort</li>
+                    <li>Glicinato de magnesio</li>
+                    <li>Berberina</li>
                   </ul>
                   <ul className="list-disc list-inside space-y-1">
-                    <li>xtropin</li>
-                    <li>prokids</li>
-                    <li>melatonina</li>
-                    <li>glicinato de magnesio</li>
-                    <li>citrato de magnesio</li>
-                    <li>balanza gramera</li>
+                    <li>Zinc</li>
+                    <li>Glucolife</li>
+                    <li>Picolinato de cromo</li>
+                    <li>Selenio 200mcg</li>
+                    <li>Citrato de magnesio</li>
                   </ul>
                 </div>
               </AccordionContent>

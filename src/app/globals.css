@@ -159,3 +159,9 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, div {
 .animate-pulseSoft {
   animation: pulseSoft 3s ease-in-out infinite;
 }
+
+
+.input-register {
+  @apply bg-m-green-light/40 outline-none border text-m-green-dark 
+   border-m-green-light placeholder:text-m-green-dark/50 rounded-full py-5 pl-4
+}

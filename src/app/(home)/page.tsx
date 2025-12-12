@@ -1,4 +1,5 @@
 import { Footer } from "@/components/common/Footer";
+import { WhatsAppFloating } from "@/components/common/WhatsAppFloating";
 import { WhatsAppSection } from "@/components/common/WhatsAppSection";
 // import { BookingCTA } from "@/components/main/BookingCTA";
 import { CarouselHomeCta } from "@/components/main/CarouselHomeCta";
@@ -33,6 +34,7 @@ export default async function Home() {
           <Testimonials />
           {/* <BookingCTA /> */}
           <WhatsAppSection title="Reserva tu consulta nutricional personalizada" subtext="Más de 5,000 pacientes satisfechos" />
+          <WhatsAppFloating />
           <Footer />
         </section>
       </div>

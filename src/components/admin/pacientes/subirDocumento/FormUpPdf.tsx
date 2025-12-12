@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { Spinner } from "@/components/ui/spinner";
 
 export const FormUpPdf = ({ patientId }: { patientId: string }) => {
 
@@ -32,7 +33,8 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
     defaultValues: {
       titulo: "",
       recomendacion: "",
-      pdf: undefined,
+      pdf1: undefined,
+      pdf2: undefined,
     },
   });
 
@@ -51,14 +53,25 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
       return;
     }
 
-    // Verificar rol de doctor
-    const userRole = user.app_metadata?.role;
-    console.log('Metadata del usuario:', {
-      app_metadata: user.app_metadata,
-      role: userRole,
-      user_id: user.id
-    });
+    // Obtener rol del usuario desde la tabla users
+    const { data: userData, error: userError } = await supabase
+      .from('users')
+      .select('rol')
+      .eq('user_id', user.id)
+      .single();
 
+    if (userError || !userData) {
+      setStatus('Error: No se pudo obtener información del usuario');
+      toast.error('Error al verificar permisos', {
+        description: 'No se pudo verificar tu rol de usuario.',
+      });
+      setLoading(false);
+      return;
+    }
+
+    const userRole = userData.rol;
+
+    // Verificar si el usuario tiene el rol de doctor
     if (userRole !== 'doctor') {
       setStatus('Error: Solo los doctores pueden subir archivos');
       toast.error('Acceso denegado', {
@@ -68,81 +81,72 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
       return;
     }
 
-    // Mostrar información completa del usuario
-    console.log('Información completa del usuario:', {
-      id: user.id,
-      email: user.email,
-      role: user.app_metadata?.role,
-      metadata: user.app_metadata,
-      raw_user_meta_data: user.user_metadata,
-      raw_app_meta_data: user.app_metadata
-    });
+    // Variables para guardar las rutas de los PDFs
+    let pdf1Path: string | null = null;
+    let pdf2Path: string | null = null;
 
-    // Verificar si el usuario tiene el rol de doctor
-    if (!user.app_metadata?.role || user.app_metadata.role !== 'doctor') {
-      console.error('Usuario no tiene rol de doctor:', user.app_metadata);
-      setStatus('Error: Usuario no tiene permisos de doctor');
-      setLoading(false);
-      return;
+    // Subir PDF 1 si existe
+    if (data.pdf1) {
+      setStatus('Subiendo el primer archivo PDF...');
+      const file1 = data.pdf1;
+      const filePath1 = `${patientId}/${Date.now()}-pdf1-${file1.name}`;
+
+      const { data: uploadData1, error: uploadError1 } = await supabase.storage
+        .from('archivos_pacientes')
+        .upload(filePath1, file1, {
+          upsert: true,
+          contentType: file1.type,
+          cacheControl: '3600'
+        });
+
+      if (uploadError1) {
+        setStatus(`Error al subir el primer archivo: ${uploadError1.message}`);
+        toast.error('Error al subir primer archivo', {
+          description: uploadError1.message,
+        });
+        setLoading(false);
+        return;
+      }
+
+      pdf1Path = uploadData1.path;
     }
 
-    setStatus('1/2: Subiendo el archivo PDF...');
+    // Subir PDF 2 si existe
+    if (data.pdf2) {
+      setStatus('Subiendo el segundo archivo PDF...');
+      const file2 = data.pdf2;
+      const filePath2 = `${patientId}/${Date.now()}-pdf2-${file2.name}`;
 
-    const file = data.pdf
-    // Crear ruta del archivo usando el ID del paciente directamente
-    const filePath = `${patientId}/${Date.now()}-${file.name}`;
+      const { data: uploadData2, error: uploadError2 } = await supabase.storage
+        .from('archivos_pacientes')
+        .upload(filePath2, file2, {
+          upsert: true,
+          contentType: file2.type,
+          cacheControl: '3600'
+        });
 
-    console.log('Usuario autenticado:', user.id);
-    console.log('Archivo a subir:', file);
-    console.log('Ruta del archivo:', filePath);
-    console.log('Tamaño del archivo:', file.size);
-    console.log('Tipo del archivo:', file.type);
+      if (uploadError2) {
+        setStatus(`Error al subir el segundo archivo: ${uploadError2.message}`);
+        toast.error('Error al subir segundo archivo', {
+          description: uploadError2.message,
+        });
+        setLoading(false);
+        return;
+      }
 
-    console.log('Intentando subir archivo con configuración:', {
-      bucket: 'archivos_pacientes',
-      path: filePath,
-      fileType: file.type,
-      fileSize: file.size
-    });
-
-    // Intentar subir el archivo
-    console.log('Intentando subir archivo con configuración:', {
-      bucket: 'archivos_pacientes',
-      path: filePath,
-      fileType: file.type,
-      fileSize: file.size
-    });
-
-    const { data: uploadData, error: uploadError } = await supabase.storage
-      .from('archivos_pacientes')
-      .upload(filePath, file, {
-        upsert: true,
-        contentType: file.type,
-        cacheControl: '3600'
-      });
-
-    if (uploadError) {
-      console.error('Error completo de subida:', {
-        message: uploadError.message,
-        name: uploadError.name
-      });
-      setStatus(`Error al subir el archivo: ${uploadError.message}`);
-      toast.error('Error al subir archivo', {
-        description: uploadError.message,
-      });
-      setLoading(false);
-      return;
+      pdf2Path = uploadData2.path;
     }
 
-    setStatus('2/2: Guardando los detalles de la consulta...');
+    setStatus('Guardando los detalles de la consulta...');
 
     const { error: insertError } = await supabase
-      .from('consultas') // Tu tabla de consultas
+      .from('consultas')
       .insert({
-        paciente_id: patientId,            // El ID del paciente que recibimos
-        titulo: data.titulo,               // El título del formulario
-        recomendacion: data.recomendacion, // La recomendación del formulario
-        pdf_path: uploadData.path,         // La ruta del PDF que acabamos de subir
+        paciente_id: patientId,
+        titulo: data.titulo,
+        recomendacion: data.recomendacion,
+        pdf_path: pdf1Path,      // Primer PDF (puede ser null)
+        pdf_path_2: pdf2Path,    // Segundo PDF (puede ser null)
     });
 
     if (insertError) {
@@ -158,7 +162,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
     setLoading(false);
 
     // Mostrar toast de éxito
-    toast.success('Archivo subido exitosamente', {
+    toast.success('Archivo(s) subido(s) exitosamente', {
       description: 'La consulta se ha guardado correctamente.',
       duration: 3000,
     });
@@ -172,13 +176,16 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
   return (
     <div className="max-w-2xl mx-auto">
       {status && (
-        <div className={`mb-4 p-3 rounded-lg text-sm ${
+        <div className={`mb-4 p-3 rounded-lg text-sm flex items-center gap-2 ${
           status.includes('Error') || status.includes('denegado')
             ? 'bg-red-50 text-red-700 border border-red-200'
             : status.includes('éxito')
             ? 'bg-green-50 text-green-700 border border-green-200'
             : 'bg-blue-50 text-blue-700 border border-blue-200'
         }`}>
+          {loading && !status.includes('Error') && !status.includes('éxito') && (
+            <Spinner size="sm" className="border-blue-700 border-t-transparent" />
+          )}
           {status}
         </div>
       )}
@@ -213,13 +220,13 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
           />
           <FormField
             control={form.control}
-            name="pdf"
+            name="pdf1"
             render={() => (
               <FormItem>
-                <FormLabel className="text-m-green-dark">PDF</FormLabel>
+                <FormLabel className="text-m-green-dark">Plan nutricional</FormLabel>
                 <FormControl>
                   <Controller
-                    name="pdf"
+                    name="pdf1"
                     control={form.control}
                     render={({ field }) => (
                       <Input
@@ -234,18 +241,56 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
                   />
                 </FormControl>
                 <FormDescription>
-                  Selecciona un archivo PDF (máx. 5MB).
+                  Selecciona el primer archivo PDF (máx. 5MB) - Opcional.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <div className="flex justify-center mt-12">
+          <FormField
+            control={form.control}
+            name="pdf2"
+            render={() => (
+              <FormItem>
+                <FormLabel className="text-m-green-dark">Informe antropométrico</FormLabel>
+                <FormControl>
+                  <Controller
+                    name="pdf2"
+                    control={form.control}
+                    render={({ field }) => (
+                      <Input
+                        type="file"
+                        accept=".pdf"
+                        onChange={(e) => field.onChange(e.target.files?.[0] || undefined)}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    )}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Selecciona el segundo archivo PDF (máx. 5MB) - Opcional.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="flex justify-start items-center gap-4 mt-12">
             <Button
-              className="bg-m-green px-12 text-white hover:bg-m-green-dark cursor-pointer rounded-full"
+              type="button"
+              variant="outline"
+              onClick={() => router.push('/admin/pacientes')}
+              className="border-2 border-m-green text-m-green hover:bg-m-green hover:text-white px-8 py-6 rounded-full cursor-pointer transition-all"
+            >
+              Cancelar
+            </Button>
+            <Button
+              className="bg-m-green px-12 py-6 text-white hover:bg-m-green-dark cursor-pointer rounded-full flex items-center gap-2 disabled:opacity-50"
               type="submit"
               disabled={loading}
             >
+              {loading && <Spinner size="sm" className="border-white border-t-transparent" />}
               {loading ? 'Subiendo...' : 'Subir Consulta'}
             </Button>
           </div>

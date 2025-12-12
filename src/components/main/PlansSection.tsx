@@ -10,11 +10,16 @@ import {
 import WheelGesturesPlugin from "embla-carousel-wheel-gestures";
 import { useEffect } from "react";
 import AOS from "aos";
+import Link from "next/link";
 
 export const PlansSection = () => {
   useEffect(() => {
     AOS.init();
   }, []);
+
+  const phoneNumber = "51931531046";
+  const evaluacionSecaMessage = "Hola, vi su página web y estoy interesado en la evaluación seca.";
+  const whatsappUrlEvaluacion = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(evaluacionSecaMessage)}`;
 
   return (
     <section
@@ -36,7 +41,7 @@ export const PlansSection = () => {
       </div>
       <div>
         <Tabs defaultValue="presencial" className="mt-8 space-y-8">
-          <TabsList className="mx-auto h-full bg-transparent grid grid-cols-2 gap-4 px-4">
+          <TabsList className="mx-auto h-full bg-transparent grid grid-cols-3 gap-4 px-4">
             <TabsTrigger
               value="presencial"
               className="cursor-pointer font-semibold h-full text-m-green-dark data-[state=active]:bg-m-green-light data-[state=active]:border-transparent px-12 border border-m-green-dark rounded-full py-2"
@@ -49,6 +54,14 @@ export const PlansSection = () => {
             >
               Online
             </TabsTrigger>
+            <Link 
+              href={whatsappUrlEvaluacion}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full rounded-full text-m-green-blank bg-m-green-dark hover:bg-m-green hover:text-white border border-m-green-dark cursor-pointer transition-colors duration-200 px-4 py-2 text-center inline-flex items-center justify-center font-medium"
+            >
+              Evaluacion seca
+            </Link>
           </TabsList>
           <TabsContent value="presencial">
             <Carousel

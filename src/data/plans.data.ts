@@ -4,7 +4,7 @@ export const plansPresencial: Plan[] = [
   {
     id: "clini-care",
     modality: "presencial",
-    title: "Plan Clínico Nutricional",
+    title: "Nutricion Clinica",
     subtitle:
       "Plan Clínico & Dietoterapia (para pacientes con enfermedades o condiciones específicas)",
     features: [
@@ -19,7 +19,7 @@ export const plansPresencial: Plan[] = [
   {
     id: "body-shape-glow",
     modality: "presencial",
-    title: "Plan Estético Corporal",
+    title: "Nutricion estetica y recomposicion corporal",
     subtitle:
       "Plan Estético & Recomp. Corporal (para mejorar figura, bajar grasa, tonificar)",
     features: [
@@ -35,7 +35,7 @@ export const plansPresencial: Plan[] = [
   {
     id: "nutripro-kids-teens",
     modality: "presencial",
-    title: "Plan Deportivo Infantil",
+    title: "Nutricion deportiva para adultos y niños",
     subtitle:
       "Plan Deportivo / Pediátrico (para niños y jóvenes deportistas o en crecimiento)",
     features: [
@@ -54,7 +54,7 @@ export const plansOnline: Plan[] = [
   {
     id: "beautyfit-online",
     modality: "online",
-    title: "Plan Estético Virtual",
+    title: "Nutrición Clinica Virtual",
     subtitle:
       "Plan Estético Virtual – Reducción de grasa & tonificación",
     features: [
@@ -70,7 +70,7 @@ export const plansOnline: Plan[] = [
   {
     id: "fitonline-performance",
     modality: "online",
-    title: "Plan Deportivo Virtual",
+    title: "Nutricion estetica y recomposicion corporal",
     subtitle:
       "Plan Deportivo Virtual – Rendimiento & recomposición corporal",
     features: [
@@ -87,7 +87,7 @@ export const plansOnline: Plan[] = [
   {
     id: "healthbalance-online",
     modality: "online",
-    title: "Plan Clínico Virtual",
+    title: "Nutricion Deportiva para adultos y niños",
     subtitle:
       "Plan Clínico – Dietoterapia virtual",
     features: [

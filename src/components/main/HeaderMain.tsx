@@ -50,7 +50,11 @@ export const HeaderMain = async() => {
             <DropdownMenuTrigger asChild>
               <button className="text-sm bg-m-green text-white cursor-pointer px-4 py-2 rounded-full transition flex items-center gap-2">
                 <User className="w-4 h-4" />
-                {userRole === 'doctor' ? 'Admin' : userProfile.first_name.charAt(0).toUpperCase() + userProfile.first_name.slice(1)}
+                {userRole === 'doctor' 
+                  ? 'Admin' 
+                  : userProfile?.first_name 
+                    ? userProfile.first_name.charAt(0).toUpperCase() + userProfile.first_name.slice(1)
+                    : 'Usuario'}
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-48">

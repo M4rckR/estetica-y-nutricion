@@ -1,19 +1,21 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export const TrustCTA = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     AOS.init();
   }, []);
-
-  const phoneNumber = "51931531046";
-  const message = "Hola, vi su página web y estoy interesado en atenderme con ustedes.";
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-    message
-  )}`;
 
   return (
     <section
@@ -34,14 +36,12 @@ export const TrustCTA = () => {
           </p>
         </div>
         <div className="flex justify-center xl:justify-start">
-          <Link
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-primary inline-block hover:bg-m-green text-sm md:text-base hover:text-white transition-all duration-150 bg-m-green-light px-5 py-4 rounded-4xl"
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="btn-primary cursor-pointer inline-block hover:bg-m-green text-sm md:text-base hover:text-white transition-all duration-150 bg-m-green-light px-5 py-4 rounded-4xl"
           >
-            Hablemos por Whatsapp
-          </Link>
+            Conoce más
+          </button>
         </div>
       </div>
       <Image
@@ -51,8 +51,51 @@ export const TrustCTA = () => {
         width={600}
         height={300}
         quality={95}
-        className=" object-cover rounded-lg mx-auto md:max-w-[480px] w-full mt-4 lg:mt-0"
+        className="object-cover rounded-lg mx-auto md:max-w-[480px] w-full mt-4 lg:mt-0"
       />
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl text-m-green-dark font-semibold">
+              Rick Flores Gamarra
+            </DialogTitle>
+            <DialogDescription className="text-base text-m-green font-medium">
+              CNP 7723
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 text-m-gray-base">
+            <div className="flex items-start gap-2">
+              <span className="text-m-green mt-1">•</span>
+              <p>+ 5 años de experiencia en atención a más de 4000 mil personas</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-m-green mt-1">•</span>
+              <p>Nutricionista por la Universidad Nacional Mayor de San Marcos (UNMSM)</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-m-green mt-1">•</span>
+              <p>Postgrado en Nutrición Estética y Deportiva en Argentina, Colombia, Brasil y España</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-m-green mt-1">•</span>
+              <p>Maestría en Deporte, Salud y Estética por la Universidad San Agustín (Arequipa)</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-m-green mt-1">•</span>
+              <p>ISAK NIVEL 2</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-m-green mt-1">•</span>
+              <p>Past Nutricionista de Federación Peruana de Boxeo, Triatlón, Rugby, Sporting Cristal, Comité Olímpico Peruano</p>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-m-green mt-1">•</span>
+              <p>Disertante Nacional e Internacional</p>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };

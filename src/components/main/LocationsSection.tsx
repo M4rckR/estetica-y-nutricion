@@ -40,7 +40,7 @@ export const LocationsSection = () => {
 
 
   return (
-    <section data-aos="fade-up" data-aos-duration="1200" className="pt-12 md:pt-24 max-w-7xl mx-auto px-4">
+    <section data-aos="fade-up" data-aos-duration="1200" className="pt-12 md:pt-24 max-w-7xl mx-auto px-4 overflow-x-hidden">
       <div className="text-center text-m-green-dark space-y-4 mb-8">
         <h2 className="text-2xl md:text-4xl font-medium">
           Encuentra una sede cerca de ti.
@@ -49,7 +49,7 @@ export const LocationsSection = () => {
           Contamos con equipos modernos y atención especializada en cada sede.
         </p>
       </div>
-      <section className="grid grid-cols-1 md:grid-cols-12 items-center gap-16">
+      <section className="grid grid-cols-1 md:grid-cols-12 items-center gap-8 md:gap-12">
         <div className="col-span-1 md:col-span-4 lg:col-span-5 xl:col-span-4">
           <Accordion
             type="single"
@@ -89,7 +89,7 @@ export const LocationsSection = () => {
                 {selectedSedeInfo ? (
                   <Image
                     src="/images/hero-image-1.png"
-                    alt={`Sede ${selectedSedeInfo.name} de InSalud`}
+                    alt={`Sede ${selectedSedeInfo.name}`}
                     width={500}
                     height={400}
                     className="w-full max-h-[400px] object-cover rounded-lg"
@@ -100,7 +100,7 @@ export const LocationsSection = () => {
                 ) : (
                   <Image
                     src="/images/hero-image-1.png"
-                    alt="Sede General de InSalud"
+                    alt="Sede General"
                     width={500}
                     height={500}
                     className="w-full h-full max-h-[400px] object-cover rounded-lg"

@@ -21,7 +21,7 @@ export const plansPresencial: Plan[] = [
     modality: "presencial",
     title: "Nutricion estetica y recomposicion corporal",
     subtitle:
-      "Plan Estético & Recomp. Corporal (para mejorar figura, bajar grasa, tonificar)",
+      "Plan Estético & Recomp. Corporal (para mejorar figura, bajar grasa, aumentar masa muscular)",
     features: [
       "Evaluación nutricional + informe estético",
       "Estrategias nutricionales según objetivo corporal",

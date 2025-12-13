@@ -134,7 +134,7 @@ export const TrustCTA = () => {
                   <div className="space-y-4 text-m-gray-base text-sm md:text-base">
                     <div className="flex items-start gap-3">
                       <span className="text-m-green mt-1 font-bold">•</span>
-                      <p>+ 5 años de experiencia en atención a más de 4000 mil personas</p>
+                      <p>+ de 5 años de experiencia en atención a más de 4000 mil personas</p>
                     </div>
                     <div className="flex items-start gap-3">
                       <span className="text-m-green mt-1 font-bold">•</span>

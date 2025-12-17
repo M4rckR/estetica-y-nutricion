@@ -54,7 +54,7 @@ export const plansOnline: Plan[] = [
   {
     id: "beautyfit-online",
     modality: "online",
-    title: "Nutrición Clínica Virtual",
+    title: "Plan Estética y Recomposición Virtual",
     subtitle:
       "Plan Estético Virtual – Reducción de grasa & tonificación",
     features: [
@@ -70,7 +70,7 @@ export const plansOnline: Plan[] = [
   {
     id: "fitonline-performance",
     modality: "online",
-    title: "Nutrición estética y recomposición corporal",
+    title: "Nutricion deportiva para adultos y niños",
     subtitle:
       "Plan Deportivo Virtual – Rendimiento & recomposición corporal",
     features: [
@@ -87,7 +87,7 @@ export const plansOnline: Plan[] = [
   {
     id: "healthbalance-online",
     modality: "online",
-    title: "Nutrición Deportiva para adultos y niños",
+    title: "Nutricion clinica virtual",
     subtitle:
       "Plan Clínico – Dietoterapia virtual",
     features: [

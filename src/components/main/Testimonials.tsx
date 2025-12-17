@@ -29,7 +29,7 @@ export const Testimonials = () => {
   useEffect(() => {
     if (!api) return;
 
-    // Obtener informacion inicial
+    // Obtener información inicial
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 

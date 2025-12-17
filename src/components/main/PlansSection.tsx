@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import AOS from "aos";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 export const PlansSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,7 +54,7 @@ export const PlansSection = () => {
   }, [isModalOpen]);
 
   const phoneNumber = "51931531046";
-  const evaluacionSecaMessage = "Hola, vi su página web y estoy interesado en la evaluación seca.";
+  const evaluacionSecaMessage = "Hola, vi su página web y estoy interesado en la evaluación SECA.";
   const whatsappUrlEvaluacion = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(evaluacionSecaMessage)}`;
 
   return (
@@ -76,26 +77,28 @@ export const PlansSection = () => {
       </div>
       <div>
         <Tabs defaultValue="presencial" className="mt-8 space-y-8">
-          <TabsList className="mx-auto h-full bg-transparent grid grid-cols-3 gap-4 px-4">
-            <TabsTrigger
-              value="presencial"
-              className="cursor-pointer font-semibold h-full text-m-green-dark data-[state=active]:bg-m-green-light data-[state=active]:border-transparent px-12 border border-m-green-dark rounded-full py-2"
-            >
-              Presencial
-            </TabsTrigger>
-            <TabsTrigger
-              value="online"
-              className="cursor-pointer font-semibold h-full text-m-green-dark data-[state=active]:bg-m-green-light data-[state=active]:border-transparent px-12 border border-m-green-dark rounded-full py-2"
-            >
-              Online
-            </TabsTrigger>
-            <button
-              onClick={() => setIsModalOpen(true)}
-              className="w-full rounded-full text-m-green-blank bg-m-green-dark hover:bg-m-green hover:text-white border border-m-green-dark cursor-pointer transition-colors duration-200 px-4 py-2 text-center inline-flex items-center justify-center font-medium"
-            >
-              Evaluacion seca
-            </button>
-          </TabsList>
+          <div className="overflow-x-auto overflow-y-visible md:overflow-visible">
+            <TabsList className="mx-auto h-full bg-transparent flex md:grid md:grid-cols-3 gap-4 px-4 min-w-max md:min-w-0 md:w-full max-w-2xl">
+              <TabsTrigger
+                value="presencial"
+                className="cursor-pointer font-semibold h-full text-m-green-dark data-[state=active]:bg-m-green-light data-[state=active]:border-transparent px-12 border border-m-green-dark rounded-full py-2 whitespace-nowrap flex-shrink-0"
+              >
+                Presencial
+              </TabsTrigger>
+              <TabsTrigger
+                value="online"
+                className="cursor-pointer font-semibold h-full text-m-green-dark data-[state=active]:bg-m-green-light data-[state=active]:border-transparent px-12 border border-m-green-dark rounded-full py-2 whitespace-nowrap flex-shrink-0"
+              >
+                Online
+              </TabsTrigger>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                className="rounded-full text-m-green-blank bg-m-green-dark hover:bg-m-green hover:text-white border border-m-green-dark cursor-pointer transition-colors duration-200 px-4 py-2 text-center inline-flex items-center justify-center font-medium whitespace-nowrap flex-shrink-0 md:w-full"
+              >
+                Evaluación seca
+              </button>
+            </TabsList>
+          </div>
           <TabsContent value="presencial">
             <Carousel
               className="relative before:content-[''] before:absolute before:left-0 before:top-0 before:w-8 before:h-full before:bg-gradient-to-r before:from-white before:to-transparent before:pointer-events-none before:z-10 after:content-[''] after:absolute after:right-0 after:top-0 after:w-16 after:h-full after:bg-gradient-to-l after:from-white after:to-transparent after:pointer-events-none after:z-10"
@@ -155,7 +158,7 @@ export const PlansSection = () => {
           style={{ zIndex: 99999 }}
         >
           <div 
-            className="relative bg-white w-[90vw] max-w-[700px] h-auto max-h-[90vh] rounded-lg shadow-2xl overflow-hidden"
+            className="relative bg-white w-[90vw] max-w-[1000px] h-auto max-h-[90vh] rounded-lg shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Botón cerrar */}
@@ -166,24 +169,25 @@ export const PlansSection = () => {
               <X className="w-5 h-5 text-gray-600" />
             </button>
 
-            {/* Contenido del modal */}
-            <div 
-              className="p-6 md:p-8 lg:p-10 overflow-y-auto max-h-[90vh] modal-scroll"
-              style={{
-                scrollbarWidth: 'thin',
-                scrollbarColor: '#619111 #f3f4f6'
-              }}
-            >
-              <div className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-5 h-full">
+              {/* Columna izquierda - Contenido (60% del ancho) */}
+              <div 
+                className="lg:col-span-3 p-6 md:p-8 lg:p-10 overflow-y-auto max-h-[90vh] modal-scroll"
+                style={{
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#619111 #f3f4f6',  
+                }}
+              >
+                <div className="space-y-6">
                 {/* Título */}
                 <div>
                   <h2 className="text-2xl md:text-3xl text-m-green-dark font-semibold mb-2">
-                    ✨ Evaluación SECA
+                    Evaluación SECA
                   </h2>
                 </div>
 
                 {/* Descripción principal */}
-                <div className="space-y-4 text-m-gray-base text-sm md:text-base">
+                <div className="space-y-4 text-m-gray-base text-sm ">
                   <p>
                     La evaluación SECA es un estudio de bioimpedancia corporal que analiza tu composición en segundos ⚡.
                   </p>
@@ -197,7 +201,7 @@ export const PlansSection = () => {
                   <h3 className="text-xl md:text-2xl text-m-green-dark font-semibold">
                     🔍 ¿Qué mide?
                   </h3>
-                  <div className="space-y-2 text-m-gray-base text-sm md:text-base">
+                  <div className="space-y-2 text-m-gray-base text-sm">
                     <div className="flex items-start gap-3">
                       <span className="text-m-green mt-1 font-bold">✔</span>
                       <p>Peso corporal</p>
@@ -234,7 +238,7 @@ export const PlansSection = () => {
                   <h3 className="text-xl md:text-2xl text-m-green-dark font-semibold">
                     💡 Beneficios:
                   </h3>
-                  <div className="space-y-2 text-m-gray-base text-sm md:text-base">
+                  <div className="space-y-2 text-m-gray-base text-sm">
                     <div className="flex items-start gap-3">
                       <span className="text-m-green mt-1 font-bold">✔</span>
                       <p>Diagnóstico exacto de tu composición corporal</p>
@@ -273,6 +277,19 @@ export const PlansSection = () => {
                     Contactar por WhatsApp
                   </a>
                 </div>
+                </div>
+              </div>
+
+              {/* Columna derecha - Imagen (40% del ancho) */}
+              <div className="relative lg:col-span-2 h-[280px] lg:h-auto lg:min-h-[500px] flex items-center justify-center bg-gray-50 p-4">
+                <Image
+                  src="/images/evaluacion-seca.png"
+                  alt="Evaluación SECA"
+                  width={400}
+                  height={400}
+                  quality={95}
+                  className="object-contain w-full h-full"
+                />
               </div>
             </div>
           </div>

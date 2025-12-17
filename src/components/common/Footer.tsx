@@ -31,7 +31,7 @@ export const Footer = () => {
           </div>
         </div>
         <div className="text-xs space-y-3">
-          <p className="font-bold">INFORMACION</p>
+          <p className="font-bold">INFORMACIÓN</p>
           <div className="space-y-3 text-gray-400">
             <Link href="#nosotros" className="hover:underline block">
               Nosotros

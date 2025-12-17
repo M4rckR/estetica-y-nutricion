@@ -7,7 +7,7 @@ export function WhatsAppFloating() {
   
   // Número de WhatsApp
   const whatsappNumber = "51931531046";
-  const whatsappMessage = encodeURIComponent(`Hola, vi su pagina web Estetica y Nutricion y me gustaria obtener más información`);
+  const whatsappMessage = encodeURIComponent(`Hola, vi su página web Estética y Nutrición y me gustaría obtener más información`);
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
   return (

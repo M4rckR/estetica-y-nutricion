@@ -421,7 +421,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
         />
 
 
-        {/* Calidad de suenó text area que detalla Horas promedio de sueño
+        {/* Calidad de sueño text area que detalla Horas promedio de sueño
 Calidad del sueño (1–5)
 Nivel de estrés (1–5)
 Factores que alteran el descanso en el form description */}
@@ -430,7 +430,7 @@ Factores que alteran el descanso en el form description */}
           name="sleep_quality"
           render={({ field }) => (
             <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">Calidad de suenó</FormLabel>
+              <FormLabel className="text-m-green">Calidad de sueño</FormLabel>
               <FormDescription>
                 Detalle las horas promedio de sueño, la calidad del sueño (1–5) y el nivel de estrés (1–5) y factores que alteran el descanso.
               </FormDescription>

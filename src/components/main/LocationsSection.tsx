@@ -89,7 +89,7 @@ export const LocationsSection = () => {
                 {selectedSedeInfo ? (
                   <Image
                     src={`/images/hero-image-${selectedSedeInfo.id}.png`}
-                    alt={`Sede ${selectedSedeInfo.name} de Estetica y Nutricion ${selectedSedeInfo.id}`}
+                    alt={`Sede ${selectedSedeInfo.name} de Estética y Nutrición ${selectedSedeInfo.id}`}
                     width={500}
                     height={400}  
                     className="w-full max-h-[400px] object-cover rounded-lg"
@@ -100,7 +100,7 @@ export const LocationsSection = () => {
                 ) : (
                   <Image
                     src="/images/hero-image-default.png"
-                    alt="Sede General de Estetica y Nutricion"
+                    alt="Sede General de Estética y Nutrición"
                     width={500}
                     height={500}
                     className="w-full h-full max-h-[400px] object-cover rounded-lg"

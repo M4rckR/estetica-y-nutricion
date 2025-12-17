@@ -9,7 +9,7 @@ export const HeaderAuth = () => {
         <Link className="flex gap-2 items-center" href="/">
           <Image 
               src="/svg/icon/marca.svg"
-              alt="Marca Estetica y Nutricion"
+              alt="Marca Estética y Nutrición"
               width={100}
               height={50}
               className="w-20 h-auto md:w-24"

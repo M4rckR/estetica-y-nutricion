@@ -281,7 +281,7 @@ export const PlansSection = () => {
               </div>
 
               {/* Columna derecha - Imagen (40% del ancho) */}
-              <div className="relative lg:col-span-2 h-[280px] lg:h-auto lg:min-h-[500px] flex items-center justify-center bg-gray-50 p-4">
+              <div className="relative lg:col-span-2 h-[280px] lg:h-auto lg:min-h-[500px] flex items-center justify-center p-4">
                 <Image
                   src="/images/evaluacion-seca.png"
                   alt="Evaluación SECA"

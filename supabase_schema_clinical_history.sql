@@ -10,16 +10,25 @@ CREATE TABLE IF NOT EXISTS clinical_history (
   -- Datos básicos (primera cita)
   phone VARCHAR(20),
   age INTEGER CHECK (age >= 0 AND age <= 120),
+  birth_date DATE,
   first_appointment_date DATE,
+  sex VARCHAR(20),
+  ocupation TEXT,
   
   -- Historia Clínica
+  consult_reason TEXT,
+  recent_exams VARCHAR(5) CHECK (recent_exams IN ('si', 'no')),
+  recent_exams_details TEXT,
   practices_sports VARCHAR(20) CHECK (practices_sports IN ('si', 'no', 'ocasionalmente')),
   pathological_antecedents TEXT,
   consumes_alcohol_tobacco VARCHAR(20) CHECK (consumes_alcohol_tobacco IN ('no', 'alcohol', 'tabaco', 'ambos')),
   last_menstruation DATE,
   uses_contraceptives VARCHAR(5) CHECK (uses_contraceptives IN ('si', 'no')),
   current_medication TEXT,
-  hypertension_diabetes_antecedents VARCHAR(20) CHECK (hypertension_diabetes_antecedents IN ('ninguno', 'hipertension', 'diabetes', 'ambos')),
+  hypertension_diabetes_antecedents TEXT,
+  registro_24h_completo TEXT,
+  abdominal_pain TEXT,
+  sleep_quality TEXT,
   
   -- Cirugías y Alergias
   has_been_operated VARCHAR(5) CHECK (has_been_operated IN ('si', 'no')),
@@ -30,6 +39,7 @@ CREATE TABLE IF NOT EXISTS clinical_history (
   who_prepares_meals VARCHAR(20) CHECK (who_prepares_meals IN ('yo', 'familiar', 'empleada', 'otro')),
   eating_out_frequency VARCHAR(20) CHECK (eating_out_frequency IN ('nunca', 'ocasional', 'semanal', 'diario')),
   favorite_foods TEXT,
+  aliments_hate TEXT,
   daily_liquid_intake VARCHAR(20) CHECK (daily_liquid_intake IN ('menos_1L', '1-2L', '2-3L', 'mas_3L')),
   supplements TEXT,
   

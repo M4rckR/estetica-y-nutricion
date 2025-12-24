@@ -4,6 +4,7 @@ import { UseFormReturn } from "react-hook-form";
 import { ClinicalHistoryFormType } from "@/types/clinical/history";
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -23,6 +24,8 @@ interface Step2Props {
 }
 
 export function Step2CirugiasAlergias({ form }: Step2Props) {
+  const hasBeenOperated = form.watch('has_been_operated');
+  
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-medium mb-6">Cirugías y Alergias</h2>
@@ -35,7 +38,15 @@ export function Step2CirugiasAlergias({ form }: Step2Props) {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-m-green">¿Ha sido operado/a?</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
+              <Select 
+                onValueChange={(value) => {
+                  field.onChange(value);
+                  if (value === 'no') {
+                    form.setValue('surgery_details', null);
+                  }
+                }} 
+                value={field.value || undefined}
+              >
                 <FormControl>
                   <SelectTrigger className="bg-m-green-light/20 rounded-full">
                     <SelectValue placeholder="Selecciona una opción" />
@@ -51,25 +62,30 @@ export function Step2CirugiasAlergias({ form }: Step2Props) {
           )}
         />
 
-        {/* Detalles de cirugías (opcional) */}
-        <FormField
-          control={form.control}
-          name="surgery_details"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-m-green">Detalles de cirugías (opcional)</FormLabel>
-              <FormControl>
-                <Textarea
-                  {...field}
-                  value={field.value || ""}
-                  placeholder="Describe qué cirugías has tenido..."
-                  className="bg-m-green-light/20 rounded-3xl min-h-[100px] resize-none"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {/* Detalles de cirugías - Solo si ha sido operado */}
+        {hasBeenOperated === 'si' && (
+          <FormField
+            control={form.control}
+            name="surgery_details"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green">Detalle de cirugías</FormLabel>
+                <FormDescription>
+                  Detalle las cirugías que ha tenido y cuándo se realizaron
+                </FormDescription>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    value={field.value || ""}
+                    placeholder="Ej: Apendicectomía en 2020, Cesárea en 2018..."
+                    className="bg-m-green-light/20 rounded-3xl min-h-[100px] resize-none"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
 
         {/* Alergias (opcional) */}
         <FormField

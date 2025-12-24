@@ -64,9 +64,51 @@ const translateValue = (value: string | null | undefined): string => {
     '1-2L': '1 - 2 litros',
     '2-3L': '2 - 3 litros',
     'mas_3L': 'Más de 3 litros',
+
+    // Consult reasons
+    'reducir_grasa': 'Reducir grasa corporal',
+    'aumentar_masa': 'Aumentar masa muscular',
+    'rendimiento_deportivo': 'Rendimiento deportivo',
+    'salud': 'Salud / tratamiento médico',
+    'mejorar_alimentacion': 'Mejorar solo alimentación',
   };
 
   return translations[value] || value;
+};
+
+const formatDigestiveSymptoms = (value: string | null | undefined): string => {
+  if (!value) return "No especificado";
+  
+  try {
+    const symptoms = JSON.parse(value);
+    const symptomLabels: Record<string, string> = {
+      'hinchazon_abdominal': 'Hinchazón abdominal',
+      'estrenimiento': 'Estreñimiento',
+      'acidez_reflujo': 'Acidez o reflujo',
+      'gases_flatulencia': 'Gases o flatulencia',
+      'saciedad_precoz': 'Sensación de saciedad precoz',
+      'ansiedad_comida': 'Ansiedad por la comida',
+    };
+    
+    const frequencyLabels: Record<string, string> = {
+      'nunca': 'Nunca',
+      'ocasional': 'Ocasional',
+      'frecuente': 'Frecuente',
+    };
+    
+    const entries = Object.entries(symptoms);
+    if (entries.length === 0) return "No especificado";
+    
+    return entries
+      .map(([key, freq]) => {
+        const label = symptomLabels[key] || key;
+        const frequency = frequencyLabels[freq as string] || freq;
+        return `${label}: ${frequency}`;
+      })
+      .join(' | ');
+  } catch {
+    return value;
+  }
 };
 
 export function ClinicalHistoryView({
@@ -103,6 +145,13 @@ export function ClinicalHistoryView({
             value={clinicalHistory.age?.toString()}
           />
           <DataRow
+            label="Fecha de Nacimiento"
+            value={clinicalHistory.birth_date
+              ? format(new Date(clinicalHistory.birth_date), "PPP", { locale: es })
+              : undefined
+            }
+          />
+          <DataRow
             label="Sexo"
             value={clinicalHistory.sex}
           />
@@ -126,16 +175,18 @@ export function ClinicalHistoryView({
         <div className="space-y-2">
           <DataRow
             label="Motivo de consulta"
-            value={clinicalHistory.consult_reason}
+            value={translateValue(clinicalHistory.consult_reason)}
           />
           <DataRow
-            label="¿Tiene exámenes recientes?"
+            label="¿Te hiciste análisis en los últimos 3 o 6 meses?"
             value={translateValue(clinicalHistory.recent_exams)}
           />
-          <DataRow
-            label="Detalles de los exámenes"
-            value={clinicalHistory.recent_exams_details}
-          />
+          {clinicalHistory.recent_exams === 'si' && (
+            <DataRow
+              label="Indicadores bioquímicos"
+              value={clinicalHistory.recent_exams_details}
+            />
+          )}
           <DataRow
             label="¿Practica deportes?"
             value={translateValue(clinicalHistory.practices_sports)}
@@ -160,16 +211,22 @@ export function ClinicalHistoryView({
             value={translateValue(clinicalHistory.uses_contraceptives)}
           />
           <DataRow
-            label="Medicación actual"
-            value={clinicalHistory.current_medication}
+            label="¿Consumes medicamentos?"
+            value={clinicalHistory.current_medication ? "Sí" : "No"}
           />
+          {clinicalHistory.current_medication && (
+            <DataRow
+              label="Detalle de medicamentos"
+              value={clinicalHistory.current_medication}
+            />
+          )}
           <DataRow
-            label="Antecedentes de hipertensión o diabetes"
-            value={translateValue(clinicalHistory.hypertension_diabetes_antecedents)}
+            label="Antecedentes de enfermedades crónicas"
+            value={clinicalHistory.hypertension_diabetes_antecedents}
           />
           <DataRow
             label="Síntomas digestivos"
-            value={clinicalHistory.abdominal_pain}
+            value={formatDigestiveSymptoms(clinicalHistory.abdominal_pain)}
           />
           <DataRow
             label="Calidad de sueño"
@@ -186,10 +243,12 @@ export function ClinicalHistoryView({
             label="¿Ha sido operado/a?"
             value={translateValue(clinicalHistory.has_been_operated)}
           />
-          <DataRow
-            label="Detalles de cirugías"
-            value={clinicalHistory.surgery_details}
-          />
+          {clinicalHistory.has_been_operated === 'si' && (
+            <DataRow
+              label="Detalle de cirugías"
+              value={clinicalHistory.surgery_details}
+            />
+          )}
           <DataRow
             label="Alergias"
             value={clinicalHistory.allergies}

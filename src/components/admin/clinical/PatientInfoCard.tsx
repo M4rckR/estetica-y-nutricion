@@ -4,12 +4,32 @@ import { UsersType } from "@/types/users";
 import { ClinicalHistoryType } from "@/types/clinical/history";
 import { formatFullName } from "@/utils/format";
 import { ArrowLeft } from "lucide-react";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
 
 interface PatientInfoCardProps {
   patientData: UsersType;
   clinicalHistory: ClinicalHistoryType | null;
   patientId: string;
 }
+
+const translateConsultReason = (value: string | null | undefined): string => {
+  if (!value) return "Sin motivo de consulta";
+
+  const translations: Record<string, string> = {
+    'reducir_grasa': 'Reducir grasa corporal',
+    'aumentar_masa': 'Aumentar masa muscular',
+    'rendimiento_deportivo': 'Rendimiento deportivo',
+    'salud': 'Salud / tratamiento médico',
+    'mejorar_alimentacion': 'Mejorar solo alimentación',
+    // Valores antiguos por compatibilidad
+    'control_peso': 'Control de peso',
+    'mejora_estetica': 'Mejora estética corporal',
+    'otro': 'Otro',
+  };
+
+  return translations[value] || value;
+};
 
 export function PatientInfoCard({
   patientData,
@@ -29,7 +49,7 @@ export function PatientInfoCard({
           </Button>
         </Link>
         <h2 className="text-2xl font-medium text-center">
-          Información del <span className="text-m-green">paciente</span>
+          Datos generales <span className="text-m-green">del paciente</span>
         </h2>
       </div>
 
@@ -56,7 +76,51 @@ export function PatientInfoCard({
           <p className="text-sm text-m-green-dark">{patientData.distrito || "Sin distrito"}</p>
         </div>
 
+        {/* Sexo */}
+        <div className="bg-m-green-light/30 px-4 py-3 rounded-full">
+          <p className="text-sm text-m-green-dark">
+            {clinicalHistory?.sex || "Sin sexo"}
+          </p>
+        </div>
 
+        {/* Edad */}
+        <div className="bg-m-green-light/30 px-4 py-3 rounded-full">
+          <p className="text-sm text-m-green-dark">
+            {clinicalHistory?.age ? `${clinicalHistory.age} años` : "Sin edad"}
+          </p>
+        </div>
+
+        {/* Fecha de Nacimiento */}
+        <div className="bg-m-green-light/30 px-4 py-3 rounded-full">
+          <p className="text-sm text-m-green-dark">
+            {clinicalHistory?.birth_date 
+              ? format(new Date(clinicalHistory.birth_date), "dd/MM/yyyy", { locale: es })
+              : "Sin fecha de nacimiento"}
+          </p>
+        </div>
+
+        {/* Fecha de Primera Cita */}
+        <div className="bg-m-green-light/30 px-4 py-3 rounded-full">
+          <p className="text-sm text-m-green-dark">
+            {clinicalHistory?.first_appointment_date
+              ? format(new Date(clinicalHistory.first_appointment_date), "dd/MM/yyyy", { locale: es })
+              : "Sin fecha de primera cita"}
+          </p>
+        </div>
+
+        {/* Ocupación */}
+        <div className="bg-m-green-light/30 px-4 py-3 rounded-full">
+          <p className="text-sm text-m-green-dark">
+            {clinicalHistory?.ocupation || "Sin ocupación"}
+          </p>
+        </div>
+
+        {/* Motivo de Consulta */}
+        <div className="bg-m-green-light/30 px-4 py-3 rounded-full col-span-1 sm:col-span-2">
+          <p className="text-sm text-m-green-dark">
+            {translateConsultReason(clinicalHistory?.consult_reason)}
+          </p>
+        </div>
       </div>
 
       {/* Historia Clínica Card */}

@@ -35,7 +35,7 @@ export function Step3Alimentacion({ form }: Step3Props) {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-m-green">¿Quién prepara tus comidas?</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
+              <Select onValueChange={field.onChange} value={field.value || undefined}>
                 <FormControl>
                   <SelectTrigger className="bg-m-green-light/20 rounded-full">
                     <SelectValue placeholder="Selecciona una opción" />
@@ -60,7 +60,7 @@ export function Step3Alimentacion({ form }: Step3Props) {
           render={({ field }) => (
             <FormItem>
               <FormLabel className="text-m-green">¿Con qué frecuencia comes fuera de casa?</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
+              <Select onValueChange={field.onChange} value={field.value || undefined}>
                 <FormControl>
                   <SelectTrigger className="bg-m-green-light/20 rounded-full">
                     <SelectValue placeholder="Selecciona una opción" />
@@ -85,7 +85,7 @@ export function Step3Alimentacion({ form }: Step3Props) {
           render={({ field }) => (
             <FormItem className="md:col-span-2">
               <FormLabel className="text-m-green">Cantidad de líquidos que consumes al día</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value || undefined}>
+              <Select onValueChange={field.onChange} value={field.value || undefined}>
                 <FormControl>
                   <SelectTrigger className="bg-m-green-light/20 rounded-full">
                     <SelectValue placeholder="Selecciona una opción" />

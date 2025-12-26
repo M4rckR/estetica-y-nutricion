@@ -30,6 +30,7 @@ export async function saveClinicalHistory(data: ClinicalHistoryFormType & { pati
     // Datos básicos
     phone: data.phone || null,
     age: data.age || null,
+    birth_date: data.birth_date || null,
     first_appointment_date: data.first_appointment_date || null,
     sex: data.sex || null,
     ocupation: data.ocupation || null,

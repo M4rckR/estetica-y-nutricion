@@ -198,7 +198,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
               <FormItem>
                 <FormLabel className="text-m-green-dark">Título</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder="Escribe el título"/>
+                  <Input className="placeholder:text-sm" {...field} placeholder="Escribe el título"/>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -209,9 +209,9 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
             name="recomendacion"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-m-green-dark">Recomendación</FormLabel>
+                <FormLabel className="text-m-green-dark">Tipo de tratamiento y diseño del plan</FormLabel>
                 <FormControl>
-                  <Textarea {...field} placeholder="Escribe la recomendación"/>
+                  <Textarea className="placeholder:text-sm" {...field} placeholder="(1era cita) ¿Cuáles son los objetivos y metas; y cuantas calorías, proteínas, grasas y carbohidratos le planificaremos)"/>
                 </FormControl>
     
                 <FormMessage />
@@ -230,6 +230,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
                     control={form.control}
                     render={({ field }) => (
                       <Input
+                        className="placeholder:text-sm"
                         type="file"
                         accept=".pdf"
                         onChange={(e) => field.onChange(e.target.files?.[0] || undefined)}
@@ -240,7 +241,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
                     )}
                   />
                 </FormControl>
-                <FormDescription>
+                <FormDescription className="text-sm">
                   Selecciona el primer archivo PDF (máx. 5MB) - Opcional.
                 </FormDescription>
                 <FormMessage />

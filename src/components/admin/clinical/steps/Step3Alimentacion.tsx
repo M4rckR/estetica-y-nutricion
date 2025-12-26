@@ -25,9 +25,30 @@ interface Step3Props {
 export function Step3Alimentacion({ form }: Step3Props) {
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-medium mb-6">Alimentación</h2>
+      <h2 className="text-xl lg:text-2xl font-medium mb-6">Alimentación y recuento de actividad física y sueño del paciente</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* CAMPO DE DEPORTES - ACTUALIZADO */}
+        <FormField
+          control={form.control}
+          name="practices_sports"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">¿Practica deportes? ¿Cuáles y con qué frecuencia? (opcional)</FormLabel>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(e.target.value || "")}
+                  placeholder="Ej: Fútbol 3 veces por semana, gimnasio diariamente..."
+                  className="bg-m-green-light/20 rounded-3xl min-h-[80px] resize-none"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
         {/* ¿Quién prepara tus comidas? */}
         <FormField
           control={form.control}

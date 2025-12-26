@@ -93,7 +93,7 @@ export function Step2CirugiasAlergias({ form }: Step2Props) {
           name="allergies"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-m-green">Alergias (opcional)</FormLabel>
+              <FormLabel className="text-m-green">Tienes alergia a algún medicamente o compuesto</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}

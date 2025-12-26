@@ -13,13 +13,13 @@ export const clinicalHistorySchema = z.object({
 
   // Paso 1: Historia Clínica
   consult_reason: z.string().nullable().optional(),
-  recent_exams: z.enum(['si', 'no']).nullable().optional(),
+  recent_exams: z.union([z.enum(['si', 'no']), z.null(), z.undefined()]).optional(),
   recent_exams_details: z.string().nullable().optional(),
-  practices_sports: z.enum(['si', 'no', 'ocasionalmente']).nullable().optional(),
+  practices_sports: z.string().nullable().optional(), // Acepta string, vacío, null o undefined
   pathological_antecedents: z.string().nullable().optional(),
-  consumes_alcohol_tobacco: z.enum(['no', 'alcohol', 'tabaco', 'ambos']).nullable().optional(),
-  last_menstruation: z.date().nullable().optional(),
-  uses_contraceptives: z.enum(['si', 'no']).nullable().optional(),
+  consumes_alcohol_tobacco: z.union([z.enum(['no', 'alcohol', 'tabaco', 'ambos']), z.null(), z.undefined()]).optional(),
+  last_menstruation: z.union([z.date(), z.null(), z.undefined()]).optional(),
+  uses_contraceptives: z.union([z.enum(['si', 'no']), z.null(), z.undefined()]).optional(),
   current_medication: z.string().nullable().optional(),
   hypertension_diabetes_antecedents: z.string().nullable().optional(),
   registro_24h_completo: z.string().nullable().optional(),
@@ -27,16 +27,16 @@ export const clinicalHistorySchema = z.object({
   sleep_quality: z.string().nullable().optional(),
 
   // Paso 2: Cirugías y Alergias
-  has_been_operated: z.enum(['si', 'no']).nullable().optional(),
+  has_been_operated: z.union([z.enum(['si', 'no']), z.null(), z.undefined()]).optional(),
   surgery_details: z.string().nullable().optional(),
   allergies: z.string().nullable().optional(),
 
   // Paso 3: Alimentación
-  who_prepares_meals: z.enum(['yo', 'familiar', 'empleada', 'otro']).nullable().optional(),
-  eating_out_frequency: z.enum(['nunca', 'ocasional', 'semanal', 'diario']).nullable().optional(),
+  who_prepares_meals: z.union([z.enum(['yo', 'familiar', 'empleada', 'otro']), z.null(), z.undefined()]).optional(),
+  eating_out_frequency: z.union([z.enum(['nunca', 'ocasional', 'semanal', 'diario']), z.null(), z.undefined()]).optional(),
   favorite_foods: z.string().nullable().optional(),
   aliments_hate: z.string().nullable().optional(),
-  daily_liquid_intake: z.enum(['menos_1L', '1-2L', '2-3L', 'mas_3L']).nullable().optional(),
+  daily_liquid_intake: z.union([z.enum(['menos_1L', '1-2L', '2-3L', 'mas_3L']), z.null(), z.undefined()]).optional(),
   supplements: z.string().nullable().optional(),
 
   // Metadatos

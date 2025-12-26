@@ -30,12 +30,16 @@ export function ClinicalHistoryForm({
   patientName,
   existingData,
 }: ClinicalHistoryFormProps) {
+  console.log("🔄 ClinicalHistoryForm cargado");
+  
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<ClinicalHistoryFormType>({
     resolver: zodResolver(clinicalHistoryFormSchema),
+    mode: "onSubmit", // Solo validar en el submit final
+    reValidateMode: "onSubmit",
     defaultValues: existingData || {
       phone: undefined,
       age: undefined,
@@ -85,12 +89,42 @@ export function ClinicalHistoryForm({
     }
   };
 
+  // Función para manejar el submit con pre-procesamiento
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Pre-procesar: Si el sexo es masculino, limpiar campos femeninos ANTES de validar
+    const currentSex = form.getValues('sex');
+    console.log("=== DEBUGGING SUBMIT ===");
+    console.log("Sexo seleccionado:", currentSex);
+    console.log("Valores actuales del formulario:", form.getValues());
+    
+    if (currentSex === 'masculino') {
+      console.log("Limpiando campos femeninos...");
+      form.setValue('last_menstruation', null, { shouldValidate: false });
+      form.setValue('uses_contraceptives', null, { shouldValidate: false });
+      console.log("Valores después de limpiar:", form.getValues());
+    }
+    
+    // Ahora sí, ejecutar la validación y submit
+    form.handleSubmit(onSubmit, onError)(e);
+  };
+
   const onSubmit = async (data: ClinicalHistoryFormType) => {
     setIsSubmitting(true);
 
     try {
+      // Si el sexo es masculino, establecer campos femeninos como null
+      const dataToSave = { ...data };
+      if (dataToSave.sex === 'masculino') {
+        dataToSave.last_menstruation = null;
+        dataToSave.uses_contraceptives = null;
+      }
+      
+      console.log("Datos a guardar:", dataToSave);
+
       const result = await saveClinicalHistory({
-        ...data,
+        ...dataToSave,
         patient_id: patientId,
         completed: true,
       });
@@ -115,8 +149,22 @@ export function ClinicalHistoryForm({
   };
 
   const onError = (errors: FieldErrors<ClinicalHistoryFormType>) => {
+    console.error("=== ERRORES DE VALIDACIÓN ===");
+    console.error("Errores completos:", errors);
+    console.error("Campos con error:", Object.keys(errors));
+    
+    // Mostrar detalles de cada error
+    Object.entries(errors).forEach(([field, error]) => {
+      console.error(`Campo "${field}":`, error);
+    });
+    
+    // Contar errores
+    const errorCount = Object.keys(errors).length;
+    const errorFields = Object.keys(errors).join(", ");
+    
     toast.error("Error de validación", {
-      description: "Por favor revisa los campos marcados en rojo.",
+      description: `Se encontraron ${errorCount} error(es) en: ${errorFields}`,
+      duration: 10000, // 10 segundos para que puedas leerlo
     });
   };
 
@@ -159,7 +207,7 @@ export function ClinicalHistoryForm({
       {/* Formulario con pasos */}
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit, onError)}
+          onSubmit={handleFormSubmit}
           onKeyDown={(e) => {
             // Prevenir submit al presionar Enter, excepto en el último paso
             if (e.key === 'Enter' && currentStep < totalSteps) {
@@ -199,6 +247,7 @@ export function ClinicalHistoryForm({
               <Button
                 type="submit"
                 disabled={isSubmitting}
+                onClick={() => console.log("🔘 Botón Completar registro clickeado")}
                 className="ml-auto bg-m-green text-white px-8 py-6 rounded-full hover:bg-m-green-dark flex items-center gap-2"
               >
                 {isSubmitting && <Spinner size="sm" className="border-white border-t-transparent" />}

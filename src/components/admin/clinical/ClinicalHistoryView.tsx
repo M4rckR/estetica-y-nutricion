@@ -188,10 +188,6 @@ export function ClinicalHistoryView({
             />
           )}
           <DataRow
-            label="¿Practica deportes?"
-            value={translateValue(clinicalHistory.practices_sports)}
-          />
-          <DataRow
             label="Antecedentes patológicos"
             value={clinicalHistory.pathological_antecedents}
           />
@@ -258,8 +254,12 @@ export function ClinicalHistoryView({
 
       {/* Alimentación */}
       <div className="bg-white rounded-3xl p-6 mb-6 shadow-sm border border-gray-100">
-        <h2 className="text-xl font-medium mb-4 text-m-green">Alimentación</h2>
+        <h2 className="text-xl font-medium mb-4 text-m-green">Alimentacion</h2>
         <div className="space-y-2">
+          <DataRow
+            label="¿Practica deportes? ¿Cuáles y con qué frecuencia?"
+            value={clinicalHistory.practices_sports}
+          />
           <DataRow
             label="¿Quién prepara las comidas?"
             value={translateValue(clinicalHistory.who_prepares_meals)}

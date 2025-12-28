@@ -26,26 +26,25 @@ interface Step3Props {
 export function Step3Alimentacion({ form }: Step3Props) {
   return (
     <div className="space-y-6">
-      <h2 className="text-xl lg:text-2xl font-medium mb-6">Alimentación y recuento de actividad física y sueño del paciente</h2>
+      <h2 className="text-xl lg:text-2xl font-medium mb-6 text-m-green">Alimentación y Hábitos del Paciente</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* CAMPO DE DEPORTES - MEJORADO CON DETALLES */}
+        {/* 1. ALERGIAS E INTOLERANCIAS ALIMENTARIAS */}
         <FormField
           control={form.control}
-          name="practices_sports"
+          name="food_allergies_intolerances"
           render={({ field }) => (
             <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">¿Realiza deporte o entrenamiento?</FormLabel>
+              <FormLabel className="text-m-green">¿Es alérgico e intolerante a algún alimento?</FormLabel>
               <FormDescription>
-                Si realiza deporte o entrenamiento, indique a detalle: el tipo de deporte que realiza, la hora, qué días de la semana, el tipo de entrenamiento y categorice la intensidad de 1 al 5 (1=muy ligero, 5=muy intenso)
+                Indique si tiene alergias o intolerancias alimentarias y detalle cuáles
               </FormDescription>
               <FormControl>
                 <Textarea
                   {...field}
-                  value={field.value ?? ""}
-                  onChange={(e) => field.onChange(e.target.value || "")}
-                  placeholder="Ej: Fútbol - Martes y Jueves 7pm - Entrenamiento de resistencia - Intensidad 4/5. Gimnasio - Lunes, Miércoles, Viernes 6am - Pesas y cardio - Intensidad 3/5..."
-                  className="bg-m-green-light/20 rounded-3xl min-h-[120px] resize-none"
+                  value={field.value || ""}
+                  placeholder="Ej: Alérgico a mariscos y frutos secos, Intolerante a la lactosa..."
+                  className="bg-m-green-light/20 rounded-3xl min-h-[80px] resize-none"
                 />
               </FormControl>
               <FormMessage />
@@ -53,7 +52,7 @@ export function Step3Alimentacion({ form }: Step3Props) {
           )}
         />
 
-        {/* ¿Quién prepara tus comidas? */}
+        {/* 2. ¿QUIÉN PREPARA TUS COMIDAS? */}
         <FormField
           control={form.control}
           name="who_prepares_meals"
@@ -79,7 +78,7 @@ export function Step3Alimentacion({ form }: Step3Props) {
           )}
         />
 
-        {/* ¿Con qué frecuencia comes fuera de casa? */}
+        {/* 3. ¿CON QUÉ FRECUENCIA COMES FUERA DE CASA? */}
         <FormField
           control={form.control}
           name="eating_out_frequency"
@@ -104,32 +103,47 @@ export function Step3Alimentacion({ form }: Step3Props) {
           )}
         />
 
-        {/* ¿Cuántas comidas normalmente realiza al día? */}
+        {/* 4. ALIMENTOS QUE NO LE GUSTEN O AGRADEN */}
         <FormField
           control={form.control}
-          name="meals_per_day"
+          name="aliments_hate"
           render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-m-green">¿Cuántas comidas normalmente realiza al día?</FormLabel>
-              <Select onValueChange={field.onChange} value={field.value || undefined}>
-                <FormControl>
-                  <SelectTrigger className="bg-m-green-light/20 rounded-full">
-                    <SelectValue placeholder="Selecciona una opción" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="2">2 comidas</SelectItem>
-                  <SelectItem value="3">3 comidas</SelectItem>
-                  <SelectItem value="4">4 comidas</SelectItem>
-                  <SelectItem value="5">5 comidas</SelectItem>
-                </SelectContent>
-              </Select>
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">Alimentos o Platos que no consumes o no te agraden</FormLabel>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value || ""}
+                  placeholder="Ej: brocoli, cebolla, leche..."
+                  className="bg-m-green-light/20 rounded-3xl min-h-[80px] resize-none"
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/* Cantidad de líquidos que consumes al día */}
+        {/* 5. PLATOS FAVORITOS */}
+        <FormField
+          control={form.control}
+          name="favorite_foods"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">Platos o comidas favoritas</FormLabel>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value || ""}
+                  placeholder="Indíca al menos 5 tipos"
+                  className="bg-m-green-light/20 rounded-3xl min-h-[80px] resize-none"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* 6. CANTIDAD DE LÍQUIDOS */}
         <FormField
           control={form.control}
           name="daily_liquid_intake"
@@ -154,76 +168,13 @@ export function Step3Alimentacion({ form }: Step3Props) {
           )}
         />
 
-        {/* Alimentos o platos favoritos */}
-        <FormField
-          control={form.control}
-          name="favorite_foods"
-          render={({ field }) => (
-            <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">Platos o comidas favoritas</FormLabel>
-              <FormControl>
-                <Textarea
-                  {...field}
-                  value={field.value || ""}
-                  placeholder="Indíca al menos 5 tipos"
-                  className="bg-m-green-light/20 rounded-3xl min-h-[80px] resize-none"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Alimentos que evitas */}
-        <FormField
-          control={form.control}
-          name="aliments_hate"
-          render={({ field }) => (
-            <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">Alimentos o Platos que no consumes o no te agraden</FormLabel>
-              <FormControl>
-                <Textarea
-                  {...field}
-                  value={field.value || ""}
-                  placeholder="Ej: brocoli, cebolla, leche..."
-                  className="bg-m-green-light/20 rounded-3xl min-h-[80px] resize-none"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Alergias e intolerancias alimentarias */}
-        <FormField
-          control={form.control}
-          name="food_allergies_intolerances"
-          render={({ field }) => (
-            <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">¿Es alérgico e intolerante a algún alimento?</FormLabel>
-              <FormDescription>
-                Indique si tiene alergias o intolerancias alimentarias y detalle cuáles
-              </FormDescription>
-              <FormControl>
-                <Textarea
-                  {...field}
-                  value={field.value || ""}
-                  placeholder="Ej: Alérgico a mariscos y frutos secos, Intolerante a la lactosa..."
-                  className="bg-m-green-light/20 rounded-3xl min-h-[80px] resize-none"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Suplementos que consumes (opcional) */}
+        {/* 7. SUPLEMENTOS QUE CONSUME */}
         <FormField
           control={form.control}
           name="supplements"
           render={({ field }) => (
             <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">Suplementos o Complementos nutricionales que consume </FormLabel>
+              <FormLabel className="text-m-green">Suplementos o Complementos nutricionales que consume</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}
@@ -237,7 +188,30 @@ export function Step3Alimentacion({ form }: Step3Props) {
           )}
         />
 
-        {/* Recuento de actividad física */}
+        {/* 8. HÁBITOS ESPECIALES */}
+        <FormField
+          control={form.control}
+          name="special_habits"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">Hábitos Especiales</FormLabel>
+              <FormDescription>
+                Detalle sobre estos hábitos: Consumo de alcohol (cuántas veces la semana y qué tipo), Consumo de cafeína o estimulantes a la semana, Fumador SI/NO (si es sí detallar cuántos cigarros a la semana), Horarios de comidas irregulares SI/NO, Otros hábitos que consideres a mejorar
+              </FormDescription>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value || ""}
+                  placeholder="Ej: Consumo de alcohol: 2 veces/semana (cerveza), Cafeína: 3 cafés al día, Fumador: No, Horarios irregulares: Sí (ceno muy tarde), Otros: Picoteo entre comidas..."
+                  className="bg-m-green-light/20 rounded-3xl min-h-[120px] resize-none"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* 9. RECUENTO DE ACTIVIDAD FÍSICA */}
         <FormField
           control={form.control}
           name="physical_activity_record"
@@ -260,24 +234,96 @@ export function Step3Alimentacion({ form }: Step3Props) {
           )}
         />
 
-        {/* Hábitos especiales */}
+        {/* 10. ¿DEPORTE QUE PRACTICA Y HORARIOS? */}
         <FormField
           control={form.control}
-          name="special_habits"
+          name="practices_sports"
           render={({ field }) => (
             <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">Hábitos Especiales</FormLabel>
+              <FormLabel className="text-m-green">¿Realiza deporte o entrenamiento?</FormLabel>
               <FormDescription>
-                Detalle sobre estos hábitos: Consumo de alcohol (cuántas veces la semana y qué tipo), Consumo de cafeína o estimulantes a la semana, Fumador SI/NO (si es sí detallar cuántos cigarros a la semana), Horarios de comidas irregulares SI/NO, Otros hábitos que consideres a mejorar
+                Si realiza deporte o entrenamiento, indique a detalle: el tipo de deporte que realiza, la hora, qué días de la semana, el tipo de entrenamiento y categorice la intensidad de 1 al 5 (1=muy ligero, 5=muy intenso)
+              </FormDescription>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(e.target.value || "")}
+                  placeholder="Ej: Fútbol - Martes y Jueves 7pm - Entrenamiento de resistencia - Intensidad 4/5. Gimnasio - Lunes, Miércoles, Viernes 6am - Pesas y cardio - Intensidad 3/5..."
+                  className="bg-m-green-light/20 rounded-3xl min-h-[120px] resize-none"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* 11. CALIDAD Y CANTIDAD DE SUEÑO */}
+        <FormField
+          control={form.control}
+          name="sleep_quality"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">Cantidad y Calidad de sueño</FormLabel>
+              <FormDescription>
+                Enseguida detalle las horas de sueño promedio; indíqueme su calidad de sueño (1 al 5) y factores que alteran el descanso
               </FormDescription>
               <FormControl>
                 <Textarea
                   {...field}
                   value={field.value || ""}
-                  placeholder="Ej: Consumo de alcohol: 2 veces/semana (cerveza), Cafeína: 3 cafés al día, Fumador: No, Horarios irregulares: Sí (ceno muy tarde), Otros: Picoteo entre comidas..."
-                  className="bg-m-green-light/20 rounded-3xl min-h-[120px] resize-none"
+                  placeholder="Ej: 7 horas promedio de sueño, calidad del sueño 3/5, nivel de estrés y factores que alteran el descanso."
+                  className="bg-m-green-light/20 rounded-2xl min-h-[100px] resize-none"
                 />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* 12. ANSIEDAD Y ESTRÉS */}
+        <FormField
+          control={form.control}
+          name="stress_anxiety"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">¿Sufres de estrés y ansiedad?</FormLabel>
+              <FormDescription>
+                Si tu respuesta es Sí, indica qué factores crees que alteran eso. Si es No, simplemente escribe &quot;No&quot;.
+              </FormDescription>
+              <FormControl>
+                <Textarea
+                  {...field}
+                  value={field.value || ""}
+                  placeholder="Ej: Sí, por trabajo y problemas familiares... o simplemente: No"
+                  className="bg-m-green-light/20 rounded-2xl min-h-[100px] resize-none"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* 13. CUÁNTAS COMIDAS REALIZA AL DÍA (campo adicional) */}
+        <FormField
+          control={form.control}
+          name="meals_per_day"
+          render={({ field }) => (
+            <FormItem className="md:col-span-2">
+              <FormLabel className="text-m-green">¿Cuántas comidas normalmente realiza al día?</FormLabel>
+              <Select onValueChange={field.onChange} value={field.value || undefined}>
+                <FormControl>
+                  <SelectTrigger className="bg-m-green-light/20 rounded-full">
+                    <SelectValue placeholder="Selecciona una opción" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="2">2 comidas</SelectItem>
+                  <SelectItem value="3">3 comidas</SelectItem>
+                  <SelectItem value="4">4 comidas</SelectItem>
+                  <SelectItem value="5">5 comidas</SelectItem>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
@@ -286,4 +332,3 @@ export function Step3Alimentacion({ form }: Step3Props) {
     </div>
   );
 }
-

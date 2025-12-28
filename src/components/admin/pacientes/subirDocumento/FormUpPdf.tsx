@@ -33,6 +33,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
     defaultValues: {
       titulo: "",
       recomendacion: "",
+      seguimiento: "",
       pdf1: undefined,
       pdf2: undefined,
     },
@@ -145,6 +146,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
         paciente_id: patientId,
         titulo: data.titulo,
         recomendacion: data.recomendacion,
+        seguimiento: data.seguimiento || null,
         pdf_path: pdf1Path,      // Primer PDF (puede ser null)
         pdf_path_2: pdf2Path,    // Segundo PDF (puede ser null)
     });
@@ -214,6 +216,26 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
                   <Textarea className="placeholder:text-sm" {...field} placeholder="(1era cita) ¿Cuáles son los objetivos y metas; y cuantas calorías, proteínas, grasas y carbohidratos le planificaremos)"/>
                 </FormControl>
     
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="seguimiento"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green-dark">Seguimiento (A partir de la 2da cita)</FormLabel>
+                <FormDescription className="text-sm mb-2">
+                  Registre: Fecha de control, observaciones/evolución del paciente y profesional que atendió
+                </FormDescription>
+                <FormControl>
+                  <Textarea 
+                    className="placeholder:text-sm min-h-[150px]" 
+                    {...field} 
+                    placeholder="15/01/2024 — El paciente presenta mejoría en... — Dra. María García"
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}

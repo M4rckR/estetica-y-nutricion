@@ -44,6 +44,14 @@ export const clinicalHistorySchema = z.object({
   physical_activity_record: z.string().nullable().optional(),
   special_habits: z.string().nullable().optional(),
 
+  // Paso 4: Objetivos, Tipo de Plan y Seguimiento
+  short_term_objectives: z.string().nullable().optional(),
+  medium_term_objectives: z.string().nullable().optional(),
+  long_term_objectives: z.string().nullable().optional(),
+  plan_type: z.union([z.enum(['estetica', 'clinico', 'deportivo', 'pediatrico', 'salud', 'otro']), z.null(), z.undefined()]).optional(),
+  plan_type_details: z.string().nullable().optional(),
+  follow_up_tracking: z.string().nullable().optional(),
+
   // Metadatos
   completed: z.boolean().default(false),
   created_at: z.string().optional(),

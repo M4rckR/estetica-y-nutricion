@@ -16,8 +16,9 @@ import Link from "next/link";
 
 // Importar los pasos del formulario
 import { Step1HistoriaClinica } from "./steps/Step1HistoriaClinica";
-import { Step2CirugiasAlergias } from "./steps/Step2CirugiasAlergias";
+import { Step2AntecedentesClinicos } from "./steps/Step2AntecedentesClinicos";
 import { Step3Alimentacion } from "./steps/Step3Alimentacion";
+import { Step4ObjetivosYPlan } from "./steps/Step4ObjetivosYPlan";
 
 interface ClinicalHistoryFormProps {
   patientId: string;
@@ -74,11 +75,16 @@ export function ClinicalHistoryForm({
       supplements: undefined,
       physical_activity_record: undefined,
       special_habits: undefined,
+      short_term_objectives: undefined,
+      medium_term_objectives: undefined,
+      long_term_objectives: undefined,
+      plan_type: undefined,
+      plan_type_details: undefined,
       completed: false,
     },
   });
 
-  const totalSteps = 3;
+  const totalSteps = 4;
 
   const onNext = (e?: React.MouseEvent) => {
     e?.preventDefault();
@@ -227,8 +233,9 @@ export function ClinicalHistoryForm({
           className="space-y-6"
         >
           {currentStep === 1 && <Step1HistoriaClinica form={form} />}
-          {currentStep === 2 && <Step2CirugiasAlergias form={form} />}
+          {currentStep === 2 && <Step2AntecedentesClinicos form={form} />}
           {currentStep === 3 && <Step3Alimentacion form={form} />}
+          {currentStep === 4 && <Step4ObjetivosYPlan form={form} />}
 
           {/* Botones de navegación */}
           <div className="flex justify-between gap-4 pt-6">

@@ -64,6 +64,12 @@ export async function saveClinicalHistory(data: ClinicalHistoryFormType & { pati
     supplements: data.supplements || null,
     physical_activity_record: data.physical_activity_record || null,
     special_habits: data.special_habits || null,
+    // Objetivos y Plan
+    short_term_objectives: data.short_term_objectives || null,
+    medium_term_objectives: data.medium_term_objectives || null,
+    long_term_objectives: data.long_term_objectives || null,
+    plan_type: data.plan_type || null,
+    plan_type_details: data.plan_type_details || null,
     // Metadatos
     completed: data.completed || false,
     updated_at: new Date().toISOString(),

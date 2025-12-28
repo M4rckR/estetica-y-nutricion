@@ -100,7 +100,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
   
   return (
     <div className="space-y-6">
-      <h2 className="text-xl font-medium mb-6 text-m-green">Historia Clínica</h2>
+      <h2 className="text-xl font-medium mb-6 text-m-green">Datos Generales del Paciente</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* 1. Motivo de consulta */}
@@ -464,7 +464,7 @@ Factores que alteran el descanso en el form description */}
               <FormItem className="md:col-span-2">
                 <FormLabel className="text-m-green">¿Sufres de estrés y ansiedad?</FormLabel>
                 <FormDescription>
-                  Si tu respuesta es Sí, indica qué factores crees que alteran eso. Si es No, simplemente escribe "No".
+                  Si tu respuesta es Sí, indica qué factores crees que alteran eso. Si es No, simplemente escribe &quot;No&quot;.
                 </FormDescription>
                 <FormControl>
                   <Textarea

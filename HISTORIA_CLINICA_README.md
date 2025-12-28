@@ -174,17 +174,18 @@ Este componente debe:
 - `si`
 - `no`
 
-### who_prepares_meals
-- `yo`
-- `familiar`
-- `empleada`
-- `otro`
+### who_prepares_meals (opcional - puede ser NULL)
+- `tu-mismo` (Tú mismo)
+- `pareja-esposo` (Tu pareja o esposo)
+- `hijo` (Tu hij@)
+- `empleada` (Empleada)
+- `otra` (Otra)
 
-### eating_out_frequency
+### eating_out_frequency (opcional - puede ser NULL)
 - `nunca`
-- `ocasional`
-- `semanal`
-- `diario`
+- `1-2-veces` (1 a 2 veces/semana)
+- `3-4-veces` (3 a 4 veces/semana)
+- `5-mas-veces` (5 a más veces/semana)
 
 ### daily_liquid_intake
 - `menos_1L`

@@ -48,16 +48,23 @@ const translateValue = (value: string | null | undefined): string => {
     'diabetes': 'Diabetes',
 
     // Who prepares meals
-    'yo': 'Yo',
-    'familiar': 'Familiar',
+    'tu-mismo': 'Tú mismo',
+    'pareja-esposo': 'Tu pareja o esposo',
+    'hijo': 'Tu hij@',
     'empleada': 'Empleada',
-    'otro': 'Otro',
+    'otra': 'Otra',
 
     // Eating frequency
     'nunca': 'Nunca',
-    'ocasional': 'Ocasionalmente',
-    'semanal': 'Semanalmente',
-    'diario': 'Diariamente',
+    '1-2-veces': '1 a 2 veces/semana',
+    '3-4-veces': '3 a 4 veces/semana',
+    '5-mas-veces': '5 a más veces/semana',
+
+    // Meals per day
+    '2': '2 comidas',
+    '3': '3 comidas',
+    '4': '4 comidas',
+    '5': '5 comidas',
 
     // Liquid intake
     'menos_1L': 'Menos de 1 litro',
@@ -221,6 +228,10 @@ export function ClinicalHistoryView({
             value={clinicalHistory.hypertension_diabetes_antecedents}
           />
           <DataRow
+            label="¿Sufres de estrés y ansiedad?"
+            value={clinicalHistory.stress_anxiety}
+          />
+          <DataRow
             label="Síntomas digestivos"
             value={formatDigestiveSymptoms(clinicalHistory.abdominal_pain)}
           />
@@ -257,7 +268,7 @@ export function ClinicalHistoryView({
         <h2 className="text-xl font-medium mb-4 text-m-green">Alimentacion</h2>
         <div className="space-y-2">
           <DataRow
-            label="¿Practica deportes? ¿Cuáles y con qué frecuencia?"
+            label="¿Realiza deporte o entrenamiento? (detalle completo)"
             value={clinicalHistory.practices_sports}
           />
           <DataRow
@@ -269,6 +280,10 @@ export function ClinicalHistoryView({
             value={translateValue(clinicalHistory.eating_out_frequency)}
           />
           <DataRow
+            label="¿Cuántas comidas normalmente realiza al día?"
+            value={translateValue(clinicalHistory.meals_per_day)}
+          />
+          <DataRow
             label="Alimentos o platos favoritos"
             value={clinicalHistory.favorite_foods}
           />
@@ -277,12 +292,24 @@ export function ClinicalHistoryView({
             value={clinicalHistory.aliments_hate}
           />
           <DataRow
+            label="¿Es alérgico e intolerante a algún alimento?"
+            value={clinicalHistory.food_allergies_intolerances}
+          />
+          <DataRow
             label="Consumo diario de líquidos"
             value={translateValue(clinicalHistory.daily_liquid_intake)}
           />
           <DataRow
             label="Suplementos"
             value={clinicalHistory.supplements}
+          />
+          <DataRow
+            label="Recuento de Actividad Física"
+            value={clinicalHistory.physical_activity_record}
+          />
+          <DataRow
+            label="Hábitos Especiales"
+            value={clinicalHistory.special_habits}
           />
           <DataRow
             label="Registro alimentario 24 horas"

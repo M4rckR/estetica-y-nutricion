@@ -57,6 +57,7 @@ export function ClinicalHistoryForm({
       uses_contraceptives: undefined,
       current_medication: undefined,
       hypertension_diabetes_antecedents: undefined,
+      stress_anxiety: undefined,
       registro_24h_completo: undefined,
       abdominal_pain: undefined,
       sleep_quality: undefined,
@@ -65,10 +66,14 @@ export function ClinicalHistoryForm({
       allergies: undefined,
       who_prepares_meals: undefined,
       eating_out_frequency: undefined,
+      meals_per_day: undefined,
       favorite_foods: undefined,
       aliments_hate: undefined,
+      food_allergies_intolerances: undefined,
       daily_liquid_intake: undefined,
       supplements: undefined,
+      physical_activity_record: undefined,
+      special_habits: undefined,
       completed: false,
     },
   });
@@ -119,6 +124,11 @@ export function ClinicalHistoryForm({
       if (dataToSave.sex === 'masculino') {
         dataToSave.last_menstruation = null;
         dataToSave.uses_contraceptives = null;
+      }
+      
+      // Convertir cadenas vacías a null
+      if (dataToSave.practices_sports === '') {
+        dataToSave.practices_sports = null;
       }
       
       console.log("Datos a guardar:", dataToSave);

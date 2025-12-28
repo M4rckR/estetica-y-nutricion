@@ -82,10 +82,13 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
     }
   }, [abdominalPainValue, isLoadedFromDB]);
   
-  // NO limpiar campos de menstruación y anticonceptivos al cambiar sexo
-  // Los campos se ocultan visualmente, pero mantienen sus valores
-  // Si el usuario cambia accidentalmente el sexo y vuelve, no pierde los datos
-  // Al guardar, si el sexo es masculino, el backend puede ignorar estos campos
+  // Limpiar campos de menstruación y anticonceptivos cuando el sexo es masculino
+  useEffect(() => {
+    if (selectedSex === 'masculino') {
+      form.setValue('last_menstruation', null);
+      form.setValue('uses_contraceptives', null);
+    }
+  }, [selectedSex, form]);
   
   // Actualizar el campo cuando cambian los síntomas digestivos (solo si ya cargó de BD)
   useEffect(() => {
@@ -313,11 +316,11 @@ Factores que alteran el descanso en el form description */}
         <FormField
           control={form.control}
           name="sleep_quality"
-          render={({ field }) => (
+          render={({ field }) => (  
             <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">Calidad de sueño</FormLabel>
+              <FormLabel className="text-m-green">Cantidad y Calidad de sueño</FormLabel>
               <FormDescription>
-                Detalle las horas promedio de sueño, la calidad del sueño (1–5) y el nivel de estrés (1–5) y factores que alteran el descanso.
+              Enseguida detalle las horas de sueño promedio; indíqueme si su calidad de sueño (1 al 5)
               </FormDescription>
               <FormControl>
                 <Textarea
@@ -446,6 +449,29 @@ Factores que alteran el descanso en el form description */}
                     value={field.value || ""}
                     placeholder="Describe los antecedentes..."
                     className="bg-m-green-light/20 rounded-2xl min-h-[80px] resize-none"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Sufres de estrés y ansiedad */}
+          <FormField
+            control={form.control}
+            name="stress_anxiety"
+            render={({ field }) => (
+              <FormItem className="md:col-span-2">
+                <FormLabel className="text-m-green">¿Sufres de estrés y ansiedad?</FormLabel>
+                <FormDescription>
+                  Si tu respuesta es Sí, indica qué factores crees que alteran eso. Si es No, simplemente escribe "No".
+                </FormDescription>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    value={field.value || ""}
+                    placeholder="Ej: Sí, por trabajo y problemas familiares... o simplemente: No"
+                    className="bg-m-green-light/20 rounded-2xl min-h-[100px] resize-none"
                   />
                 </FormControl>
                 <FormMessage />
@@ -648,5 +674,4 @@ Factores que alteran el descanso en el form description */}
     </div>
   );
 }
-
 

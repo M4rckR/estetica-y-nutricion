@@ -36,8 +36,8 @@ CREATE TABLE IF NOT EXISTS clinical_history (
   allergies TEXT,
   
   -- Alimentación
-  who_prepares_meals VARCHAR(20) CHECK (who_prepares_meals IN ('yo', 'familiar', 'empleada', 'otro')),
-  eating_out_frequency VARCHAR(20) CHECK (eating_out_frequency IN ('nunca', 'ocasional', 'semanal', 'diario')),
+  who_prepares_meals VARCHAR(30) CHECK (who_prepares_meals IS NULL OR who_prepares_meals IN ('tu-mismo', 'pareja-esposo', 'hijo', 'empleada', 'otra')),
+  eating_out_frequency VARCHAR(20) CHECK (eating_out_frequency IS NULL OR eating_out_frequency IN ('nunca', '1-2-veces', '3-4-veces', '5-mas-veces')),
   favorite_foods TEXT,
   aliments_hate TEXT,
   daily_liquid_intake VARCHAR(20) CHECK (daily_liquid_intake IN ('menos_1L', '1-2L', '2-3L', 'mas_3L')),

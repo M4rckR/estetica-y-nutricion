@@ -22,6 +22,7 @@ export const clinicalHistorySchema = z.object({
   uses_contraceptives: z.union([z.enum(['si', 'no']), z.null(), z.undefined()]).optional(),
   current_medication: z.string().nullable().optional(),
   hypertension_diabetes_antecedents: z.string().nullable().optional(),
+  stress_anxiety: z.string().nullable().optional(),
   registro_24h_completo: z.string().nullable().optional(),
   abdominal_pain: z.string().nullable().optional(),
   sleep_quality: z.string().nullable().optional(),
@@ -32,12 +33,16 @@ export const clinicalHistorySchema = z.object({
   allergies: z.string().nullable().optional(),
 
   // Paso 3: Alimentación
-  who_prepares_meals: z.union([z.enum(['yo', 'familiar', 'empleada', 'otro']), z.null(), z.undefined()]).optional(),
-  eating_out_frequency: z.union([z.enum(['nunca', 'ocasional', 'semanal', 'diario']), z.null(), z.undefined()]).optional(),
+  who_prepares_meals: z.union([z.enum(['tu-mismo', 'pareja-esposo', 'hijo', 'empleada', 'otra']), z.null(), z.undefined()]).optional(),
+  eating_out_frequency: z.union([z.enum(['nunca', '1-2-veces', '3-4-veces', '5-mas-veces']), z.null(), z.undefined()]).optional(),
+  meals_per_day: z.union([z.enum(['2', '3', '4', '5']), z.null(), z.undefined()]).optional(),
   favorite_foods: z.string().nullable().optional(),
   aliments_hate: z.string().nullable().optional(),
+  food_allergies_intolerances: z.string().nullable().optional(),
   daily_liquid_intake: z.union([z.enum(['menos_1L', '1-2L', '2-3L', 'mas_3L']), z.null(), z.undefined()]).optional(),
   supplements: z.string().nullable().optional(),
+  physical_activity_record: z.string().nullable().optional(),
+  special_habits: z.string().nullable().optional(),
 
   // Metadatos
   completed: z.boolean().default(false),

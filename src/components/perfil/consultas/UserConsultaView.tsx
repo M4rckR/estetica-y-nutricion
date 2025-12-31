@@ -43,7 +43,7 @@ export function UserConsultaView({ userId, sortOrder = "desc" }: { userId: strin
       const supabase = await createClient();
       const { data: consultasData, error: fetchError } = await supabase
         .from("consultas")
-        .select("id, created_at, titulo, recomendacion, pdf_path, pdf_path_2, paciente_id")
+        .select("id, created_at, titulo, recomendacion, pdf_path, pdf_path_2, pdf_path_3, paciente_id")
         .eq("paciente_id", userId)
         .order("created_at", { ascending: sort === "asc" });
       setConsultas(consultasData || []);
@@ -121,6 +121,13 @@ export function UserConsultaView({ userId, sortOrder = "desc" }: { userId: strin
                         <Button asChild variant="outline" className="py-5 px-6 rounded-full bg-m-green-light hover:bg-m-green-light text-xs sm:text-sm border-none">
                           <a href={`/api/download?path=${consulta.pdf_path_2}`} target="_blank" download>
                             📊 Informe antropométrico
+                          </a>
+                        </Button>
+                      )}
+                      {consulta.pdf_path_3 && (
+                        <Button asChild variant="outline" className="py-5 px-6 rounded-full bg-m-green-light hover:bg-m-green-light text-xs sm:text-sm border-none">
+                          <a href={`/api/download?path=${consulta.pdf_path_3}`} target="_blank" download>
+                            📁 Otros documentos
                           </a>
                         </Button>
                       )}

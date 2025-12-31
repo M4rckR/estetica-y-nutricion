@@ -12,6 +12,7 @@ export type Consulta = {
   recomendacion: string; // El texto de recomendación
   pdf_path: string | null; // La ruta al primer archivo PDF
   pdf_path_2?: string | null; // La ruta al segundo archivo PDF (opcional)
+  pdf_path_3?: string | null; // La ruta al tercer archivo PDF - Otros documentos (opcional)
   paciente_id: string; // El UUID del paciente
 };
 

@@ -42,6 +42,15 @@ export const clinicalHistorySchema = z.object({
   daily_liquid_intake: z.union([z.enum(['menos_1L', '1-2L', '2-3L', 'mas_3L']), z.null(), z.undefined()]).optional(),
   supplements: z.string().nullable().optional(),
   physical_activity_record: z.string().nullable().optional(),
+  // Hábitos Especiales - Campos separados
+  alcohol_consumption: z.string().nullable().optional(),
+  caffeine_stimulants_consumption: z.string().nullable().optional(),
+  is_smoker: z.union([z.enum(['si', 'no']), z.null(), z.undefined()]).optional(),
+  smoking_details: z.string().nullable().optional(),
+  irregular_meal_times: z.union([z.enum(['si', 'no']), z.null(), z.undefined()]).optional(),
+  irregular_meal_times_details: z.string().nullable().optional(),
+  other_habits: z.string().nullable().optional(),
+  // Mantener special_habits por compatibilidad (deprecated)
   special_habits: z.string().nullable().optional(),
 
   // Paso 4: Objetivos, Tipo de Plan y Seguimiento

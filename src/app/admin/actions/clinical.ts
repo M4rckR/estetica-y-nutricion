@@ -63,7 +63,15 @@ export async function saveClinicalHistory(data: ClinicalHistoryFormType & { pati
     daily_liquid_intake: data.daily_liquid_intake || null,
     supplements: data.supplements || null,
     physical_activity_record: data.physical_activity_record || null,
-    special_habits: data.special_habits || null,
+    // Hábitos Especiales - Campos separados
+    alcohol_consumption: data.alcohol_consumption || null,
+    caffeine_stimulants_consumption: data.caffeine_stimulants_consumption || null,
+    is_smoker: data.is_smoker || null,
+    smoking_details: data.smoking_details || null,
+    irregular_meal_times: data.irregular_meal_times || null,
+    irregular_meal_times_details: data.irregular_meal_times_details || null,
+    other_habits: data.other_habits || null,
+    special_habits: data.special_habits || null, // Mantener por compatibilidad
     // Objetivos y Plan
     short_term_objectives: data.short_term_objectives || null,
     medium_term_objectives: data.medium_term_objectives || null,

@@ -74,7 +74,15 @@ export function ClinicalHistoryForm({
       daily_liquid_intake: undefined,
       supplements: undefined,
       physical_activity_record: undefined,
-      special_habits: undefined,
+      // Hábitos Especiales - Campos separados
+      alcohol_consumption: undefined,
+      caffeine_stimulants_consumption: undefined,
+      is_smoker: undefined,
+      smoking_details: undefined,
+      irregular_meal_times: undefined,
+      irregular_meal_times_details: undefined,
+      other_habits: undefined,
+      special_habits: undefined, // Mantener por compatibilidad
       short_term_objectives: undefined,
       medium_term_objectives: undefined,
       long_term_objectives: undefined,

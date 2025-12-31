@@ -4,7 +4,6 @@ import { UseFormReturn } from "react-hook-form";
 import { ClinicalHistoryFormType } from "@/types/clinical/history";
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -24,7 +23,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { Textarea } from "@/components/ui/textarea";
 
 interface Step1Props {
   form: UseFormReturn<ClinicalHistoryFormType>;
@@ -133,6 +131,7 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
                 <PopoverContent className="w-auto p-0">
                   <Calendar
                     mode="single"
+                    captionLayout="dropdown"
                     selected={field.value || undefined}
                     onSelect={field.onChange}
                     locale={es}
@@ -239,29 +238,6 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
                   <SelectItem value="ambos">Ambos</SelectItem>
                 </SelectContent>
               </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Registro 24h completo text area  */}
-        <FormField
-          control={form.control}
-          name="registro_24h_completo"
-          render={({ field }) => (
-            <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">Recordatorio de 24 horas detallado</FormLabel>
-              <FormDescription>
-                Detalle del consumo y actividad del día anterior. Incluya horarios precisos, alimentos, preparaciones, bebidas, porciones y cantidades. Especifique además la ingesta de agua, el consumo entre comidas y la actividad física realizada.
-              </FormDescription>
-              <FormControl>
-                <Textarea
-                  {...field}
-                  value={field.value || ""}
-                  placeholder="Incluye alimentos, bebidas, ejercicio, etc..."
-                  className="bg-m-green-light/20 resize-none rounded-2xl"
-                />
-              </FormControl>
               <FormMessage />
             </FormItem>
           )}

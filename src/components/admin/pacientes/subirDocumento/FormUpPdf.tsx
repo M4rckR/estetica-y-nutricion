@@ -36,6 +36,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
       seguimiento: "",
       pdf1: undefined,
       pdf2: undefined,
+      pdf3: undefined,
     },
   });
 
@@ -85,6 +86,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
     // Variables para guardar las rutas de los PDFs
     let pdf1Path: string | null = null;
     let pdf2Path: string | null = null;
+    let pdf3Path: string | null = null;
 
     // Subir PDF 1 si existe
     if (data.pdf1) {
@@ -138,6 +140,32 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
       pdf2Path = uploadData2.path;
     }
 
+    // Subir PDF 3 si existe
+    if (data.pdf3) {
+      setStatus('Subiendo el tercer archivo PDF...');
+      const file3 = data.pdf3;
+      const filePath3 = `${patientId}/${Date.now()}-pdf3-${file3.name}`;
+
+      const { data: uploadData3, error: uploadError3 } = await supabase.storage
+        .from('archivos_pacientes')
+        .upload(filePath3, file3, {
+          upsert: true,
+          contentType: file3.type,
+          cacheControl: '3600'
+        });
+
+      if (uploadError3) {
+        setStatus(`Error al subir el tercer archivo: ${uploadError3.message}`);
+        toast.error('Error al subir tercer archivo', {
+          description: uploadError3.message,
+        });
+        setLoading(false);
+        return;
+      }
+
+      pdf3Path = uploadData3.path;
+    }
+
     setStatus('Guardando los detalles de la consulta...');
 
     const { error: insertError } = await supabase
@@ -149,6 +177,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
         seguimiento: data.seguimiento || null,
         pdf_path: pdf1Path,      // Primer PDF (puede ser null)
         pdf_path_2: pdf2Path,    // Segundo PDF (puede ser null)
+        pdf_path_3: pdf3Path,    // Tercer PDF - Otros documentos (puede ser null)
     });
 
     if (insertError) {
@@ -294,6 +323,35 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
                 </FormControl>
                 <FormDescription>
                   Selecciona el segundo archivo PDF (máx. 5MB) - Opcional.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="pdf3"
+            render={() => (
+              <FormItem>
+                <FormLabel className="text-m-green-dark">Otros documentos</FormLabel>
+                <FormControl>
+                  <Controller
+                    name="pdf3"
+                    control={form.control}
+                    render={({ field }) => (
+                      <Input
+                        type="file"
+                        accept=".pdf"
+                        onChange={(e) => field.onChange(e.target.files?.[0] || undefined)}
+                        onBlur={field.onBlur}
+                        name={field.name}
+                        ref={field.ref}
+                      />
+                    )}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Selecciona otro archivo PDF (máx. 5MB) - Opcional.
                 </FormDescription>
                 <FormMessage />
               </FormItem>

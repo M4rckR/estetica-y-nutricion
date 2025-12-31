@@ -24,6 +24,8 @@ interface Step3Props {
 }
 
 export function Step3Alimentacion({ form }: Step3Props) {
+  const isSmoker = form.watch('is_smoker');
+  const hasIrregularMealTimes = form.watch('irregular_meal_times');
   return (
     <div className="space-y-6">
       <h2 className="text-xl lg:text-2xl font-medium mb-6 text-m-green">Alimentación y Hábitos del Paciente</h2>
@@ -188,28 +190,196 @@ export function Step3Alimentacion({ form }: Step3Props) {
           )}
         />
 
-        {/* 8. HÁBITOS ESPECIALES */}
-        <FormField
-          control={form.control}
-          name="special_habits"
-          render={({ field }) => (
-            <FormItem className="md:col-span-2">
-              <FormLabel className="text-m-green">Hábitos Especiales</FormLabel>
-              <FormDescription>
-                Detalle sobre estos hábitos: Consumo de alcohol (cuántas veces la semana y qué tipo), Consumo de cafeína o estimulantes a la semana, Fumador SI/NO (si es sí detallar cuántos cigarros a la semana), Horarios de comidas irregulares SI/NO, Otros hábitos que consideres a mejorar
-              </FormDescription>
-              <FormControl>
-                <Textarea
-                  {...field}
-                  value={field.value || ""}
-                  placeholder="Ej: Consumo de alcohol: 2 veces/semana (cerveza), Cafeína: 3 cafés al día, Fumador: No, Horarios irregulares: Sí (ceno muy tarde), Otros: Picoteo entre comidas..."
-                  className="bg-m-green-light/20 rounded-3xl min-h-[120px] resize-none"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
+        {/* 8. HÁBITOS ESPECIALES - SECCIÓN */}
+        <div className="md:col-span-2 space-y-4">
+          <div className="mb-4">
+            <h3 className="text-lg font-medium text-m-green">Hábitos Especiales</h3>
+            <p className="text-sm text-gray-600 mt-1">
+              Detalle información sobre hábitos que puedan influir en el plan nutricional
+            </p>
+          </div>
+
+          {/* 8.1. CONSUMO DE ALCOHOL */}
+          <FormField
+            control={form.control}
+            name="alcohol_consumption"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green">Consumo de alcohol</FormLabel>
+                <FormDescription>
+                  Indique cuántas veces a la semana consume alcohol y qué tipo
+                </FormDescription>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    value={field.value || ""}
+                    placeholder="Ej: 2 veces/semana (cerveza), 1 vez/mes (vino tinto), No consumo..."
+                    className="bg-m-green-light/20 rounded-2xl min-h-[80px] resize-none"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* 8.2. CONSUMO DE CAFEÍNA Y ESTIMULANTES */}
+          <FormField
+            control={form.control}
+            name="caffeine_stimulants_consumption"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green">Consumo de cafeína o estimulantes</FormLabel>
+                <FormDescription>
+                  Indique el consumo de café, té, bebidas energéticas u otros estimulantes
+                </FormDescription>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    value={field.value || ""}
+                    placeholder="Ej: 3 cafés al día, 1 té verde por la mañana, No consumo cafeína..."
+                    className="bg-m-green-light/20 rounded-2xl min-h-[80px] resize-none"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* 8.3. ¿ES FUMADOR? */}
+          <FormField
+            control={form.control}
+            name="is_smoker"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green">¿Es fumador?</FormLabel>
+                <Select 
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    if (value === 'no') {
+                      form.setValue('smoking_details', null);
+                    }
+                  }} 
+                  value={field.value || undefined}
+                >
+                  <FormControl>
+                    <SelectTrigger className="bg-m-green-light/20 rounded-full">
+                      <SelectValue placeholder="Selecciona una opción" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="si">Sí</SelectItem>
+                    <SelectItem value="no">No</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* 8.4. DETALLE DE CONSUMO DE TABACO - Solo si es fumador */}
+          {isSmoker === 'si' && (
+            <FormField
+              control={form.control}
+              name="smoking_details"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-m-green">Detalle de consumo de tabaco</FormLabel>
+                  <FormDescription>
+                    Indique cuántos cigarros consume a la semana
+                  </FormDescription>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      value={field.value || ""}
+                      placeholder="Ej: 10 cigarros/semana, 1 paquete/día..."
+                      className="bg-m-green-light/20 rounded-2xl min-h-[80px] resize-none"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           )}
-        />
+
+          {/* 8.5. HORARIOS DE COMIDAS IRREGULARES */}
+          <FormField
+            control={form.control}
+            name="irregular_meal_times"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green">¿Tiene horarios de comidas irregulares?</FormLabel>
+                <Select 
+                  onValueChange={(value) => {
+                    field.onChange(value);
+                    if (value === 'no') {
+                      form.setValue('irregular_meal_times_details', null);
+                    }
+                  }} 
+                  value={field.value || undefined}
+                >
+                  <FormControl>
+                    <SelectTrigger className="bg-m-green-light/20 rounded-full">
+                      <SelectValue placeholder="Selecciona una opción" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="si">Sí</SelectItem>
+                    <SelectItem value="no">No</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* 8.6. DETALLE DE HORARIOS IRREGULARES - Solo si tiene horarios irregulares */}
+          {hasIrregularMealTimes === 'si' && (
+            <FormField
+              control={form.control}
+              name="irregular_meal_times_details"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-m-green">Detalle de horarios irregulares</FormLabel>
+                  <FormDescription>
+                    Explique cuándo y por qué tiene horarios irregulares
+                  </FormDescription>
+                  <FormControl>
+                    <Textarea
+                      {...field}
+                      value={field.value || ""}
+                      placeholder="Ej: Ceno muy tarde (después de las 10pm), No desayuno regularmente, Almuerzo a diferentes horas..."
+                      className="bg-m-green-light/20 rounded-2xl min-h-[80px] resize-none"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
+
+          {/* 8.7. OTROS HÁBITOS */}
+          <FormField
+            control={form.control}
+            name="other_habits"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green">Otros hábitos</FormLabel>
+                <FormDescription>
+                  Mencione cualquier otro hábito que considere relevante para el plan nutricional
+                </FormDescription>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    value={field.value || ""}
+                    placeholder="Ej: Picoteo entre comidas, consumo de snacks nocturnos, ayuno intermitente..."
+                    className="bg-m-green-light/20 rounded-2xl min-h-[80px] resize-none"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         {/* 9. RECUENTO DE ACTIVIDAD FÍSICA */}
         <FormField

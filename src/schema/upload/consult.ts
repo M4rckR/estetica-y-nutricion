@@ -22,4 +22,5 @@ export const schemaConsult = z.object({
   seguimiento: z.string().optional(),
   pdf1: optionalPdfSchema,
   pdf2: optionalPdfSchema,
+  pdf3: optionalPdfSchema,
 });

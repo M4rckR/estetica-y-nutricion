@@ -407,6 +407,10 @@ export function ClinicalHistoryView({
             value={translateValue(clinicalHistory.plan_type)}
           />
           <DataRow
+            label="Modalidad del Plan"
+            value={translateValue(clinicalHistory.plan_modality)}
+          />
+          <DataRow
             label="Detalle del Tipo de Plan"
             value={clinicalHistory.plan_type_details}
             fullWidth

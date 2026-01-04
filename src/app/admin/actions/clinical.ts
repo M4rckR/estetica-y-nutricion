@@ -77,6 +77,7 @@ export async function saveClinicalHistory(data: ClinicalHistoryFormType & { pati
     medium_term_objectives: data.medium_term_objectives || null,
     long_term_objectives: data.long_term_objectives || null,
     plan_type: data.plan_type || null,
+    plan_modality: data.plan_modality || null,
     plan_type_details: data.plan_type_details || null,
     // Metadatos
     completed: data.completed || false,

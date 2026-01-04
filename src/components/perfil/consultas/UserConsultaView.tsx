@@ -43,7 +43,7 @@ export function UserConsultaView({ userId, sortOrder = "desc" }: { userId: strin
       const supabase = await createClient();
       const { data: consultasData, error: fetchError } = await supabase
         .from("consultas")
-        .select("id, created_at, titulo, recomendacion, pdf_path, pdf_path_2, pdf_path_3, paciente_id")
+        .select("id, created_at, titulo, recomendacion, seguimiento, tipo_plan, pdf_path, pdf_path_2, pdf_path_3, paciente_id")
         .eq("paciente_id", userId)
         .order("created_at", { ascending: sort === "asc" });
       setConsultas(consultasData || []);

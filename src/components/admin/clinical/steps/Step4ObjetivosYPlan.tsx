@@ -152,7 +152,33 @@ export function Step4ObjetivosYPlan({ form }: Step4Props) {
             )}
           />
 
-          {/* 5. DETALLE DEL TIPO DE PLAN */}
+          {/* 5. MODALIDAD DEL PLAN */}
+          <FormField
+            control={form.control}
+            name="plan_modality"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green">Modalidad del Plan</FormLabel>
+                <FormDescription>
+                  Seleccione si el plan será online o presencial
+                </FormDescription>
+                <Select onValueChange={field.onChange} value={field.value || undefined}>
+                  <FormControl>
+                    <SelectTrigger className="bg-m-green-light/20 rounded-full h-12">
+                      <SelectValue placeholder="Selecciona la modalidad" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="online">Online</SelectItem>
+                    <SelectItem value="presencial">Presencial</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* 6. DETALLE DEL TIPO DE PLAN */}
           <FormField
             control={form.control}
             name="plan_type_details"

@@ -11,6 +11,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { schemaConsult } from "@/schema/upload/consult";
 import { UploadPdfType } from "@/types/upload/uploadPdf";
 import { createClient } from "@/utils/supabase/client";
@@ -34,6 +41,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
       titulo: "",
       recomendacion: "",
       seguimiento: "",
+      tipo_plan: undefined,
       pdf1: undefined,
       pdf2: undefined,
       pdf3: undefined,
@@ -175,6 +183,7 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
         titulo: data.titulo,
         recomendacion: data.recomendacion,
         seguimiento: data.seguimiento || null,
+        tipo_plan: data.tipo_plan || null,
         pdf_path: pdf1Path,      // Primer PDF (puede ser null)
         pdf_path_2: pdf2Path,    // Segundo PDF (puede ser null)
         pdf_path_3: pdf3Path,    // Tercer PDF - Otros documentos (puede ser null)
@@ -245,6 +254,27 @@ export const FormUpPdf = ({ patientId }: { patientId: string }) => {
                   <Textarea className="placeholder:text-sm" {...field} placeholder="(1era cita) ¿Cuáles son los objetivos y metas; y cuantas calorías, proteínas, grasas y carbohidratos le planificaremos)"/>
                 </FormControl>
     
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="tipo_plan"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green-dark">Tipo de Plan</FormLabel>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Seleccione el tipo de plan" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="online">online</SelectItem>
+                    <SelectItem value="presencial">presencial</SelectItem>
+                  </SelectContent>
+                </Select>
                 <FormMessage />
               </FormItem>
             )}

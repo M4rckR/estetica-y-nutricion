@@ -132,14 +132,14 @@ export function Step2AntecedentesClinicos({ form }: Step2Props) {
                         className="w-full bg-m-green-light/20 rounded-full justify-start text-left font-normal"
                       >
                         <CalendarIcon className="mr-2 h-4 w-4" />
-                        {field.value ? format(field.value, "PPP", { locale: es }) : "Selecciona una fecha"}
+                        {field.value ? format(new Date(field.value), "PPP", { locale: es }) : "Selecciona una fecha"}
                       </Button>
                     </FormControl>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0">
                     <Calendar
                       mode="single"
-                      selected={field.value || undefined}
+                      selected={field.value ? new Date(field.value) : undefined}
                       onSelect={field.onChange}
                       locale={es}
                       initialFocus

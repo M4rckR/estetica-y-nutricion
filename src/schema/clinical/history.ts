@@ -6,8 +6,8 @@ export const clinicalHistorySchema = z.object({
   patient_id: z.string().uuid(),
   phone: z.string().nullable().optional(),
   age: z.number().int().min(0).max(120).nullable().optional(),
-  birth_date: z.date().nullable().optional(),
-  first_appointment_date: z.date().nullable().optional(),
+  birth_date: z.union([z.coerce.date(), z.null(), z.undefined()]).optional(),
+  first_appointment_date: z.union([z.coerce.date(), z.null(), z.undefined()]).optional(),
   sex: z.string().nullable().optional(),
   ocupation: z.string().nullable().optional(),
 
@@ -18,7 +18,7 @@ export const clinicalHistorySchema = z.object({
   practices_sports: z.string().nullable().optional(), // Acepta string, vacío, null o undefined
   pathological_antecedents: z.string().nullable().optional(),
   consumes_alcohol_tobacco: z.union([z.enum(['no', 'alcohol', 'tabaco', 'ambos']), z.null(), z.undefined()]).optional(),
-  last_menstruation: z.union([z.date(), z.null(), z.undefined()]).optional(),
+  last_menstruation: z.union([z.coerce.date(), z.null(), z.undefined()]).optional(),
   uses_contraceptives: z.union([z.enum(['si', 'no']), z.null(), z.undefined()]).optional(),
   current_medication: z.string().nullable().optional(),
   hypertension_diabetes_antecedents: z.string().nullable().optional(),
@@ -58,6 +58,7 @@ export const clinicalHistorySchema = z.object({
   medium_term_objectives: z.string().nullable().optional(),
   long_term_objectives: z.string().nullable().optional(),
   plan_type: z.union([z.enum(['estetica', 'clinico', 'deportivo', 'pediatrico', 'salud', 'otro']), z.null(), z.undefined()]).optional(),
+  plan_modality: z.union([z.enum(['online', 'presencial']), z.null(), z.undefined()]).optional(),
   plan_type_details: z.string().nullable().optional(),
   follow_up_tracking: z.string().nullable().optional(),
 

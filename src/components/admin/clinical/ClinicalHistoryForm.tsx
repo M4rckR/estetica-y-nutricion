@@ -87,6 +87,7 @@ export function ClinicalHistoryForm({
       medium_term_objectives: undefined,
       long_term_objectives: undefined,
       plan_type: undefined,
+      plan_modality: undefined,
       plan_type_details: undefined,
       completed: false,
     },

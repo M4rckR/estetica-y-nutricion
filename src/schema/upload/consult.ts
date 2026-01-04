@@ -20,6 +20,9 @@ export const schemaConsult = z.object({
   titulo: z.string().min(3, { message: 'El título es requerido (mín. 3 caracteres).' }),
   recomendacion: z.string().min(10, { message: 'La recomendación es requerida (mín. 10 caracteres).' }),
   seguimiento: z.string().optional(),
+  tipo_plan: z.enum(['online', 'presencial'], {
+    message: 'Debe seleccionar el tipo de plan.',
+  }).optional(),
   pdf1: optionalPdfSchema,
   pdf2: optionalPdfSchema,
   pdf3: optionalPdfSchema,

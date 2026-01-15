@@ -25,7 +25,6 @@
 | **Historia Clínica** | | |
 | `practices_sports` | VARCHAR(20) | ¿Practica deportes? |
 | `pathological_antecedents` | TEXT | Antecedentes patológicos |
-| `consumes_alcohol_tobacco` | VARCHAR(20) | ¿Consume alcohol o tabaco? |
 | `last_menstruation` | DATE | Última menstruación |
 | `uses_contraceptives` | VARCHAR(5) | ¿Usa anticonceptivos? |
 | `current_medication` | TEXT | Medicación actual |
@@ -154,12 +153,6 @@ Este componente debe:
 - `no`
 - `ocasionalmente`
 
-### consumes_alcohol_tobacco
-- `no`
-- `alcohol`
-- `tabaco`
-- `ambos`
-
 ### uses_contraceptives
 - `si`
 - `no`
@@ -177,6 +170,7 @@ Este componente debe:
 ### who_prepares_meals (opcional - puede ser NULL)
 - `tu-mismo` (Tú mismo)
 - `pareja-esposo` (Tu pareja o esposo)
+- `madre` (Mi madre)
 - `hijo` (Tu hij@)
 - `empleada` (Empleada)
 - `otra` (Otra)

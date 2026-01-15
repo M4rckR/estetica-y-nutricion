@@ -51,6 +51,7 @@ const translateValue = (value: string | null | undefined): string => {
     // Who prepares meals
     'tu-mismo': 'Tú mismo',
     'pareja-esposo': 'Tu pareja o esposo',
+    'madre': 'Mi madre',
     'hijo': 'Tu hij@',
     'empleada': 'Empleada',
     'otra': 'Otra',
@@ -191,10 +192,6 @@ export function ClinicalHistoryView({
           <DataRow
             label="Teléfono"
             value={clinicalHistory.phone}
-          />
-          <DataRow
-            label="¿Consume alcohol o tabaco?"
-            value={translateValue(clinicalHistory.consumes_alcohol_tobacco)}
           />
         </div>
       </div>
@@ -380,6 +377,11 @@ export function ClinicalHistoryView({
             value={clinicalHistory.practices_sports}
             fullWidth
           />
+          <DataRow
+            label="Recordatorio de 24 horas detallado"
+            value={clinicalHistory.registro_24h_completo}
+            fullWidth
+          />
         </div>
       </div>
 
@@ -413,11 +415,6 @@ export function ClinicalHistoryView({
           <DataRow
             label="Detalle del Tipo de Plan"
             value={clinicalHistory.plan_type_details}
-            fullWidth
-          />
-          <DataRow
-            label="Recordatorio de 24 horas detallado"
-            value={clinicalHistory.registro_24h_completo}
             fullWidth
           />
         </div>

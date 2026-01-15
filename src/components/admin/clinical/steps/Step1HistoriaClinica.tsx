@@ -217,31 +217,6 @@ export function Step1HistoriaClinica({ form }: Step1Props) {
             </FormItem>
           )}
         />
-
-        {/* ¿Consume alcohol o tabaco? */}
-        <FormField
-          control={form.control}
-          name="consumes_alcohol_tobacco"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-m-green">¿Consume alcohol o tabaco?</FormLabel>
-              <Select onValueChange={field.onChange} value={field.value || undefined}>
-                <FormControl>
-                  <SelectTrigger className="bg-m-green-light/20 rounded-full w-full">
-                    <SelectValue placeholder="Selecciona una opción" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  <SelectItem value="no">No</SelectItem>
-                  <SelectItem value="alcohol">Alcohol</SelectItem>
-                  <SelectItem value="tabaco">Tabaco</SelectItem>
-                  <SelectItem value="ambos">Ambos</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
       </div>
     </div>
   );

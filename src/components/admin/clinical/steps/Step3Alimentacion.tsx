@@ -70,6 +70,7 @@ export function Step3Alimentacion({ form }: Step3Props) {
                 <SelectContent>
                   <SelectItem value="tu-mismo">Tú mismo</SelectItem>
                   <SelectItem value="pareja-esposo">Tu pareja o esposo</SelectItem>
+                  <SelectItem value="madre">Mi madre</SelectItem>
                   <SelectItem value="hijo">Tu hij@</SelectItem>
                   <SelectItem value="empleada">Empleada</SelectItem>
                   <SelectItem value="otra">Otra</SelectItem>
@@ -498,6 +499,42 @@ export function Step3Alimentacion({ form }: Step3Props) {
             </FormItem>
           )}
         />
+
+        {/* SEPARADOR */}
+        <div className="md:col-span-2 border-t border-gray-200 my-4"></div>
+
+        {/* SECCIÓN: RECORDATORIO DE 24 HORAS */}
+        <div className="md:col-span-2 space-y-4">
+          <div className="mb-4">
+            <h3 className="text-lg font-medium text-m-green">Recordatorio de 24 Horas</h3>
+            <p className="text-sm text-gray-600 mt-1">
+              Detalle del consumo y actividad del día anterior
+            </p>
+          </div>
+
+          {/* 14. RECORDATORIO DE 24 HORAS DETALLADO */}
+          <FormField
+            control={form.control}
+            name="registro_24h_completo"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-m-green">Recordatorio de 24 horas detallado</FormLabel>
+                <FormDescription>
+                  Detalle del consumo y actividad del día anterior. Incluya horarios precisos, alimentos, preparaciones, bebidas, porciones y cantidades. Especifique además la ingesta de agua, el consumo entre comidas y la actividad física realizada.
+                </FormDescription>
+                <FormControl>
+                  <Textarea
+                    {...field}
+                    value={field.value || ""}
+                    placeholder="Incluye alimentos, bebidas, ejercicio, etc..."
+                    className="bg-m-green-light/20 resize-none rounded-2xl min-h-[150px]"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
       </div>
     </div>
   );

@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS clinical_history (
   recent_exams_details TEXT,
   practices_sports VARCHAR(20) CHECK (practices_sports IN ('si', 'no', 'ocasionalmente')),
   pathological_antecedents TEXT,
-  consumes_alcohol_tobacco VARCHAR(20) CHECK (consumes_alcohol_tobacco IN ('no', 'alcohol', 'tabaco', 'ambos')),
   last_menstruation DATE,
   uses_contraceptives VARCHAR(5) CHECK (uses_contraceptives IN ('si', 'no')),
   current_medication TEXT,
@@ -36,7 +35,7 @@ CREATE TABLE IF NOT EXISTS clinical_history (
   allergies TEXT,
   
   -- Alimentación
-  who_prepares_meals VARCHAR(30) CHECK (who_prepares_meals IS NULL OR who_prepares_meals IN ('tu-mismo', 'pareja-esposo', 'hijo', 'empleada', 'otra')),
+  who_prepares_meals VARCHAR(30) CHECK (who_prepares_meals IS NULL OR who_prepares_meals IN ('tu-mismo', 'pareja-esposo', 'madre', 'hijo', 'empleada', 'otra')),
   eating_out_frequency VARCHAR(20) CHECK (eating_out_frequency IS NULL OR eating_out_frequency IN ('nunca', '1-2-veces', '3-4-veces', '5-mas-veces')),
   favorite_foods TEXT,
   aliments_hate TEXT,

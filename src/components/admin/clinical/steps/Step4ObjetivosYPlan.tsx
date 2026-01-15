@@ -202,41 +202,6 @@ export function Step4ObjetivosYPlan({ form }: Step4Props) {
           />
         </div>
 
-        {/* SEPARADOR */}
-        <div className="border-t border-gray-200 my-6"></div>
-
-        {/* SECCIÓN: RECORDATORIO DE 24 HORAS */}
-        <div className="space-y-4">
-          <div className="mb-4">
-            <h3 className="text-lg font-medium text-m-green">Recordatorio de 24 Horas</h3>
-            <p className="text-sm text-gray-600 mt-1">
-              Detalle del consumo y actividad del día anterior
-            </p>
-          </div>
-
-          {/* RECORDATORIO DE 24 HORAS DETALLADO */}
-          <FormField
-            control={form.control}
-            name="registro_24h_completo"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-m-green">Recordatorio de 24 horas detallado</FormLabel>
-                <FormDescription>
-                  Detalle del consumo y actividad del día anterior. Incluya horarios precisos, alimentos, preparaciones, bebidas, porciones y cantidades. Especifique además la ingesta de agua, el consumo entre comidas y la actividad física realizada.
-                </FormDescription>
-                <FormControl>
-                  <Textarea
-                    {...field}
-                    value={field.value || ""}
-                    placeholder="Incluye alimentos, bebidas, ejercicio, etc..."
-                    className="bg-m-green-light/20 resize-none rounded-2xl min-h-[150px]"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
       </div>
 
       {/* Nota informativa */}

@@ -17,7 +17,6 @@ export const clinicalHistorySchema = z.object({
   recent_exams_details: z.string().nullable().optional(),
   practices_sports: z.string().nullable().optional(), // Acepta string, vacío, null o undefined
   pathological_antecedents: z.string().nullable().optional(),
-  consumes_alcohol_tobacco: z.union([z.enum(['no', 'alcohol', 'tabaco', 'ambos']), z.null(), z.undefined()]).optional(),
   last_menstruation: z.union([z.coerce.date(), z.null(), z.undefined()]).optional(),
   uses_contraceptives: z.union([z.enum(['si', 'no']), z.null(), z.undefined()]).optional(),
   current_medication: z.string().nullable().optional(),
@@ -33,7 +32,7 @@ export const clinicalHistorySchema = z.object({
   allergies: z.string().nullable().optional(),
 
   // Paso 3: Alimentación
-  who_prepares_meals: z.union([z.enum(['tu-mismo', 'pareja-esposo', 'hijo', 'empleada', 'otra']), z.null(), z.undefined()]).optional(),
+  who_prepares_meals: z.union([z.enum(['tu-mismo', 'pareja-esposo', 'madre', 'hijo', 'empleada', 'otra']), z.null(), z.undefined()]).optional(),
   eating_out_frequency: z.union([z.enum(['nunca', '1-2-veces', '3-4-veces', '5-mas-veces']), z.null(), z.undefined()]).optional(),
   meals_per_day: z.union([z.enum(['2', '3', '4', '5']), z.null(), z.undefined()]).optional(),
   favorite_foods: z.string().nullable().optional(),

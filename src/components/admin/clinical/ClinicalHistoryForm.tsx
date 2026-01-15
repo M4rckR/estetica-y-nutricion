@@ -53,7 +53,6 @@ export function ClinicalHistoryForm({
       recent_exams_details: undefined,
       practices_sports: undefined,
       pathological_antecedents: undefined,
-      consumes_alcohol_tobacco: undefined,
       last_menstruation: undefined,
       uses_contraceptives: undefined,
       current_medication: undefined,

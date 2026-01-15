@@ -40,7 +40,6 @@ export async function saveClinicalHistory(data: ClinicalHistoryFormType & { pati
     recent_exams_details: data.recent_exams_details || null,
     practices_sports: data.practices_sports || null,
     pathological_antecedents: data.pathological_antecedents || null,
-    consumes_alcohol_tobacco: data.consumes_alcohol_tobacco || null,
     last_menstruation: data.last_menstruation || null,
     uses_contraceptives: data.uses_contraceptives || null,
     current_medication: data.current_medication || null,

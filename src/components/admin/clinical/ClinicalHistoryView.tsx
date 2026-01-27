@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { UsersType } from "@/types/users";
@@ -5,6 +7,8 @@ import { ClinicalHistoryType } from "@/types/clinical/history";
 import { formatFullName } from "@/utils/format";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
+import { generateClinicalHistoryPDF } from "@/utils/generateClinicalHistoryPDF";
+import { Download } from "lucide-react";
 
 interface ClinicalHistoryViewProps {
   patientData: UsersType;
@@ -74,22 +78,41 @@ const translateValue = (value: string | null | undefined): string => {
     '2-3L': '2 - 3 litros',
     'mas_3L': 'Más de 3 litros',
 
-    // Consult reasons
+    // Plan modality
+    'online': 'Online',
+    'presencial': 'Presencial',
+  };
+
+  return translations[value] || value;
+};
+
+const translateConsultReason = (value: string | null | undefined): string => {
+  if (!value) return "No especificado";
+
+  const consultReasons: Record<string, string> = {
     'reducir_grasa': 'Reducir grasa corporal',
     'aumentar_masa': 'Aumentar masa muscular',
     'rendimiento_deportivo': 'Rendimiento deportivo',
     'salud': 'Salud / tratamiento médico',
     'mejorar_alimentacion': 'Mejorar solo alimentación',
+  };
 
-    // Plan type
+  return consultReasons[value] || value;
+};
+
+const translatePlanType = (value: string | null | undefined): string => {
+  if (!value) return "No especificado";
+
+  const planTypes: Record<string, string> = {
     'estetica': 'Estética',
     'clinico': 'Clínico',
     'deportivo': 'Deportivo',
     'pediatrico': 'Pediátrico',
+    'salud': 'Salud',
     'otro': 'Otro',
   };
 
-  return translations[value] || value;
+  return planTypes[value] || value;
 };
 
 const formatDigestiveSymptoms = (value: string | null | undefined): string => {
@@ -161,7 +184,7 @@ export function ClinicalHistoryView({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <DataRow
             label="Motivo de consulta"
-            value={translateValue(clinicalHistory.consult_reason)}
+            value={translateConsultReason(clinicalHistory.consult_reason)}
           />
           <DataRow
             label="Sexo"
@@ -406,7 +429,7 @@ export function ClinicalHistoryView({
           />
           <DataRow
             label="Tipo de Plan que le corresponde"
-            value={translateValue(clinicalHistory.plan_type)}
+            value={translatePlanType(clinicalHistory.plan_type)}
           />
           <DataRow
             label="Modalidad del Plan"
@@ -421,7 +444,7 @@ export function ClinicalHistoryView({
       </div>
 
       {/* Botones de acción */}
-      <div className="flex gap-4 justify-center items-center mt-8">
+      <div className="flex flex-wrap gap-4 justify-center items-center mt-8">
         <Link href={`/admin/pacientes/${patientId}/historia-clinica`}>
           <Button 
             variant="outline"
@@ -430,6 +453,13 @@ export function ClinicalHistoryView({
             Volver
           </Button>
         </Link>
+        <Button
+          onClick={() => generateClinicalHistoryPDF(patientData, clinicalHistory)}
+          className="bg-m-green text-white px-8 py-6 rounded-full hover:bg-m-green-dark cursor-pointer transition-all flex items-center gap-2"
+        >
+          <Download className="w-5 h-5" />
+          Descargar PDF
+        </Button>
         <Link href={`/admin/pacientes/${patientId}/historia-clinica/editar`}>
           <Button className="bg-m-green text-white px-8 py-6 rounded-full hover:bg-m-green-dark cursor-pointer transition-all">
             Editar historia clínica

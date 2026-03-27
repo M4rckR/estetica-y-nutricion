@@ -1,6 +1,4 @@
 import z from "zod/v3";
-export * from "./register/register";
-
 
 // Esquema para el formulario de pre-reserva
 export const formPreReservationSchema = z.object({
@@ -9,11 +7,4 @@ export const formPreReservationSchema = z.object({
   date: z.date({
     message: "La fecha es requerida",
   }).optional(),
-});
-
-
-// Esquema para el login
-export const loginFormSchema = z.object({
-  email: z.string().email({ message: "El correo no es válido" }),
-  password: z.string().min(6, { message: "La contraseña debe tener al menos 6 caracteres" }),
 });

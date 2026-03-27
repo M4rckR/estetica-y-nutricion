@@ -1,21 +1,6 @@
-export * from "./auth";
 export * from "./plans";
 
 import z from "zod/v3";
 import { formPreReservationSchema } from "@/schema";
-
-
-export type Consulta = {
-  id: string; // El ID de la consulta (lo vi como 'int8' en tu schema, pero lo tratamos como string)
-  created_at: string; // La fecha de creación
-  titulo: string; // El título de la consulta
-  recomendacion: string; // El texto de recomendación
-  seguimiento?: string | null; // Seguimiento del paciente (a partir de la 2da cita)
-  tipo_plan?: 'online' | 'presencial' | null; // Tipo de plan: online o presencial (opcional)
-  pdf_path: string | null; // La ruta al primer archivo PDF
-  pdf_path_2?: string | null; // La ruta al segundo archivo PDF (opcional)
-  pdf_path_3?: string | null; // La ruta al tercer archivo PDF - Otros documentos (opcional)
-  paciente_id: string; // El UUID del paciente
-};
 
 export type FormPreReservationType = z.infer<typeof formPreReservationSchema>;

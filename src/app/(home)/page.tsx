@@ -1,3 +1,4 @@
+import { Logo } from "@/components/common/Logo";
 import { Footer } from "@/components/common/Footer";
 import { WhatsAppFloating } from "@/components/common/WhatsAppFloating";
 import { WhatsAppSection } from "@/components/common/WhatsAppSection";
@@ -11,9 +12,18 @@ import { ServicesSection } from "@/components/main/ServicesSection";
 import { Testimonials } from "@/components/main/Testimonials";
 import { TrustCTA } from "@/components/main/TrustCTA";
 
+// Cambiar a false para ocultar la landing y mostrar solo el logo
+const SITE_ACTIVE = false;
+
 export default async function Home() {
 
-  
+  if (!SITE_ACTIVE) {
+    return (
+      <div className="min-h-screen bg-m-green-dark flex items-center justify-center">
+        <Logo textColor="white" />
+      </div>
+    );
+  }
 
   return (
     <>
